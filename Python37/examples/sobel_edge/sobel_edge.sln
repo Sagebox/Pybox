@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "sobel_edge", "sobel_edge.pyproj", "{BA5D1C73-4944-4FA3-8C74-965157F7CC3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA5D1C73-4944-4FA3-8C74-965157F7CC3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5D1C73-4944-4FA3-8C74-965157F7CC3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D53E04EB-91C8-45E2-B202-205BBC986A1D}
+	EndGlobalSection
+EndGlobal
