@@ -309,13 +309,29 @@ foremost thought process with new code.  The main principle is that Pybox shoul
 The main principle is to start simply with a path to get more creative and comprehensively useful as you want to get more out of your program, in 
 an easy-to-understand step-wise manner.
 <br /><br />
-For example, all Pybox functions start off very easy, such as `"pybox.new_window()"`, and then adding more as you want more, such as 
-`"pybox.new_window(at=(x,y),size=(500,400),realtime=true,font=40,hidden=true,bgcolor="black,"blue",resize=ok)'`, and so-forth.  
+For example, all Pybox functions start off very easy, such as
+
+```python
+pybox.new_window()
+```
+
+and then adding more as you want more, such as 
+
+```python
+pybox.new_window(at=(x,y),size=(500,400),realtime=true,font=40,hidden=true,bgcolor="black,blue",resize=ok)
+```
+
+and so-forth.  
 <br /><br />
 Another example is `pybox.img_before_after()`, where you can then add a number of options to personalize and control the window -- you can
 also call it as a function or use the return class to control and monitor window events, but only if you want to.   
 <br /><br />
-On the other hand, if you just want a before & after window with simple code, you can simply call `"pybox.img_before_after(image1,image2)"` and you're done. 
+On the other hand, if you just want a before & after window with simple code, you can simply call 
+
+```python
+pybox.img_before_after(image1,image2)
+```
+and you're done. 
 <br /><br />
 
 # Requirements
