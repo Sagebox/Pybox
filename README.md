@@ -11,8 +11,6 @@
   Non-Event-Driven GUI-based tools for Python
 </h2>
 
-
-
 Pybox is a set of GUI-based tools to help you add GUI components to your program, all without adding a lot of event-driven or GUI-specific code just to have
 graphics and controls in your program.  
 <br />
@@ -21,6 +19,8 @@ to GUI-based controls and other functions with an average of two coding lines pe
 <br /><br />
 Pybox is also very useful for learning and students, hobbyist, and general creative, freeform development & rapid prototyping without the 
 need to write a lot of interface code just to add a button, slider, or other control -- or to remove them.
+<br /><br />
+[For C++, see Sagebox &ndash; click here.](https://github.com/Sagebox/Sagebox)
 <br /><br />
 
 
@@ -33,7 +33,7 @@ need to write a lot of interface code just to add a button, slider, or other con
 - [Standalone and External 3rd-Party Widgets](#standalone-and-3rd-party-widgets)
   - [Embedding Widgets into Windows](#embedding-widgets-into-windows)
 - [Using Pybox with Other Packages like MatplotLib, Tkinter, SciPy, PyTorch, etc.](#using-pybox-with-other-packages-like-matplotlib-tkinter-scipy-pytorch-etc)
-- [3D Graphics Primitives](#using-pybox-with-other-packages-like-matplotlib-tkinter-scipy-pytorch-etc)
+- [3D Graphics Primitives](#3d-graphics-primitives)
 - [Fast Real-Time 3-D GPU Graphics](#fast-real-time-3-d-gpu-graphics)
 - [Super-Fast Open-Source AVX, Multi-Threading Functions](#super-fast-open-source-avx-multi-threading-functions)
 
