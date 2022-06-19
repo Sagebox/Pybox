@@ -246,7 +246,7 @@ spatial perspective when the viewer position is changed.
 <br /><br />
 You can also create your own 3-DPolygonal shapes which can be used with non-GPU graphics and GPU graphics alike.   
 <br /><br />
-***See the 3D primitives examples -- they will be released shortly as part of the Github project. ***
+**_See the 3D primitives examples -- they will be released shortly as part of the Github project._**
 <br /><br />
 Many more 3-D graphics primitives and functions will be added in the next few updates of Pybox.
 <br /><br />
