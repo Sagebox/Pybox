@@ -41,6 +41,7 @@ need to write a lot of interface code just to add a button, slider, or other con
 ### Other Things
 - [A Project Based on Community Input](#a-project-based-on-community-input)
 - [Making Pybox Useful for Everyone](#making-pybox-useful-for-everyone)
+- [Pybox is useful for Students, Hobbyists, Researchers, and Professionals](#pybox-is-useful-for-students-hobbyists-researchers-and-professionals)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Support and Donations](#support-and-donations)
@@ -333,7 +334,12 @@ pybox.img_before_after(image1,image2)
 ```
 and you're done. 
 <br /><br />
+# Pybox is useful for Students, Hobbyists, Researchers and Professionals
 
+As mentioned in the previous section, Pybox is scalable from simple programs to more complex programs, and can be used with existing packages seamlessly and without interfering.
+
+Since Pybox works in a procedural mode (as well as event-driven when desired) as a library and stays out of your way, with no wrappers and obscure startup or other code, its is a great tool to learn programming as well as creatively develop, rapid prototyping, and building long-term applications.
+<br /><br />
 # Requirements
 
 Sagebox/Pybox has just been released.  It was originally started and used as a library package written for professional consulting applications to
