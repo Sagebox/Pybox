@@ -118,10 +118,9 @@ You can also create quick dialogs or call many different functions to help devel
 This is an example of making a program using MatplotLib more interactive by providing controls that can be used to change the nature of the two graphs while animating in real-time. 
 
 With various widgets, you can call up color selectors, date pickers, formatted message boxes, image view & img before/after windows, and so-forth.
-<br />
+<br /><br />
 
 ## Using Pybox in Console Mode
-
 ![output-console-mode](https://user-images.githubusercontent.com/70604831/174466676-d8cec449-a241-4402-9b7e-0e354a4d0777.png)
 
 Pybox can be used with GUI/Windows based programs or regular console mode programs.  In console mode, you can use Pybox functions to help with the program
