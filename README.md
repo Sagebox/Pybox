@@ -120,7 +120,7 @@ This is an example of making a program using MatplotLib more interactive by prov
 With various widgets, you can call up color selectors, date pickers, formatted message boxes, image view & img before/after windows, and so-forth.
 <br />
 
-### Using Pybox in Console Mode
+## Using Pybox in Console Mode
 
 ![output-console-mode](https://user-images.githubusercontent.com/70604831/174466676-d8cec449-a241-4402-9b7e-0e354a4d0777.png)
 
@@ -148,7 +148,7 @@ Pybox has a lot of graphics and other functions to allow building GUI-based appl
 functions.  For most of these programs,  the Pybox usage is just a few lines of code, outputting the results of whatever the code is generating.
 <br /><br />
 
-### A Simple Example
+## A Simple Example
 
 You can place specific controls, create graphic buttons, as well as use many drawing graphics functions.
 
@@ -190,7 +190,7 @@ used as a standalone object for use with any program.
 <br /><br/>
 The above examples are the Color Selector, Dial Example Widget, LCD Example Widget, and Spline Widget.
 
-### Embedding Widgets into Windows
+## Embedding Widgets into Windows
 
 ![output-emulation](https://user-images.githubusercontent.com/70604831/174466885-1ac37379-5cb0-4538-83c5-1cefeab58dea.png)
 
