@@ -35,7 +35,7 @@ need to write a lot of interface code just to add a button, slider, or other con
 - [Using Pybox with Other Packages like MatplotLib, Tkinter, SciPy, PyTorch, etc.](#using-pybox-with-other-packages-like-matplotlib-tkinter-scipy-pytorch-etc)
 - [3D Graphics Primitives](#3d-graphics-primitives)
 - [Fast Real-Time 3-D GPU Graphics](#fast-real-time-3-d-gpu-graphics)
-- [Super-Fast Open-Source AVX, Multi-Threading Functions](#super-fast-open-source-avx-multi-threading-functions)
+- [High Performance Computing: Super-Fast AVX Multi-Threading Functions](#high-performance-computing-super-fast-avx-multi-threading-functions)
 
 
 ### Other Things
@@ -112,8 +112,7 @@ Sliders, radio buttons, checkboxes, combo-boxes, list-boxes, text widgets, and o
 
 You can also create quick dialogs or call many different functions to help develop and use your program.
 
-![output-matplotlib2-75-dark](https://user-images.githubusercontent.com/70604831/174466640-0554ccf5-e00a-4108-86da-d7eb1636ebaf.png#gh-dark-mode-only)
-![output-matplotlib2-75-light](https://user-images.githubusercontent.com/70604831/174472529-632f0aa9-51e3-4413-ab4d-99a0725ec6a0.png#gh-light-mode-only)
+![output-matplotlib2-75-both](https://user-images.githubusercontent.com/70604831/174680953-cc6a9ad6-8e47-4f21-8b70-3470f3ff6d20.png)
 
 This is an example of making a program using MatplotLib more interactive by providing controls that can be used to change the nature of the two graphs while animating in real-time. 
 
@@ -206,8 +205,7 @@ There is also a nice rounded title bar on top.
 
 ## Using Pybox with Other Packages like MatplotLib, Tkinter, SciPy, PyTorch, etc.
 
-![output-collage-other-packages-dark](https://user-images.githubusercontent.com/70604831/174466958-6d26d8a7-5a15-4dd5-a2fa-5b85730c49e2.png#gh-dark-mode-only)
-![output-collage-other-packages-light](https://user-images.githubusercontent.com/70604831/174472638-d8c57120-a782-4ad2-b137-2e51689aff12.png#gh-light-mode-only)
+![output-collage-other-packages-both](https://user-images.githubusercontent.com/70604831/174681111-4e1d0944-cefe-4af6-b5be-5c03bc6fb67c.png)
 
 Pybox is written to be self-managed and to operate as a set of library calls rather than an environment that must be maintained and managed by the program. 
 <br /><br />
@@ -264,10 +262,9 @@ Pybox (most of which are expected to be released into open-source).
 These functions will be released soon, with more coming in the next few months for creating programs with GPU-based real-time graphics. 
 <br /><br />
 
-# Super-Fast Open-Source AVX, Multi-Threading Functions
+# High Performance Computing: Super-Fast AVX, Multi-Threading Functions
 
-![output-collage-avx-dark](https://user-images.githubusercontent.com/70604831/174467063-7ebb5407-b5d5-41eb-ba9a-5193f1955417.png#gh-dark-mode-only)
-![output-collage-avx-light](https://user-images.githubusercontent.com/70604831/174472686-f35a254d-64c2-4c8a-8ca1-edf4b2c99bd1.png#gh-light-mode-only)
+![output-collage-avx-both](https://user-images.githubusercontent.com/70604831/174681183-a4fd9c49-b98c-4247-8817-537682f5a5fa.png)
 
 Sagebox and Pybox was originally started as a platform to develop and explore a number of different projects, such as GPU-based projects, neural networking
 and so-forth. 
