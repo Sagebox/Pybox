@@ -22,9 +22,14 @@ need to write a lot of interface code just to add a button, slider, or other con
 <br /><br />
 [For C++, see Sagebox &ndash; click here.](https://github.com/Sagebox/Sagebox)
 <br /><br />
+<p align="center"><a href="https://www.projectsagebox.com/DonatePaypal.html">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" />
+</a>
+	<br />Please Consider Donating to the Pybox Project.
+</p>
+<br />
 
-
-### Table of Contents
+## Table of Contents
 - [Fun with Coding (the real reason for Pybox) - Creative Development and Freeform Programming](#fun-with-coding-the-real-reason-for-pybox---creative-development-and-freeform-programming)
 - [Easy-to-Use Library GUI Tools](#easy-to-use-library-gui-tools)
   - [Using Pybox in Console Mode](#using-pybox-in-console-mode)
@@ -378,7 +383,16 @@ Once Pybox has been released for a while and community feedbacks starts coming i
 <br /><br />
 
 # Support and Donations
-<br /><br />
+
+Pybox is a free product based on donations.  Please consider donating to the project so that more and more can be released.
+
+All donations go to the development of Pybox. 
+<br />
+<p align="center"><a href="https://www.projectsagebox.com/DonatePaypal.html">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate with PayPal" />
+</a>
+</p>
+<br />
 
 # Tip of the Iceberg - Alpha Version and Your Input
 
