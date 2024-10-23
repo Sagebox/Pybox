@@ -136,6 +136,8 @@ if cvimage is None :
     conio.write("{r}Error: Could not load bitmap.\n\n")
     quit()
 
+cvimage = cv2.cvtColor(cvimage,cv2.COLOR_BGR2RGB)   # Convert to RGB
+
 # use the sobel filter to do an edge detection on a grayscaled version of our loaded image
 
 img_result = sobel_filter(cv2.cvtColor(cvimage, cv2.COLOR_BGR2GRAY))

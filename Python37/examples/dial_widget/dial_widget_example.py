@@ -12,7 +12,7 @@
 # various forms.
 #
 # ---------------------
-# About the Dial Widget
+# About the Dial Widget 
 # ---------------------
 #
 # This dial widget was written specifically as an example of how Widgets work in pybox.  Also see the LCD Widget example
@@ -95,5 +95,3 @@ while pybox.get_event() :
     # after the text. 
 
     if widget.value_changed() : dev_win.write("Value = {{y}}{}\n".format(widget.get_value()))
-
-

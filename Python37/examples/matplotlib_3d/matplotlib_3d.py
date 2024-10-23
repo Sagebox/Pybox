@@ -102,7 +102,6 @@ The panel resolution can be changed to allow for faster animation -- the highest
 """
 
 import pybox
-from pybox import opt       # used for opt.-style example below 
 
 import numpy as np
 
@@ -139,9 +138,8 @@ slider_amp          = pybox.dev_slider_f("Amplitude"            ,range=(-10,10),
 slider_res          = pybox.dev_slider_f("Panel Resolution"     ,range=(10,.1) , default = 1)
 slider_rotate_y     = pybox.dev_slider_f("Rotate on Y axis"     ,range=(0,6.24))
 slider_offset_z     = pybox.dev_slider_f("Z offset"             ,range=(-20,20))
-slider_zoom         = pybox.dev_slider_f("Zoom"                 ,opt.range(.1,10),opt.default(1))  # a symbolic method to do options
-                                                                                                   # that can show documentation, hints, and are
-                                                                                                   # spell-checked via intellisense/IDE
+slider_zoom         = pybox.dev_slider_f("Zoom"                 ,range=(.1,10),default=1)  
+
 # Create some checkboxes.
 #
 # Note the embedded controls such as '+', '-', and {x=<position} below. 

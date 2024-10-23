@@ -47,7 +47,6 @@ When the window is un-maximized, it returns to its previous size.
 """
 
 import pybox
-from pybox import conio
 import numpy
 import cv2
 
@@ -58,6 +57,9 @@ import cv2
 # as cv tools did about the image not being valid. 
 
 cvimage1 = cv2.imread("Tiger.jpg")
+
+if cvimage1 is not None : 
+    cvimage1 = cv2.cvtColor(cvimage1,cv2.COLOR_BGR2RGB)   # Convert to RGB
 
 pybox.show_imgview_instructions()           # Remove this -- this shows instructions and is just for the example. 
 

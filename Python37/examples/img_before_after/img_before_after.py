@@ -119,7 +119,8 @@ import sobel
 import numpy as np
 import cv2
 
-cvimage = cv2.imread("dog.jpg")     # load image with opencv
+cvimage = cv2.imread("dog.jpg")                         # load image with opencv
+
 
 # if the image doesn't exist print out a message in red
 # This uses the pybox conio class. 
@@ -130,6 +131,7 @@ if cvimage is None :
     conio.write("{r}Error: Could not load bitmap.\n\n")
     quit()
 
+cvimage = cv2.cvtColor(cvimage,cv2.COLOR_BGR2RGB)   # Convert to RGB
 # use the sobel filter to do an edge detection on a grayscaled version of our loaded image
 
 img_result = sobel.filter(cv2.cvtColor(cvimage, cv2.COLOR_BGR2GRAY))
@@ -146,7 +148,7 @@ img_result = sobel.filter(cv2.cvtColor(cvimage, cv2.COLOR_BGR2GRAY))
 # See img_before_after2.py and img_before_after3.py for examples using more
 # options such as labels, titles, etc.
 
-pybox.img_before_after_r(cvimage,img_result,waitforclose=True)      # wait_for_close not necessary (window self-manages)
+pybox.img_before_after_r(cvimage,img_result,wait_for_close=True)      # wait_for_close not necessary (window self-manages)
 
 # << more program elements here while the image window is or isn't open >>
 #

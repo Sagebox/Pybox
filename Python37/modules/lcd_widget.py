@@ -23,13 +23,13 @@ class LcdWidget :
     MyWidget = LcdWidget(MyWindow,At=(100,200) - (places Widget in MyWindow pybox window)
 
     """
-    def __init__(self,window : pybox.Window = None,at=None,*args) :
+    def __init__(self,window : pybox.Window = None,at=None,*args,**kwargs) :
         """
         LcdWidget(window : pybox.Window = None,At=None,*args)
 
         Hover mouse over LcdWidget for more details
         """
-        self.__id = _lcd_widget.CreateWidget(window,opt.at(at),*args)
+        self.__id = _lcd_widget.CreateWidget(window,opt.at(at),*args,**kwargs)
 
     def set_value(self,value : int) -> bool :
         "Set the LCD value.  Negative numbers also work."
@@ -107,8 +107,8 @@ class LcdWidget :
         return _lcd_widget.Delete(self.__id)
 
 
-def create(window : pybox.Window = None,at=None,opts = None,*args) -> LcdWidget :
-    return LcdWidget(window,at,opt.str(opts),*args)
+def create(window : pybox.Window = None,at=None,**kwargs) -> LcdWidget :
+    return LcdWidget(window,**kwargs)
 
-def popup(at=None,opts = None,*args) -> LcdWidget :
-    return LcdWidget(at,opt.str(opts),*args)
+def popup(at=None,*args,**kwargs) -> LcdWidget :
+    return LcdWidget(None,popup=True,**kwargs)

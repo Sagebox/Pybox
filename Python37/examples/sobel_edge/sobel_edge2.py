@@ -127,6 +127,9 @@ def sobel_filter(img) :
 
 cvimage         = cv2.imread("dog.jpg")
 
+if cvimage is not None : 
+    cvimage = cv2.cvtColor(cvimage,cv2.COLOR_BGR2RGB)   # Convert to RGB
+    
 # if the image doesn't exist print out a message in red
 # This uses the pybox conio class. 
 #

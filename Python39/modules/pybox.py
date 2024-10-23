@@ -29,7 +29,8 @@ class Bitmap :
         """
         Returns the size of the Bitmap as a list (width,height). Will return (0,0) for invalid bitmaps.
         """
-        return numpy.array(_pybox.BitmapGetSize(self.__id)) 
+#        return numpy.array(_pybox.BitmapGetSize(self.__id)) 
+        return _pybox.BitmapGetSize(self.__id) 
     def get_array(self) -> numpy.ndarray:
         """
         Returns the Bitmap as a Python array compatible with SciPy and other libraries that
@@ -78,21 +79,21 @@ class conio :
         """
         Write out to the console window.  This is the same as print() except that colors and formatting may be used: 
 
-        ● Use {color} to start a color and {} to end the color. Example: pybox.console.Write("This is {red}in the color red{}")
-        ● You can use the first lett of the color, and do not need the closing {} if its at the end of the line:
+        - Use {color} to start a color and {} to end the color. Example: pybox.console.Write("This is {red}in the color red{}")
+        - You can use the first lett of the color, and do not need the closing {} if its at the end of the line:
             Example: pybox.console.Write("This is {r}in the color red")
-        ● Multiple colors can be used. Example: pybox.console.Write("This {c}is in cyan{} and this {r}is in the color red")
-        ● Use "{x=<number>}" to set a column (does not use closing {}):
+        - Multiple colors can be used. Example: pybox.console.Write("This {c}is in cyan{} and this {r}is in the color red")
+        - Use "{x=<number>}" to set a column (does not use closing {}):
             Example: pybox.console.Write("This {x=40}is at column 40")
-        ● Use "{bg=<color>"} to set the background color: Example: pybox.console.Write("This {bg=r}background{} is in red") 
-        ● Use "{lbg=<color>} at the begining of the line to make the entire line the background color:
+        - Use "{bg=<color>"} to set the background color: Example: pybox.console.Write("This {bg=r}background{} is in red") 
+        - Use "{lbg=<color>} at the begining of the line to make the entire line the background color:
             Example: pybox.console.Write("{lbg=blue}This entire line is in a blue background")
 
         Other commands:
 
-        ● {u} -> Underline
-        ● {r} -> Reverse (reverses color and background)
-        ● {vl}, {vr}, {ht}, {hb} : Vertical left line, vertical left line, horizontal top line, horizontal bottom line
+        - {u} -> Underline
+        - {r} -> Reverse (reverses color and background)
+        - {vl}, {vr}, {ht}, {hb} : Vertical left line, vertical left line, horizontal top line, horizontal bottom line
                 -> These can be used to make a box
         Available Colors: Black, White, Gray, red, green, yellow, blue, cyan, purple/magenta,
                           darkred, darkgreen, darkyellow, darkblue, darkcyan, darkpurple/darkmagenta
@@ -100,11 +101,11 @@ class conio :
         Abbreviation for Colors: blk (black), w, gry (gray), r, g (green), y, b, c, p, m (magenta), db, dr, dy, db, dc, dp, dm (dark magenta)
 
         Examples: 
-                \tpybox.conio.Write("This {r}Text is in red{} and {b}this text is in blue")      \t - the first {} ends the red. The last {} is not needed
-                \tpybox.conio.Write("This text {w}{bg=b}is in a blue background with bright white text.") 
+                \t -pybox.conio.Write("This {r}Text is in red{} and {b}this text is in blue")      \t - - the first {} ends the red. The last {} is not needed
+                \t -pybox.conio.Write("This text {w}{bg=b}is in a blue background with bright white text.") 
 
-        ● Important Note:  When using background color, underlines, boxes, etc., Windows can change the rest of the line to the background color if the window size is changed.
-            \t you can end the line with {_} to end the block. "{bg=b}This is in blue{_}" vs. "{bg=b}This is in blue{}".  This will prevent this issue with Windows. 
+        - Important Note:  When using background color, underlines, boxes, etc., Windows can change the rest of the line to the background color if the window size is changed.
+            \t - you can end the line with {_} to end the block. "{bg=b}This is in blue{_}" vs. "{bg=b}This is in blue{}".  This will prevent this issue with Windows. 
         """
         _pybox.ConsoleWrite(*args)
 
@@ -200,20 +201,20 @@ class debug :
 
         As with the console output functions, you can use colors to set the color of the output:
 
-            ● Use {color} to start a color and {} to end the color. 
+            - Use {color} to start a color and {} to end the color. 
                 Example: pybox.debug.Write("This is {red}in the color red{}")
-            ● You can use the first lett of the color, and do not need the closing {} if its at the end of the line:
+            - You can use the first lett of the color, and do not need the closing {} if its at the end of the line:
                 Example: pybox.debug.Write("This is {r}in the color red")
-            ● Multiple colors can be used.
-                \tExample: pybox.debug.Write("This {c}is in cyan{} and this {r}is in the color red")
-            ● "{x=<number>}" to set a column (does not use closing {}): Example: pybox.debug.Write("This {x=40}is at column 40")
-            ● "{bg=<color>"} to set the background color: Example: pybox.debug.Write("This {bg=r}background{} is in red") 
-            ● "{lbg=<color>} at the begining of the line to make the entire line the background color: 
-                \tExample: pybox.debug.Write("{lbg=blue}This entire line is in a blue background")
-            ● {bold} or {bld} for bold
-            ● {italic} or {i} for italic
-            ● {bolditalic} or {bi} for bold and italic
-            ● {div} for dividing line (i.e. DebugWrite("{div}\n") 
+            - Multiple colors can be used.
+                \t -Example: pybox.debug.Write("This {c}is in cyan{} and this {r}is in the color red")
+            - "{x=<number>}" to set a column (does not use closing {}): Example: pybox.debug.Write("This {x=40}is at column 40")
+            - "{bg=<color>"} to set the background color: Example: pybox.debug.Write("This {bg=r}background{} is in red") 
+            - "{lbg=<color>} at the begining of the line to make the entire line the background color: 
+                \t -Example: pybox.debug.Write("{lbg=blue}This entire line is in a blue background")
+            - {bold} or {bld} for bold
+            - {italic} or {i} for italic
+            - {bolditalic} or {bi} for bold and italic
+            - {div} for dividing line (i.e. DebugWrite("{div}\n") 
 
             Available Colors: Black, White, Gray, red, green, yellow, blue, cyan, purple/magenta,
 
@@ -229,7 +230,834 @@ class debug :
         """
         _pybox.DebugShow(not hide)
 
-class Slider:
+class MouseRegion :
+    def __init__(self,_id)  : 
+        self.id = _id
+        self.win = _pybox.GetMouseRegionWindowControlID(self.id,1)
+       
+
+    def set_pos(self,index : int,x,y) :
+        """
+        Sets the current positon of the mouse region/point.
+
+        - This does not change the size or shape of the region or point, and only sets it's position.
+        - This does not change the display order of the region/point.
+        - For point-type mouse regions, this sets the center point.  For region-type mouse regions, this sets the upper-left corner of the region.
+        - See set_pos_l() to set position with a list/array/tuple element instead of individual values.
+        
+        Parameters:
+        
+        index  \t - index of mouse region/point
+        x,y    \t - new x,y position
+        """
+        return _pybox.MouseRegionSetPos(self.id,index,x,y)
+    
+    def set_pos_l(self,index : int,pos : list) :
+        """
+        Sets the current positon of the mouse region/point.
+
+        - This does not change the size or shape of the region or point, and only sets it's position.
+        - This does not change the display order of the region/point.
+        - For point-type mouse regions, this sets the center point.  For region-type mouse regions, this sets the upper-left corner of the region.
+        - See set_pos() to set position with individual (x,y) values instead of list/array/tuple.
+        
+        Parameters:
+        
+        index  \t - index of mouse region/point
+        x,y    \t - new x,y position
+        """
+        return _pybox.MouseRegionSetPos(self.id,index,pos[0],pos[1])
+    
+    def set_point(self,index : int,x,y,width,height) :
+        """
+        Sets the point-type region location and size.  See set_region() to change a region-type mouse region.
+
+        - This does not change the display order of the region/point.
+        - The location sets the center point, with width/height the radius in each direction.  See set_region() to set a region-type mouse region.  
+        - See set_point_l() to use list/tuple/array for (x,y) and (width,height)
+        - See set_point_r() to use list/tuple/array for (x,y,width,height) together
+
+        ** note:  set_region() and set_point() can be used with any type of mouse point or region. The 'point'- or 'region'-type status will be adjusted accordingly.  
+
+        Parameters
+        
+        - index         \t-- Index of mouse region/point to change.
+        - x,y           \t-- New location of mouse region/point
+        - width,height  \t-- New Size of mouse region/point.
+        """
+        return _pybox.MouseRegionSetPoint(self.id,index,x,y,width,height,True)
+    
+    def set_point_l(self,index : int,pos : list, size : list) :
+        """
+        Sets the point-type region location and size.  See set_region_l() to change a region-type mouse region.
+
+        - This does not change the display order of the region/point.
+        - The location sets the center point, with width/height the radius in each direction.  See set_region() to set a region-type mouse region.  
+        - See set_point() to use individual values for x,y,width and height rather than list/tuple/array.
+        - See set_point_r() to use list/tuple/array for (x,y,width,height) together
+
+        ** note:  set_region() and set_point() can be used with any type of mouse point or region. The 'point'- or 'region'-type status will be adjusted accordingly.  
+
+        Parameters
+        
+        - index         \t-- Index of mouse region/point to change.
+        - pos           \t-- New location of mouse region/point
+        - size          \t-- New Size of mouse region/point.
+        """
+        return _pybox.MouseRegionSetPoint(self.id,index,pos[0],pos[1],size[0],size[1],True)
+    
+    def set_point_r(self,index : int,size_rect : list) :
+        """
+        Sets the point-type region location and size.  See set_region_r() to change a region-type mouse region.
+
+        - This does not change the display order of the region/point.
+        - The location sets the center point, with width/height the radius in each direction.  See set_region() to set a region-type mouse region.  
+        - See set_point() to use individual values for x,y,width and height rather than list/tuple/array.
+        - See set_point_l() to use list/tuple/array for (x,y) and (width,height)
+
+        ** note:  set_region() and set_point() can be used with any type of mouse point or region. The 'point'- or 'region'-type status will be adjusted accordingly.  
+
+        Parameters
+        
+        - index         \t-- Index of mouse region/point to change.
+        - size_rect     \t-- New location and size of mouse region/point (i.e. (x,y,width,height))
+        """
+        return _pybox.MouseRegionSetPoint(self.id,index,size_rect[0],size_rect[1],size_rect[2],size_rect[3],True)
+    
+    
+    def set_region(self,index : int,x,y,width,height) :
+        """
+        Sets the region-type region location and size.  See set_point() to change a point-type mouse region.
+
+        - This does not change the display order of the region/point.
+        - The location given sets the upper-left of the region (see set_point() to set a point-type center location) 
+        - See set_region_l() to use list/tuple/array for (x,y) and (width,height)
+        - See set_region_r() to use list/tuple/array for (x,y,width,height) together
+
+        ** note:  set_region() and set_point() can be used with any type of mouse point or region. The 'point'- or 'region'-type status will be adjusted accordingly.  
+
+        Parameters
+        
+        - index         \t-- Index of mouse region/point to change.
+        - x,y           \t-- New location of mouse region/point
+        - width,height  \t-- New Size of mouse region/point.
+        """
+        return _pybox.MouseRegionSetPoint(self.id,index,x,y,width,height,False)
+    
+    def set_region_l(self,index : int,pos : list,size : list) :
+        """
+        Sets the region-type region location and size.  See set_point() to change a point-type mouse region.
+
+        - This does not change the display order of the region/point.
+        - The location given sets the upper-left of the region (see set_point() to set a point-type center location) 
+        - See set_region() to use individual values for x,y,width and height rather than list/tuple/array.
+        - See set_region_r() to use list/tuple/array for (x,y,width,height) together
+
+        ** note:  set_region() and set_point() can be used with any type of mouse point or region. The 'point'- or 'region'-type status will be adjusted accordingly.  
+
+        Parameters
+        
+        - index         \t-- Index of mouse region/point to change.
+        - pos           \t-- New location of mouse region/point
+        - size          \t-- New Size of mouse region/point.
+        """
+        return _pybox.MouseRegionSetPoint(self.id,index,pos[0],pos[1],size[0],size[1],False)
+
+    def set_region_r(self,index : int,size_rect : list) :
+        """
+        Sets the region-type region location and size.  See set_point() to change a point-type mouse region.
+
+        - This does not change the display order of the region/point.
+        - The location given sets the upper-left of the region (see set_point() to set a point-type center location) 
+        - See set_region() to use individual values for x,y,width and height rather than list/tuple/array.
+        - See set_region_l() to use list/tuple/array for (x,y) and (width,height)
+
+        ** note:  set_region() and set_point() can be used with any type of mouse point or region. The 'point'- or 'region'-type status will be adjusted accordingly.  
+
+        Parameters
+        
+        - index         \t-- Index of mouse region/point to change.
+        - size_rect     \t-- New location and size of mouse region/point (i.e. (x,y,width,height))
+        """
+        return _pybox.MouseRegionSetPoint(self.id,index,size_rect[0],size_rect[1],size_rect[2],size_rect[3],False)
+    
+    
+    def add_point(self,x,y,width,height,**kwargs) : 
+        """
+        Adds a singular point-type Mouse Region point to the Mouse Region.  
+        
+        A Point-Type Mouse Region uses a center point (x,y) with width and height used as the radius in the X and Y directions, respectively.
+        
+        - See add_region() for a Region-Type Mouse Region where a specific rectangular region is described.
+        - See add_point_l() to use list/array/tuple values for (x,y) and (width,height)
+        - See add_point_r() to use a single list/array/tuple value for (x,y,width,height) together.
+        - Index values are in the order added, with the first index starting at 0. 
+
+        Example: add_point(x,y,5,5) 
+        
+        This sets a point at (x,y) with a mouse-region/point area extending 5 pixels in both directions in the X and Y axes, respectively, for a total
+        size of (10,10) with (x,y) in the center.
+        
+        Parameters
+        
+        - x,y               \t -- location of new point
+        - width,height      \t -- size of mouse point area in X and Y dimensions, respectively x2 (i.e. width and height are radius values)
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoint(self.id,x,y,width,height,True,**kwargs)
+    
+    def add_point_l(self,pos : list,size : list,**kwargs) : 
+        """
+        Adds a singular point-type Mouse Region point to the Mouse Region.  
+        
+        A Point-Type Mouse Region uses a center point (x,y) with width and height used as the radius in the X and Y directions, respectively.
+        
+        Example: add_point(x,y,5,5) 
+        
+        This sets a point at (x,y) with a mouse-region/point area extending 5 pixels in both directions in the X and Y axes, respectively, for a total
+        size of (10,10) with (x,y) in the center.
+        
+        - See add_region() for a Region-Type Mouse Region where a specific rectangular region is described.
+        - See add_point() to use individual values for x,y,width,height
+        - See add_point_r() to use a single list/array/tuple value for (x,y,width,height) together.
+        - If a point or region is removed, the index values are adjusted accordingly
+        
+        Parameters
+        
+        - pos       \t -- location of new point
+        - size      \t -- size of mouse point area in X and Y dimensions, respectively x2 (i.e. width and height are radius values)
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoint(self.id,pos[0],pos[1],size[0],size[1],True,**kwargs)
+    
+    def add_point_r(self,size_rect : list,**kwargs) : 
+        """
+        Adds a singular point-type Mouse Region point to the Mouse Region.  
+        
+        A Point-Type Mouse Region uses a center point (x,y) with width and height used as the radius in the X and Y directions, respectively.
+        
+        Example: add_point(x,y,5,5) 
+        
+        This sets a point at (x,y) with a mouse-region/point area extending 5 pixels in both directions in the X and Y axes, respectively, for a total
+        size of (10,10) with (x,y) in the center.
+        
+        - See add_region() for a Region-Type Mouse Region where a specific rectangular region is described.
+        - See add_point() to use individual values for x,y,width,height
+        - See add_point_l() to use list/array/tuple values for (x,y) and (width,height)
+        - If a point or region is removed, the index values are adjusted accordingly
+        
+        Parameters
+        
+        - size_rect      \t -- x,y,width,height of new point (e.g. (x,y,width,height))
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoint(self.id,size_rect[0],size_rect[1],size_rect[2],size_rect[3],True,**kwargs)
+    
+    def add_region(self,x,y,width,height,**kwargs) : 
+        """
+        Adds a singular region-type Mouse Region point to the Mouse Region.  
+        
+        A Region-Type Mouse Region specifies a rectangular region with (x,y) as the upper-left corner of the rectangle, with width and height specifying
+        the size of the rectangle in each X-Y axes, respectively.
+        
+        - See add_point() for a Point-Type Mouse Region where a specific point with a radius in each X-Y axes is specified.
+        - See add_region_l() to use list/array/tuple values for (x,y) and (width,height)
+        - See add_region_r() to use a single list/array/tuple value for (x,y,width,height) together.
+        - Index values are in the order added, with the first index starting at 0. 
+
+        Parameters
+        
+        - x,y               \t -- upper-left location of new region
+        - width,height      \t -- width and height of the rectangular region.
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoint(self.id,x,y,width,height,False,**kwargs)
+    
+    def add_region_l(self,pos : list,size : list,**kwargs) : 
+        """
+        Adds a singular region-type Mouse Region point to the Mouse Region.  
+        
+        A Region-Type Mouse Region specifies a rectangular region with (x,y) as the upper-left corner of the rectangle, with width and height specifying
+        the size of the rectangle in each X-Y axes, respectively.
+        
+        - See add_point() for a Point-Type Mouse Region where a specific point with a radius in each X-Y axes is specified.
+        - See add_region() to use individual values for x,y,width,height
+        - See add_region_r() to use a single list/array/tuple value for (x,y,width,height) together.
+        - Index values are in the order added, with the first index starting at 0. 
+
+        Parameters
+        
+        - pos       \t -- upper-left location of new region
+        - size      \t -- width and height of the rectangular region.
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoint(self.id,pos[0],pos[1],size[0],size[1],False,**kwargs)
+    
+    def add_region_r(self,size_rect,**kwargs) : 
+        """
+        Adds a singular region-type Mouse Region point to the Mouse Region.  
+        
+        A Region-Type Mouse Region specifies a rectangular region with (x,y) as the upper-left corner of the rectangle, with width and height specifying
+        the size of the rectangle in each X-Y axes, respectively.
+        
+        - See add_point() for a Point-Type Mouse Region where a specific point with a radius in each X-Y axes is specified.
+        - See add_region() to use individual values for x,y,width,height
+        - See add_region_l() to use list/array/tuple values for (x,y) and (width,height)
+        - Index values are in the order added, with the first index starting at 0. 
+
+        Parameters
+        
+        - size_rect     \t -- (x,y) upper-left location of new region and size (w,h) of rectangle (i.e. (x,y,w,h))
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoint(self.id,size_rect[0],size_rect[1],size_rect[2],size_rect[3],False,**kwargs)
+    
+    
+    def set_bound_box(self,index : int,x,y,width,height,**kwargs) : 
+        """
+        Sets the bounding box for the mouse region or point.
+
+        - When a bounding box is used, the mouse point or region cannot exceed the boundaries set inside the box.
+        - With a Point-type index (i.e. add_point() was used), the center x,y value is restricted to the bounding box, allowing the radiusX and radiusY
+          width/height to exceed the bounding box by width/2 and height/2, respectively.  
+          Reduce the Bounding Box as needed to include these values with Point-type indexes. 
+
+        - See: set_boundbox_l() to use list/array/tuple values for (x,y) and (width,height)
+        - See: set_boundbox_r() to use list/array/tuple values for (x,y,width,height) together.
+          
+        Parameters
+        
+        - index         \t -- index of mouse point/region.
+        - x,y           \t -- (x,y) location of region/point (for region-type, upper-left.  For point-type, center x,y)
+        - width,height  \t -- width and height of region/point (for point-type, these act as radius values from the center x,y point)
+        """
+        return _pybox.MouseRegionSetBoundBox(self.id,index,x,y,width,height,**kwargs)
+
+    def set_bound_box_l(self,index : int,pos : list,size : list,**kwargs) : 
+        """
+        Sets the bounding box for the mouse region or point.
+
+        - When a bounding box is used, the mouse point or region cannot exceed the boundaries set inside the box.
+        - With a Point-type index (i.e. add_point() was used), the center x,y value is restricted to the bounding box, allowing the radiusX and radiusY
+          width/height to exceed the bounding box by width/2 and height/2, respectively.  
+          Reduce the Bounding Box as needed to include these values with Point-type indexes. 
+
+        - See: set_boundbox() to use individul values for x,y,width and height
+        - See: set_boundbox_r() to use list/array/tuple values for (x,y,width,height) together.
+          
+        Parameters
+        
+        - index         \t -- index of mouse point/region.
+        - pos           \t -- (x,y) location of region/point (for region-type, upper-left.  For point-type, center x,y)
+        - size          \t -- width and height of region/point (for point-type, these act as radius values from the center x,y point)
+        """
+        return _pybox.MouseRegionSetBoundBox(self.id,index,pos[0],pos[1],size[0],size[1],**kwargs)
+    
+    def set_bound_box_r(self,index : int,size_rect : list,**kwargs) : 
+        """
+        Sets the bounding box for the mouse region or point.
+
+        - When a bounding box is used, the mouse point or region cannot exceed the boundaries set inside the box.
+        - With a Point-type index (i.e. add_point() was used), the center x,y value is restricted to the bounding box, allowing the radiusX and radiusY
+          width/height to exceed the bounding box by width/2 and height/2, respectively.  
+          Reduce the Bounding Box as needed to include these values with Point-type indexes. 
+
+        - See: set_boundbox_l() to use list/array/tuple values for (x,y) and (width,height)
+        - See: set_boundbox_r() to use list/array/tuple values for (x,y,width,height) together.
+          
+        Parameters
+        
+        - index         \t -- index of mouse point/region.
+        - size_rect     \t -- (x,y) location of region/point (for region-type, upper-left) and (w,h) of region, i.e. (x,y,w,h) as one array/tuple/list.
+        """
+        return _pybox.MouseRegionSetBoundBox(self.id,index,size_rect[0],size_rect[1],size_rect[2],size_rect[3],**kwargs)
+
+    def auto_draw(self,index = None) :
+        """
+        Draws all points or regions to the window. The program may handle the display of points itself by processing events, which can be much more flexible.
+
+        auto_draw() is provided as a way to quickly display the mouse points/regions as they are used, moved, highlighted, etc.
+        
+        - auto_draw() can be used for most programs. However, as programs grow and require more extensive display, auto_draw() can be omitted. 
+        
+        Also, individual points/regions can be set to off, allowing some to use auto_draw() and others to be bypassed so that the program can draw the point itself.
+        example: set_auto_draw(index,"off");
+        
+        ** note ** - Documentation for this feature is still in development.  See various example for usage information.
+        """
+        return _pybox.MouseRegionAutoDraw(self.id,index)
+    
+    def auto_draw_index(self,index : int) :
+        """
+        Calls the auto_draw() function for only the index provided.
+        
+        Where auto_draw() updates all Mouse Region elements in the Auto-Draw display, auto_draw() updates only the indexed element provided.
+        
+        This allows some control over the output, allowing for text and other additives to the auto-draw display before moving to the next
+        element.
+        
+        See auto_draw() documentation for more information.
+        
+        Parameters:
+        
+        - index         \t - Index of element to auto-draw.
+        """
+        return _pybox.MouseRegionAutoDraw(self.id,index)
+    
+    def update_points(self) :
+        """
+        *** Note: This function is currently unnecessary and is provided for future use. 
+        *** This function is not used when using a mouse region obtained with window.get_mouse_region()
+        *** with Mouse Regions obtained from window.get_mouse_region() this function is called automatically.
+
+        This looks at the current mouse status to update the current Mouse Region status for all points / regions.
+
+        This is used to update the movement, highlight, selection of points/regions based on what has happened to the mouse since the last time it was called.
+        
+        - update_points() must be called for every get_event() to update the mouse points, and should be called in the main event loop
+        before looking for updated events or values from the Mouse Region.
+        
+        - This function is best called directly after a get_event() call.
+        """
+        return _pybox.MouseRegionUpdatePoints(self.id,1)
+        
+    def event_ready(self) :
+        """
+        Returns True if an event is ready to be processed, such as a Mouse Drag event, etc. 
+        
+        - This is an Event-type function, which will return False once a 'true' is returned for the same event, and until another event is ready
+        
+        The event status is only for the event_ready() call itself and not any of the Mouse Region events that have occurred.
+        
+        Looking for specific events (e.g. Mouse Drag Event) will return true or false for their respective event, even if event_ready() has been called.
+        
+        event_ready() can be useful to only process Mouse Regions if there is a reason to do so (i.e. a Mouse Region event has occurred). 
+        This can be useful in separating mouse events from Mouse Region events, to allow using the mouse in areas not within mouse region points/regions.
+        """
+        return _pybox.MouseRegionEventReady(self.id,1)
+        
+    def reset_points(self) :
+        """
+        Clears all points/regions from the Mouse Region object, leaving 0 points/regions.
+        Once cleared, new additions start at index 0 and forward.
+        """
+        return _pybox.MouseRegionResetPoints(self.id,1)
+        
+    def mouse_drag_event(self) -> bool :
+        """
+        Returns True if there is a mouse point or region that is being moved by the mouse, or the mouse has otherwise clicked on the region/point
+        while not yet releasing the mouse button (i.e. the mouse buttin is pressed on the object).
+        
+        When mouse_drag_event() returns true, get_last_selected() can be used to retrieve the index of the Mouse Region element that has changed.
+        
+        - This is an Event-type function, which will return False once a 'true' is returned for the same event, and until another event is ready
+        """
+        return _pybox.MouseRegionMouseDragEvent(self.id,1)
+    
+    def mouse_drag_ended(self) -> bool :
+        """
+        Returns True if a mouse/region being dragged by the mouse (or was clicked upon) has been released. 
+
+        A Drag Event ends when the mouse is released from a selected region/point.
+        
+        When mouse_drag_ended() returns true, get_last_selected() can be used to retrieve the index of the Mouse Region element that has changed.
+        
+        - This is an Event-type function, which will return False once a 'true' is returned for the same event, and until another event is ready
+        """
+        return _pybox.MouseRegionMouseDragEnded(self.id,1)
+        
+    def remove_bound_box(self,index : int) :
+        """
+        Removes a bounding box constraint from a mouse region or point.
+
+        See: set_bound_box() to set a bounding box for a mouse region or point. Or use bound_box as a keyword when adding a point to add a bound box to a point/region.
+        
+        Parameters
+        
+        - index         \t -- index of mouse point/region.
+        """
+        return _pybox.MouseRegionRemoveBoundBox(self.id,index)
+ 
+    def reset_selected(self) :
+        """
+        Resets the last selected point value to -1.
+        The 'last selected point' can be used to keep a static value for selected point, even after it has been released from being moved or selected with the mouse.
+
+        - The 'selected point' (i.e. get_current_selection()) is the point that is being moved or otherwise the mouse has clicked on without yet unclicking the button.
+        - This resets last selected point (i.e. get_last_selected())
+        - reset_selected() also resets the last highlighted index (i.e. get_last_highlighted())
+        
+        ** Note: Once the mouse is released from a selection, this value is stored as the 'last selected point' for later reference.  
+        This 'last selected' value remains the same until a new region or point is selected, or reset_selected() is called to reset it to -1 (no selection)
+
+        See: get_last_selected() to get the last selected item (vs. get_current_selection())
+        """
+        return _pybox.MouseRegionResetSelected(self.id,1)
+    
+    def get_current_selection(self) -> int :
+        """
+        Returns the index of the currently selected item. 
+
+        - Note: The currently selected item is active only if the mouse is currently moving a point or region, or has clicked on a point or region and
+        the mouse button has not yet been unclicked.  Once the mouse is unclicked, the item is no longer selected and -1 is returned.
+
+        - See get_last_selected() to return the value of the most recently selected item even after the mouse has been released.
+
+        - Note: When there is no selected item or the mouse is no in contact with the mouse region/point, a -1 is returned to indicate there is no currently selected item.
+
+        Returns:
+        
+        If the mouse is currently moving or otherwise has clicked on an object (without having unclicked the mous yet, whether it is moving the region/point or not),
+        the index of the point/region is returned. Otherwise -1 is returned to indicate there is no selected item.
+        """
+        return _pybox.MouseRegionGetCurrentSelection(self.id,1)
+
+    def get_last_selected(self) -> int :
+        """
+        Returns the index of the last selected item (or the currently selected item of the mouse is moving or otherwise pressed on a region/point).
+
+        - Note: get_last_selected() returns the last selected item, which also includes an item that is currently selected (i.e. currently being moved by the mouse)
+        
+        get_last_selected() returns the last item that was selected (or -1 if there is no previous selection).  This differs from get_current_selection() which only
+        returns an index value if the mouse is currently pressed on a selected item (which then returns to -1 when the mouse button is released).
+
+        - get_last_selected() will return the value of the last selection, unless reset_selected() is called or there has not yet been a selected item. 
+        This is also useful when using auto_draw().
+        """
+        return _pybox.MouseRegionGetLastSelected(self.id,1)
+    
+    def get_current_highlight(self) -> int :
+        """
+        Returns the index of the currently highlighted item. 
+
+        The currently highlighted item is the item that the mouse is currently over or has selected. 
+
+        - Note: When there is no highlighted item or the mouse is no longer over the previous item, a -1 is returned to indicate there is no current highlight.
+        - See: get_last_highlighted() to get the last and/or current highlighted item. 
+        
+        Returns:
+        
+        If the mouse is currently within a region (whether it is moving the region/point or not), the index of the mouse region/point is returned.
+        Otherwise -1 is returned to indicate there is no highlighted item.
+        """
+        return _pybox.MouseRegionGetCurrentHighlight(self.id,1)
+    
+    def get_last_highlighted(self) -> int :
+        """
+        Returns the index of the last highlighted item (or the currently highlighted item of the mouse is currently over a region/point).
+
+        - Note: get_last_highlighted() returns the last highlighted item, which also includes an item that is currently highlighted (i.e. mouse is currently over).
+        
+        get_last_highlighted() returns the last index that was highlighted (or -1 if there is no previously highlighted item).  
+        This differs from get_current_highlight() which only returns an index value if the mouse is currently over a mouse point/region 
+        (which then returns to -1 when the mouse is no longer over the item).
+
+        - get_last_highlighted() will return the value of the last highlighted item, unless reset_selected() is called or there has not yet been a highlighted item. 
+        This is also useful when using auto_draw().
+        """
+        return _pybox.MouseRegionGetLastHighlight(self.id,1)
+    
+    def selection_changed(self) -> bool :
+        """
+        Returns true of the selection changed since the last call to selection_changed(), or a new selection has occurred.
+
+        - The selection occurs when the mouse clicked on region or point.  The selection value remains active while the point/region is being moved. 
+        See get_last_selected() to get the last selected item even after it is no longer being moved.
+
+        - Use get_last_selected() to obtain the index of the mouse point/region that is referenced by this event.
+        - note: -1 as an index value may be returned if the selection changed to no selection.
+        
+        - This is an Event-type function, which will return False once a 'true' is returned for the same event, and until another selection_changed() event is ready
+        """
+        return _pybox.MouseRegionSelectionChanged(self.id,1)
+    
+    def highlight_changed(self) -> bool :
+        """
+        Returns true of the highlight index changed since the last call to highlight_changed(), or a new highlight index has occurred.
+
+        - The highlight occurs when the mouse is over a region or point.  The highlight value remains active while the mouse is over the point/region. 
+        See get_last_highlighted() to get the last highlighted item even after it is no longer being moved.
+
+        - Use get_last_highlighted() to obtain the index of the mouse point/region that is referenced by this event.
+        - note: -1 as an index value may be returned if the selection changed to no selection.
+        
+        - This is an Event-type function, which will return False once a 'true' is returned for the same event, and until another highlight_changed() event is ready
+        """
+        return _pybox.MouseRegionHighlightChanged(self.id,1)
+    
+    def add_points(self, size_rect : list,**kwargs) :
+        """
+        Adds an array, list, or tuple set of point-type Mouse Region point to the Mouse Region.  
+        
+        A Point-Type Mouse Region uses a center point (x,y) with width and height used as the radius in the X and Y directions, respectively.
+        
+        - See add_regions() for a Region-Type Mouse Region where a specific rectangular region is described vs. (x,y) point with surrounding radius values.
+        - Index values are in the order added, with the first index starting at 0. 
+
+        
+        Example: 
+        
+        my_points = [(200,500,50,50),(300,500,50,50),(400,500,50,50),(500,500,50,50),(600,500,50,50)], 
+        mr.add_points(my_list) 
+        
+        This sets 5 points at (x,y) with a mouse-region/point area extending 50 pixels in both directions in the X and Y axes, respectively, for a total
+        size of (100,100) with (x,y) in the center.
+        
+        Parameters
+        
+        - size_rect         \t -- list of points in (x,y,w,h) list, tuple, or array
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoints(self.id,size_rect,True,**kwargs)
+   
+    def add_regions(self, Loc : list,**kwargs) :
+        """
+        Adds an array, list, or tuple set of region-type Mouse Region point to the Mouse Region.  
+        
+        A Region-Type Mouse Region specifies a rectangular region with (x,y) as the upper-left corner of the rectangle, with width and height specifying
+        the size of the rectangle in each X-Y axes, respectively.
+        
+        - See add_points() for a Point-Type Mouse Region where a specific point with a radius in each X-Y axes is specified.
+        - Index values are in the order added, with the first index starting at 0. 
+
+        
+        Example: 
+        
+        my_points = [(200,500,50,50),(300,500,50,50),(400,500,50,50),(500,500,50,50),(600,500,50,50)], 
+        mr.add_regions(my_list) 
+        
+        This sets 5 rectangle regions at with upper-left (x,y) and width/height of 50 in each direction.
+        
+        Parameters
+        
+        - size_rect         \t -- list of regions in (x,y,w,h) list, tuple, or array
+
+        Optional Keywords
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for specific to this point.
+                            \t For example, auto_draw="red,circle" sets a red circle for display when auto_draw() is called. 
+        - id                \t -- Sets a numeric 'user id' for the element that can be used to get its index as points are added and removed.
+                            \t Indexes are in order of additions, with deleted points changing indexes of the point below, accordingly.
+                            \t 'id' (e.g. id=123) can be used with get_id_index() to retrieve the Mouse Region index based on the user ID. 
+        """
+        return _pybox.MouseRegionAddPoints(self.id,Loc,False,**kwargs)
+   
+    def set_options(self,**kwargs) :
+        """
+        Sets keyword-based options for the Mouse Region object. This can be useful to change options when using different or new sets of points. 
+        This function can be useful when re-using the Mouse Region obtained from the window (e.g. win.GetMouseRegion()), when using mouse points for different
+        types of processes in the same window.  (you can also create a new and separate MouseRegion by declaring a MouseRegion object).
+
+        Keywords:
+        
+        - auto_draw         \t -- Sets the "auto draw" characteristics of the auto_draw() function output for all current and new mouse regions/points.
+                            \t For example, auto_draw="red,circle" sets a red circle for all elements for display when auto_draw() is called. 
+        """
+        return _pybox.MouseRegionSetOptions(self.id,1,**kwargs)
+   
+    def set_auto_draw_index(self,index : int,auto_draw_string : str) :
+        """
+        Sets the auto_draw() characteristics of the given index.
+
+        Use auto_draw() with no index to set the characteristics of all points or regions simultaneously.  
+        When using the index value, the changes only affect the current index's auto_draw() characteristics.
+
+        ** Note ** -- Documentation for this feature is still in development.  See various example for usage information. ---
+        """
+        return _pybox.MouseRegionSetAutoDraw(self.id,index,auto_draw_string)
+   
+    def set_auto_draw(self,auto_draw_string : str) :
+        """
+        Sets the auto_draw() characteristics of all points/regions simultaneously.  This also sets the default AutoDraw characteristics of new point/regions added 
+        after this function call.
+
+        Use auto_draw() with an index to set the AutoDraw characteristics of a single point or region.
+        
+        ** Note ** -- Documentation for this feature is still in development.  See various example for usage information. ---
+        """
+        return _pybox.MouseRegionSetAutoDraw(self.id,-20000,auto_draw_string)
+   
+    def get_display_index(self,index : int) -> int :
+        """
+        Gets the display index iteratively, in the display order.
+        
+        - When Mouse Region items are selected, they are moved to the top of the display order (unless the keyword dont_promote is used to prevent it).
+          Thus, the index order vs. the display order may not be the same. 
+
+        To iterate through the display order, GetDisplayIndex() can be called until a -1 is returned to signal there are no more display items:
+        
+        Example:
+        
+        index = -1
+        while (index := GetDisplayIndex(index)) >= 0) : perform_display_operation_on_index()
+        
+        Parameters:
+        
+        - index     \t -- index of current iterative display item (** this must start with -1)
+        
+        Returns"
+        
+        Index Value of display item.  A return of -1 means there are no more items to display.
+        """
+        return _pybox.MouseRegionGetDisplayIndex(self.id,index)
+    
+    def get_num_indexes(self) -> int :
+        """
+        Returns the number of points and regions in the Mouse Region object.
+        """
+        return _pybox.MouseRegionGetNumIndexes(self.id,1)
+    
+    def get_kill_passed_events(self, kill_events : bool = True) :
+        """
+        By default, mouse movements, clicks, unclicks, are not passed as general events when the Mouse Region has determined a Mouse Region event has 
+        occured.
+
+        For example, if the main event loop looks for mouse movements or clicks, these will not be reported if the mouse is over or is currently
+        moving a mouse point or region.
+        
+        This helps to react only to mouse events not within mouse regions.
+        
+        Sometimes it may be useful to get the mouse events as regions are being moved or highlighted. 
+        
+        Using get_kill_passed_events(False) will pass these events through, so the same mouse events that Mouse Region used will also be available to the main
+        event loop. 
+        
+        Parameters:
+        
+        - kill_events       \t - True to not pass Mouse Region mouse events to the main event loop (default behavior).  
+                            \t   False to pass the events for use with the main event loop.
+        """
+        return _pybox.MouseRegionKillPassedEvents(self.id,kill_events)
+    
+    def get_userid_index(self, userid : int) :
+        """
+        Returns the mouse region/point index corresponding to the user ID as set with the "id" keyword when the point/region was added.
+       (e.g. add_point(my_point,id=123)
+
+        -1 is returned if no valid index was found
+        
+        Parameters:
+
+        - user_id       \t - User ID as given with "id" keyword on point creation
+        
+        Returns:
+        
+        Index of point that has this user ID.  
+        -1 is returned if no point was found.
+        """
+        return _pybox.MouseRegionGetUserIDIndex(self.id,userid,True)
+    
+    def get_index_userid(self, index : int) :
+        """
+        Returns userID corresponding to the mouse region/point index given as input.
+        
+        If the point/region was not specified the "id" keyword when the point/region was added, the user ID is 0 for that point/region.
+        
+        -1 is returned if the index was not a valid mouse region/point index.
+
+        Parameters :
+        
+        - index     \t - index of the mouse region/point from which to obtain its user ID
+        
+        Returns
+        
+        
+        User ID of the mouse point/region if ID was established with the 'id' keyword when the point/region was created.
+        If no user id was established via the 'id' keyword, 0 is returned
+        
+        -1 is returned if the index given was invalid.
+        """
+        return _pybox.MouseRegionGetUserIDIndex(self.id,index,False)
+
+    class Point :
+        def __init__(self) :
+            index = 0
+            cur = ( 0,0 )
+            cur_oob = ( 0, 0 )
+            valid = False 
+            
+    class Region :
+        def __init__(self) :
+            index = 0
+            region = ( 0,0,0,0 )
+            region_oob = ( 0, 0, 0, 0 )
+            valid = False 
+            
+    def get_point(self,index : int) -> Point :
+        """
+        """
+        l = _pybox.MouseRegionGetPoint(self.id,index)
+        p = MouseRegion.Point()
+        p.index = l[0]
+        p.cur = (l[1],l[2])
+        p.cur_oob = (l[3],l[4])
+        p.valid = bool(l[5])
+        return p
+        
+    def get_region(self,index : int) -> Region :
+        """
+        """
+        l = _pybox.MouseRegionGetRegion(self.id,index)
+        p = MouseRegion.Region()
+        p.index = l[0]
+        p.region = (l[1],l[2],l[3],l[4])
+        p.region_oob = (l[5],l[6],l[3],l[4])
+        p.valid = bool(l[7])
+        
+        return p
+   
+
+
+class Slider :
     """
     Pybox Slider Class.  See functions such as NewSlider and DevSlider.
     """
@@ -864,6 +1692,296 @@ class CTextWidget :
         """
         return _pybox.TextWidgetWrite(self.__id,text,*args,**kwargs)
 
+class _ColorSelector :
+    """    
+    Color Selector widget, either in the current window or as a popup window. 
+        
+    With the color selector, you can select an RGB color using the wheel or input boxes next to the wheel itself. 
+    A color rectangle is shown with the currently selected color.
+        
+    color_selector returns a _ColorSelector object which can be used to look at changes in the color wheel in the window's main event loop. 
+        
+    See the _ColorSelector object functions for more information.
+        
+    Parameters:
+        
+    - at          \t - Where to put the Color Selector (in the window or as a popup).  If this is not used, the Color Selector is placed automatically.
+
+    Keywords usable when creating the Color Selector:
+
+    - Popup         \t - When true (i.e. Popup=True), the window pops up as a separate window.  Otherwise, it is placed in the current window at the location specified
+    - Title         \t - Sets a title displayed in the window's top bar area, such as title="This is the window title".  Otherwise a default title is used.
+    - x,y           \t - 'x' and 'y' keywords can be used in place of using the 'at' parameter, i.e. x=500, y=200 instead of (500,200) or at=(500,200)
+  
+    examples:\t - color_sel = mywin.color_selector(at=(500,200),popup=True)     --> Opens a Color Selector window as an individual window on the screen at x=500 and y=200
+    - color_sel = mywin.color_selector(at=(500,200))     --> Opens a Color Selector window inside the window 'mywin, at window location x=500 and y=200
+    - color_sel = pybox.color_selector(at=500,200)  --> Opens the same type of window, but as a pybox function without a parent window.
+        
+    - while mywin.GetEvent() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
+    """
+    def __init__(self,_id) : self.__id = _id
+    
+    def value_changed(self,**kwargs) -> bool :
+        """
+        Returns true of the value has changed since the last time called (i.e. the Mouse Wheel was moved, or a value entered in the input boxes)
+      
+        Useful Keywords:
+        
+        - Peek         \t - When true (i.e. Peek=True), the 'value changed' status is not reset and will always read 'true' (when a change has occurred) until a call occurs without the 'Peek' keyword set to True
+        
+        example: if color_sel.value_changed() : new_color = color_sel.get_rgb_value();
+        """
+        return _pybox.ColorSelector_ValueChanged(self.__id,**kwargs)
+    
+    def get_rgb_value(self) -> RgbColor :
+        """
+        Returns the current selected color in the Color Selector as an RgbColor value. 
+        
+        This can be used after checking for a value change, such as: 
+        
+        \t -if color_sel.value_changed() : new_color = color_sel.get_rgb_value();
+        
+        - See: get_array_value() to return the value as a numpy integer array rather than an RgbColor value. 
+        """
+        value = _pybox.ColorSelector_GetRGBValue(self.__id);
+        return RgbColor(value[0],value[1],value[2]);   
+
+    def get_array_value(self) -> numpy.ndarray :
+        """
+        Returns the currently selected color in the Color Selector as an numpy integer array. 
+        
+        This can be used after checking for a value change, such as: 
+        
+        \t -if color_sel.value_changed() : new_color = color_sel.get_array_value();
+        
+        - See: get_rgb_value() to return the value as an RgbColor value rather than a numpy integer array. 
+        """
+        value = _pybox.ColorSelector_GetRGBValue(self.__id);
+        return numpy.array(value);
+
+    def set_rgb_value(self,RgbValue) -> bool :
+        """
+        Sets the RGB value of the currently color selection in the Color Selector.
+        
+        When set_rgb_value() sets an RGB value, the color wheel, input boxes, and color rectangle in the Color Selector Window will change accordingly.
+        
+        - Color values may be RgbColor values, lists, tuples, or numpy arrays with 3 values representing red, green and blue (from 0-255)
+        
+        Examples:\t - color_sel.set_rgb_value((0,255,0)) --> Set Green
+        - color_sel.set_rgb_value(PanColor.ForestGreen()) --> Set forestgreen  (example used with previous "from pybox import PanColor")
+        """
+        return _pybox.ColorSelector_SetRGBValue(self.__id,RgbValue);
+
+    def set_location(self,at = None,**kwargs) -> bool :
+        """
+        Set the physical location of the Color Selector. 
+        
+        When the Color Selector window is a popup, this sets the popup window to the coordinates given.
+        When the Color Selector window is embedded in the window, the location will be set within the window.
+        
+        Examples:\t - color_sel.SetLocation((500,200))
+        - color_sel.SetLocation(x=500,y=200)
+        """
+        return _pybox.ColorSelector_SetLocation(self.__id,opt.at(at),**kwargs);
+
+    def show(self,show : bool = True) -> bool :
+        """
+        Shows (or Hides) the Color Selector. 
+        
+        If the Color Selector is hidden from view, Show() will re-show the window. 
+        
+        If the Color Selector is a popup window, the entire window disappears.
+        If the Color Selected is not a popup window, the color selector disappears from the window until shown again.
+        
+        - The 'show' parameter may be set to 'False' (i.e. color_sel.show(False) to reverse the command and hide the window instead)
+        """
+        return _pybox.ColorSelector_Show(self.__id,show);
+
+    def hide(self,hide : bool = True) -> bool :
+        """
+        Hides (or Shows) the Color Selector. 
+        
+        If the Color Selector is visible, Hide() will hide it from view.
+        
+        If the Color Selector is a popup window, the entire window reappear.
+        If the Color Selected is not a popup window, the color selector resappears embedded in the window in its current/previous location
+        
+        - The 'hide' parameter may be set to 'True' (i.e. color_sel.show(True) to reverse the command and show the window instead)
+        """
+        return _pybox.ColorSelector_Hide(self.__id,hide);
+
+    def ok_pressed(self,**kwargs) -> bool :
+        """
+        Returns True if the OK button was pressed (popup-window mode only). 
+        
+        This can be used in an event-loop to determine when the OK button is pressed vs. the Cancel button or a general window closure.
+        
+        - Also see: cancel_pressed() and window_closed() 
+        
+        Useful Keywords:
+        
+        - Peek         \t - When true (i.e. Peek=True), the 'ok_pressed' status is not reset and will always read 'True' (when a change has occurred) until a call occurs without the 'Peek' keyword set to True
+        
+        Example: if color_sel.ok_pressed() : print("Ok button was pressed")
+        
+        """
+        return _pybox.ColorSelector_OkPressed(self.__id,**kwargs);
+
+    def cancel_pressed(self,**kwargs) -> bool :
+        """
+        Returns True if the Cancel button was pressed (popup-window mode only). 
+        
+        This can be used in an event-loop to determine when the Cancel button is pressed or the Window was closed (by presing the upper-right 'x' button, or ALT-F4).
+        
+        - Also see: ok_pressed() and window_closed()
+        - note: cancel_pressed() can be used to check when the window is closed by pressing Alt-F4 or by using the 'X' button (in the upper-right).\
+ In this case, a cancel is issued to the window, resulting in cancel_pressed() returning true as the window is closed.
+        
+        Useful Keywords:
+        
+        - Peek         \t - When true (i.e. Peek=True), the 'ok_pressed' status is not reset and will always read 'True' (when a change has occurred) until a call occurs without the 'Peek' keyword set to True
+        
+        Example: if color_sel.cancel_pressed() : print("Cancel button was pressed or Window was closed.")
+        
+        """
+        return _pybox.ColorSelector_CancelPressed(self.__id,**kwargs);
+
+    def window_closed(self,**kwargs) -> bool :
+        """
+        Returns True if the Window was closed (popup-window mode only). 
+        
+        This can be used in an event-loop to determine if the window was closed by the user.  When window_closed() returns True, this means the window was closed \
+without pressing any of the buttons, representing a cancel button press at the same time.
+        
+        - Also see: ok_pressed() and cancel_pressed()
+        - note: cancel_pressed() can be used to check when the window is closed by pressing Alt-F4 or by using the 'X' button (in the upper-right).\
+ In this case, a cancel is issued to the window, resulting in cancel_pressed() returning true as the window is closed.
+        
+        Useful Keywords:
+        
+        - Peek         \t - When true (i.e. Peek=True), the 'ok_pressed' status is not reset and will always read 'True' (when a change has occurred) until a call occurs without the 'Peek' keyword set to True
+        
+        Example: if color_sel.window_closed() : print("Window was closed by the user.")
+        
+        """
+        return _pybox.ColorSelector_WindowClosed(self.__id,**kwargs);
+
+    def disable_close(self,disable : bool = True) -> bool :
+        """
+        This disables the ability to close the Color Selector Window (popup-window mode only) by pressing ALT-F4 or pressing the 'X' close button in the upper-right of the window.
+        
+        By default, the user can close the window by pressing the ALT-F4 or upper-right 'X' button.
+        
+        - The window can be restored by using the Show() function if it is closed by the user.
+        - When closed by the user without pressing the Ok or Cancel button, a window_closed() and cancel_pressed() will both return True
+        - When close is disabled, no actions are taken when the user attempts to close the window and the window remains open
+        - use diable_close(False) to re-enable the ability for the user to close the window manually.
+        """
+        return _pybox.ColorSelector_DisableClose(self.__id,disable);
+
+class _ColorWheel :
+    """    
+    Color Wheel widget, put into the existing window as a single color wheel with no other controls but the wheel itself. 
+        
+    With the color selector, you can select an RGB color using the wheel or input boxes next to the wheel itself. 
+    A color rectangle is shown with the currently selected color.
+        
+    color_wheel returns a _ColorWheel object which can be used to look at changes in the color wheel in the window's main event loop. 
+        
+    See the _ColorWheel object functions for more information.
+        
+    Parameters:
+        
+    - at          \t - Where to put the Color Selector (in the window or as a popup).  If this is not used, the Color Selector is placed automatically.
+
+    Keywords usable when creating the Color Selector:
+
+    - x,y           \t - 'x' and 'y' keywords can be used in place of using the 'at' parameter, i.e. x=500, y=200 instead of (500,200) or at=(500,200)
+  
+    example:\t - color_wheel = mywin.color_wheel((500,200))     --> Opens a Color Wheel window in the window at (500,200)
+        
+    - while mywin.GetEvent() : if (color_wheel.value_changed()) print("Color value = ",color_wheel.get_rgb_value()) --> prints values as the wheel is moved.
+    """
+    def __init__(self,_id) : self.__id = _id
+    
+    def value_changed(self,**kwargs) -> bool :
+        """
+        Returns true of the value has changed since the last time called (i.e. the Mouse Wheel was moved, or a value entered in the input boxes)
+      
+        Useful Keywords:
+        
+        - Peek         \t - When true (i.e. Peek=True), the 'value changed' status is not reset and will always read 'true' (when a change has occurred) until a call occurs without the 'Peek' keyword set to True
+        
+        example: if color_wheel.value_changed() : new_color = color_wheel.get_rgb_value();
+        """
+        return _pybox.ColorWheel_ValueChanged(self.__id,**kwargs)
+    
+    def get_rgb_value(self) -> RgbColor :
+        """
+        Returns the currently selected color in the Color Wheel as an RgbColor value. 
+        
+        This can be used after checking for a value change, such as: 
+        
+        \t -if color_wheel.value_changed() : new_color = color_wheel.get_rgb_value();
+        
+        - See: get_array_value() to return the value as a numpy integer array rather than an RgbColor value. 
+        """
+        value = _pybox.ColorWheel_GetRGBValue(self.__id);
+        return RgbColor(value[0],value[1],value[2]);   
+
+    def get_array_value(self) -> numpy.ndarray :
+        """
+        Returns the currently selected color in the Color Wheel as an numpy integer array. 
+        
+        This can be used after checking for a value change, such as: 
+        
+        \t -if color_wheel.value_changed() : new_color = color_wheel.get_array_value();
+        
+        - See: get_rgb_value() to return the value as an RgbColor value rather than a numpy integer array. 
+        """
+        value = _pybox.ColorWheel_GetRGBValue(self.__id);
+        return numpy.array(value);
+
+    def set_rgb_value(self,RgbValue) -> bool :
+        """
+        Sets the RGB value of the current color selection in the Color Wheel.
+                
+        - Color values may be RgbColor values, lists, tuples, or numpy arrays with 3 values representing red, green and blue (from 0-255)
+        
+        Examples:\t - color_wheel.set_rgb_value((0,255,0)) --> Set Green
+        - color_wheel.set_rgb_value(PanColor.ForestGreen()) --> Set forestgreen  (example used with previous "from pybox import PanColor")
+        """
+        return _pybox.ColorWheel_SetRGBValue(self.__id,RgbValue);
+
+    def set_location(self,at = None,**kwargs) -> bool :
+        """
+        Set the physical location of the Color Wheel. 
+        
+        Examples:\t - color_wheel.SetLocation((500,200))
+        - color_wheel.SetLocation(x=500,y=200)
+        """
+        return _pybox.ColorWheel_SetLocation(self.__id,opt.at(at),**kwargs);
+
+    def show(self,show : bool = True) -> bool :
+        """
+        Shows (or Hides) the Color Wheel. 
+        
+        If the Color Wheel is hidden from view, Show() will re-show the Color Selector. 
+        
+        - The 'show' parameter may be set to 'False' (i.e. color_sel.show(False) to reverse the command and hide the Color Wheel instead)
+        """
+        return _pybox.ColorWheel_Show(self.__id,show);
+
+    def hide(self,hide : bool = True) -> bool :
+        """
+        Hides (or Shows) the Color Wheel. 
+        
+        If the Color Wheel is visible, Hide() will hide it from view.
+        
+        - The 'hide' parameter may be set to 'True' (i.e. color_sel.show(True) to reverse the command and show the Color Wheel instead)
+        """
+        return _pybox.ColorWheel_Hide(self.__id,hide);
+
 class Window :
     """
     Pybox Window Class
@@ -874,9 +1992,11 @@ class Window :
     You can open as many Windows as you want, as well as create child windows inside of the window itself.
     """
     def __init__(self,_id : int) : 
-        self.__id       = _id
-        self.draw       = self.__WinDraw(self)
-        self.console = self.__WinConsole(self)
+        self.__id           = _id
+        #self.__pointer      = _pybox.WindowGetWindowPointer(_id)
+        self.draw           = self.__WinDraw(self)
+        self.console        = self.__WinConsole(self)
+
     class __WinConsole :
         """
         """
@@ -906,7 +2026,9 @@ class Window :
 
         See the individual function descriptions for more information
         """
-        def __init__(self, outer): self.__id = outer._Window__id
+        def __init__(self, outer) : 
+            self.__id = outer._Window__id
+            #self.pointer = outer._Window__pointer
 
         #
         # Window WinDraw class functions Class Functions
@@ -923,23 +2045,23 @@ class Window :
 
             Parameters
 
-            ● deg      \t- Input degrees, from 0-360. 
+            - deg      \t -- Input degrees, from 0-360. 
 
             Notable Values:
 
-            ● 0     \t-Red.  Same as GetHueColor(360)
-            ● 60    \t-Purple / Magenta
-            ● 120   \t-Blue
-            ● 180   \t-Cyan
-            ● 240   \t-Green
-            ● 300   \t-Yellow
+            - 0     \t --Red.  Same as GetHueColor(360)
+            - 60    \t --Purple / Magenta
+            - 120   \t --Blue
+            - 180   \t --Cyan
+            - 240   \t --Green
+            - 300   \t --Yellow
 
             Returns: A pybox RgbColor object consisting of a Red, Green, and Blue value
             """
             color = _pybox.FromHSL(deg)
             return RgbColor(color[0],color[1],color[2])
 
-        def set_opacity(self,value, by_value : bool = False) -> bool :
+        def set_opacity(self,opacity) -> bool :
             """
             Sets the opacity of the drawing functions such as Circle, Ellipse, Polygon, Line, etc. 
 
@@ -950,12 +2072,10 @@ class Window :
 
             Parameters:
 
-            ● value         \t- Opacity from 0-100 (or 0-255 if 'byValue' is True)
-            ● by_value       \t- By default (byValue = Fale), the Opacity value is in percent from 0-100
-                            \t  When byValue is set to True, the value is a literal 0-255 value where 255 is fully opaque.
+            - opacity         \t -- Opacity from 0-100 (or 0-255 if 'byValue' is True)
                             
             """
-            return _pybox.DrawSetDrawOpacity(self.__id,value,by_value)
+            return _pybox.DrawSetDrawOpacity(self.__id,opacity)
 
         def get_opacity(self) -> int :
             """
@@ -980,7 +2100,7 @@ class Window :
 
             Parameters
 
-            ● Angle         \t- Angle to rotate drawn objects, in degrees (0-360)
+            - Angle         \t -- Angle to rotate drawn objects, in degrees (0-360)
 
             Example:
                 MyWindow.Draw.rotate_transform(60)
@@ -1012,7 +2132,7 @@ class Window :
 
             Parameters:
 
-            ● x,y         \t- x,y coordinates of new center. 
+            - x,y         \t -- x,y coordinates of new center. 
 
             Transforms only work with regular drawing functions and not the 'fast' functions.  
 
@@ -1044,7 +2164,7 @@ class Window :
 
             Parameters:
 
-            ● at         \t- x,y coordinates of new center. 
+            - at         \t -- x,y coordinates of new center. 
 
             Transforms only work with regular drawing functions and not the 'fast' functions.  
 
@@ -1070,7 +2190,7 @@ class Window :
 
             Parameters:
 
-            \t● pen_size               \t- Size of the pen.  Currently an integer value, but will accept floating-point in a future version.
+            \t -- pen_size               \t -- Size of the pen.  Currently an integer value, but will accept floating-point in a future version.
 
             Example:
 
@@ -1083,7 +2203,7 @@ class Window :
 
             Note: You can specify the pen size in all functions that use it, such as: 
 
-            \t● MyWin.draw.ellipse(500,500,200,400,"yellow",10). 
+            \t -- MyWin.draw.ellipse(500,500,200,400,"yellow",10). 
 
             set_pen_size() will set the pen size globally and will use that pen size for all functions when the pen size is omitted.
 
@@ -1107,12 +2227,12 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3,p4     \t- Location of the 3 axes of the quadrangle
-            \t● inside_color     \t- Color of the interior of the quadrangle
-            \t● border_color     \t- [optional] Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3,p4     \t -- Location of the 3 axes of the quadrangle
+            \t -- inside_color     \t -- Color of the interior of the quadrangle
+            \t -- border_color     \t -- [optional] Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            \t -- pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
 
             About Colors
 
@@ -1121,10 +2241,10 @@ class Window :
 
             Examples:
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
-                \tp4 = (500,600)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
+                \t -p4 = (500,600)
 
                 window.draw.fill_quadrangle_fast(p1,p2,p3,p4,"yellow","red")
                 window.draw.fill_quadrangle_fast(p1,p2,p3,p4,"yellow",6)
@@ -1143,22 +2263,22 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3,p4     \t- Location of the 3 axes of the quadrangle
-            \t● inside_color     \t- Color of the interior of the quadrangle
-            \t● border_color     \t- [optional] Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3,p4     \t -- Location of the 3 axes of the quadrangle
+            \t -- inside_color     \t -- Color of the interior of the quadrangle
+            \t -- border_color     \t -- [optional] Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            \t -- pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
-                \tp4 = (500,600)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
+                \t -p4 = (500,600)
 
                 window.draw.quadrangle_fast(p1,p2,p3,p4,"red")
                 window.draw.quadrangle_fast(p1,p2,p3,p4,"yellow",6)
@@ -1168,7 +2288,7 @@ class Window :
 
         # HR Quadrangle Functions
 
-        def fill_quadrangle(self,p1 : list, p2 : list, p3 : list,p4 : list,inside_color,border_color = 0,pen_size : int = 0) :
+        def fill_quadrangle(self,p1 : list, p2 : list, p3 : list,p4 : list,inside_color,**kwargs) :
             """
             Draws a filled Quadrangle on the screen with axis points at p1, p2, p3, and p4. 
 
@@ -1179,13 +2299,16 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3,p4     \t- Location of the 3 axes of the quadrangle
-            \t● inside_color     \t- Color of the interior of the quadrangle
-            \t● border_color     \t- [optional] Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3,p4     \t -- Location of the 3 axes of the quadrangle
+            \t -- inside_color     \t -- Color of the interior of the quadrangle
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
+            
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1193,18 +2316,18 @@ class Window :
 
             Examples:
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
-                \tp4 = (500,600)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
+                \t -p4 = (500,600)
 
-                window.draw.fill_quadrangle(p1,p2,p3,p4,"yellow","red")
-                window.draw.fill_quadrangle(p1,p2,p3,p4,"yellow",6)
+                window.draw.fill_quadrangle(p1,p2,p3,p4,"yellow",pen_color="red")
+                window.draw.fill_quadrangle(p1,p2,p3,p4,"yellow",pen_size=6)
 
             """
-            return _pybox.WindowDrawQuadrangle(self.__id,p1,p2,p3,p4,inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawQuadrangle(self.__id,p1,p2,p3,p4,inside_color,False,**kwargs)
 
-        def quadrangle(self,p1 : list, p2 : list, p3 : list,p4 : list,color,pen_size : int = 0) :
+        def quadrangle(self,p1 : list, p2 : list, p3 : list,p4 : list,color,**kwargs) :
             """
             Draws a an open/wireframe Quadrangle on the screen with axis points at p1, p2, p3, and p4. 
 
@@ -1215,13 +2338,16 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3,p4     \t- Location of the 3 axes of the quadrangle
-            \t● inside_color     \t- Color of the interior of the quadrangle
-            \t● border_color     \t- [optional] Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3,p4     \t -- Location of the 3 axes of the quadrangle
+            \t -- inside_color     \t -- Color of the interior of the quadrangle
+            \t -- pen_color     \t -- [optional] Color if the outside edge of the quadrangle (based on the current Pen Size).  When omitted, the entire quadrangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
+                                    
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1229,16 +2355,16 @@ class Window :
 
             Examples:
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
-                \tp4 = (500,600)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
+                \t -p4 = (500,600)
 
                 window.draw.quadrangle(p1,p2,p3,p4,"red")
-                window.draw.quadrangle(p1,p2,p3,p4,"yellow",6)
+                window.draw.quadrangle(p1,p2,p3,p4,"yellow",pen_size=6)
 
             """
-            return _pybox.WindowDrawQuadrangle(self.__id,p1,p2,p3,p4,color,color,pen_size,True)
+            return _pybox.WindowDrawQuadrangle(self.__id,p1,p2,p3,p4,color,True,**kwargs)
         
         #
         # Triangle Functions
@@ -1255,12 +2381,12 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3        \t- Location of the 3 axes of the triangle
-            \t● inside_color     \t- Color of the interior of the triangle
-            \t● border_color     \t- [optional] Color if the outside edge of the triangle (based on the current Pen Size).  When omitted, the entire triangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3        \t -- Location of the 3 axes of the triangle
+            \t -- inside_color     \t -- Color of the interior of the triangle
+            \t -- border_color     \t -- [optional] Color if the outside edge of the triangle (based on the current Pen Size).  When omitted, the entire triangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            \t -- pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
 
             About Colors
 
@@ -1269,9 +2395,9 @@ class Window :
 
             Examples:
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
 
                 window.draw.fill_triangle_fast(p1,p2,p3,"yellow","red")
                 window.draw.fill_triangle_fast(p1,p2,p3,"yellow",6)
@@ -1290,10 +2416,10 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3        \t- Location of the 3 axes of the triangle
-            \t● color           \t- Color of the interior of the triangle
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3        \t -- Location of the 3 axes of the triangle
+            \t -- color           \t -- Color of the interior of the triangle
+            \t -- pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
 
             About Colors
 
@@ -1302,9 +2428,9 @@ class Window :
 
             Examples:
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
 
                 window.draw.TriangleFast(p1,p2,p3,"red")
                 window.draw.TriangleFast(p1,p2,p3,"yellow",6)
@@ -1314,7 +2440,7 @@ class Window :
 
         # HR Triangles
 
-        def fill_triangle(self,p1 : list, p2 : list, p3 : list,inside_color,border_color = 0,pen_size : int = 0) :
+        def fill_triangle(self,p1 : list, p2 : list, p3 : list,inside_color,**kwargs) :
             """
             Draws a filled Triangle on the screen with axis points at p1, p2, and p3 
 
@@ -1325,13 +2451,15 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3        \t- Location of the 3 axes of the triangle
-            \t● inside_color     \t- Color of the interior of the triangle
-            \t● border_color     \t- [optional] Color if the outside edge of the triangle (based on the current Pen Size).  When omitted, the entire triangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3        \t -- Location of the 3 axes of the triangle
+            \t -- inside_color     \t -- Color of the interior of the triangle
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the triangle (based on the current Pen Size).  When omitted, the entire triangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1339,17 +2467,19 @@ class Window :
 
             Examples:
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
 
-                window.draw.fill_triangle(p1,p2,p3,"yellow","red")
-                window.draw.fill_triangle(p1,p2,p3,"yellow",6)
+                window.draw.fill_triangle(p1,p2,p3,"yellow",pen_color="red")
+                window.draw.fill_triangle(p1,p2,p3,"yellow",pen_size=6)
 
             """
-            return _pybox.WindowDrawTriangle(self.__id,p1,p2,p3,inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawTriangle(self.__id,p1,p2,p3,inside_color,False,**kwargs)
+        def fill_triangle_test(self,p1 : list, p2 : list, p3 : list,inside_color,**kwargs) :
+            return _pybox.WindowDrawTriangle_Test(self.pointer[0],self.pointer[1],p1,p2,p3,inside_color,False,**kwargs)
 
-        def triangle(self,p1 : list, p2 : list, p3 : list,color,pen_size : int = 0) :
+        def triangle(self,p1 : list, p2 : list, p3 : list,color,**kwargs) :
             """
             Draws a an open/wireframe Triangle on the screen with axis points at p1, p2, p3. 
 
@@ -1360,11 +2490,13 @@ class Window :
 
             Parameters
 
-            \t● p1,p2,p3        \t- Location of the 3 axes of the triangle
-            \t● color           \t- Color of the interior of the triangle
-            \t● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            \t -- p1,p2,p3        \t -- Location of the 3 axes of the triangle
+            \t -- color           \t -- Color of the interior of the triangle
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1372,15 +2504,15 @@ class Window :
 
             Examples:
 
-                \tp1 = (300,300)
-                \tp2 = (200,500)
-                \tp3 = (400,500)
+                \t -p1 = (300,300)
+                \t -p2 = (200,500)
+                \t -p3 = (400,500)
 
                 window.draw.triangle(p1,p2,p3,"red")
-                window.draw.triangle(p1,p2,p3,"yellow",6)
+                window.draw.triangle(p1,p2,p3,"yellow",pen_size=6)
 
             """
-            return _pybox.WindowDrawTriangle(self.__id,p1,p2,p3,color,color,pen_size,True)
+            return _pybox.WindowDrawTriangle(self.__id,p1,p2,p3,color,True,**kwargs)
         
         #
         # Rectangle Functions
@@ -1398,14 +2530,14 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the rectangle in the window
-            ● width                \t- Width (in pixels) of the rectangle
-            ● height               \t- Width (in pixels) of the rectangle
-            ● inside_color   \t- Color of the interior of the rectangle
-            ● border_color   \t- [optional] Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the rectangle in the window
+            - width                \t -- Width (in pixels) of the rectangle
+            - height               \t -- Width (in pixels) of the rectangle
+            - inside_color   \t -- Color of the interior of the rectangle
+            - border_color   \t -- [optional] Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1432,13 +2564,13 @@ class Window :
 
             Parameters
 
-            ● at                \t- (x,y) Location of the center of the rectangle in the window
-            ● size              \t- (Width, Height), in pixels, of the rectangle
-            ● inside_color   \t- Color of the interior of the rectangle
-            ● border_color   \t- [optional] Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                \t -- (x,y) Location of the center of the rectangle in the window
+            - size              \t -- (Width, Height), in pixels, of the rectangle
+            - inside_color   \t -- Color of the interior of the rectangle
+            - border_color   \t -- [optional] Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1465,12 +2597,12 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the rectangle in the window
-            ● width                \t- Width (in pixels) of the rectangle
-            ● height               \t- Width (in pixels) of the rectangle
-            ● color             \t- Color of the interior of the rectangle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the rectangle in the window
+            - width                \t -- Width (in pixels) of the rectangle
+            - height               \t -- Width (in pixels) of the rectangle
+            - color             \t -- Color of the interior of the rectangle
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1496,12 +2628,11 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the rectangle in the window
-            ● size                \t- (Width, Height), in pixels, of the rectangle
-            ● height               \t- Width (in pixels) of the rectangle
-            ● color             \t- Color of the interior of the rectangle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the rectangle in the window
+            - size                \t -- (Width, Height), in pixels, of the rectangle
+            - color             \t -- Color of the interior of the rectangle
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1517,7 +2648,7 @@ class Window :
 
         # HR Rectangle Functions
 
-        def fill_rectangle(self,x : int,y : int,width : int,height : int,inside_color,border_color = 0,pen_size : int = 0) : 
+        def fill_rectangle(self,x : int,y : int,width : int,height : int,inside_color,**kwargs) : 
             """
             Draws a filled Rectangle on the screen at starting point (x,y) with a width and height of (width,height)
 
@@ -1529,15 +2660,17 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the rectangle in the window
-            ● width                \t- Width (in pixels) of the rectangle
-            ● height               \t- Width (in pixels) of the rectangle
-            ● inside_color   \t- Color of the interior of the rectangle
-            ● border_color   \t- [optional] Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the rectangle in the window
+            - width                \t -- Width (in pixels) of the rectangle
+            - height               \t -- Width (in pixels) of the rectangle
+            - inside_color   \t -- Color of the interior of the rectangle
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1545,14 +2678,14 @@ class Window :
 
             Examples:
                             window.draw.fill_rectangle(400,200,300,100,"red") 
-                            window.draw.fill_rectangle(400,200,300,100,"red","Green")       - Draws a Red rectangle with a green outer border (thickness of current pen size)
+                            window.draw.fill_rectangle(400,200,300,100,"red",pen_color="Green")       - Draws a Red rectangle with a green outer border (thickness of current pen size)
                             window.draw.fill_rectangle(400,200,300,100,PanColor.ForestGreen())
-                            window.draw.fill_rectangle(400,200,300,100,MyColor,6)            - Sets a pen size of 6   
+                            window.draw.fill_rectangle(400,200,300,100,MyColor,pen_size=6)            - Sets a pen size of 6   
                             window.draw.fill_rectangle(400,200,300,100,pybox.RgbColor(0,255,0))         
             """
-            return _pybox.WindowDrawRectangle(self.__id,x,y,width,height,inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawRectangle(self.__id,x,y,width,height,inside_color,False,**kwargs)
 
-        def fill_rectangle_l(self,at : list,size : list,inside_color,border_color = 0,pen_size : int = 0) :
+        def fill_rectangle_l(self,at : list,size : list,inside_color,**kwargs) :
             """
             Draws a filled Rectangle on the screen at starting point (x,y) with a width and height of (width,height)
 
@@ -1564,15 +2697,16 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the rectangle in the window
-            ● size                \t- (Width, Height), in pixels, of the rectangle
-            ● height               \t- Width (in pixels) of the rectangle
-            ● inside_color   \t- Color of the interior of the rectangle
-            ● border_color   \t- [optional] Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the rectangle in the window
+            - size                \t -- (Width, Height), in pixels, of the rectangle
+            - inside_color   \t -- Color of the interior of the rectangle
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1580,14 +2714,49 @@ class Window :
 
             Examples:
                             window.draw.fill_rectangle_l((400,200),(300,100),"red") 
-                            window.draw.fill_rectangle_l((400,200),(300,100),"red","Green")      - Draws a Red rectangle with a green outer border (thickness of current pen size)
+                            window.draw.fill_rectangle_l((400,200),(300,100),"red",pen_color="Green")      - Draws a Red rectangle with a green outer border (thickness of current pen size)
                             window.draw.fill_rectangle_l(Location,Size,PanColor.ForestGreen())
-                            window.draw.fill_rectangle_l((400,200),(300,100),MyColor,6)           - Sets a pen size of 6   
+                            window.draw.fill_rectangle_l((400,200),(300,100),MyColor,pen_size=6)           - Sets a pen size of 6   
                             window.draw.fill_rectangle_l((400,200),(300,100),pybox.RgbColor(0,255,0))         
             """
-            return _pybox.WindowDrawRectangle(self.__id,at[0],at[1],size[0],size[1],inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawRectangle(self.__id,at[0],at[1],size[0],size[1],inside_color,False,**kwargs)
 
-        def rectangle(self,x : int,y : int,width : int,height : int,color,pen_size : int = 0) : 
+        def fill_rectangle_r(self,size_rect : list,inside_color,**kwargs) :
+            """
+            Draws a filled Rectangle on the screen at starting point (x,y) with a width and height of (width,height)
+
+            See rectangle() to draw an open/wireframe Rectangle vs. a filled Rectangle. 
+            See fill_rectangle() to set the Rectangle location, width, and height using independent values.
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            Hint: use an odd-size pen_size for sharper edges.
+
+            Parameters
+
+            - size_rect             \t -- (x,y,width,height) list or array specifying (x,y) and (width,height) of rectangle
+            - inside_color      \t -- Color of the interior of the rectangle
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the rectangle (based on the current Pen Size).  When omitted, the entire rectangle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
+            Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
+
+            Examples:
+                            window.draw.fill_rectangle_r((400,200,300,100),"red") 
+                            window.draw.fill_rectangle_r((400,200,300,100),"red",pen_color="Green")      - Draws a Red rectangle with a green outer border (thickness of current pen size)
+                            window.draw.fill_rectangle_r(my_rect,PanColor.ForestGreen())
+                            window.draw.fill_rectangle_r((400,200,300,100),MyColor,pen_size=6)           - Sets a pen size of 6   
+                            window.draw.fill_rectangle_r((400,200,300,100),pybox.RgbColor(0,255,0))         
+            """
+            return _pybox.WindowDrawRectangle(self.__id,size_rect[0],size_rect[1],size_rect[2],size_rect[3],inside_color,False,**kwargs)
+        
+        def rectangle(self,x : int,y : int,width : int,height : int,color,**kwargs) : 
             """
             Draws an open/wireframe Rectangle on the screen at starting point (x,y) with a width and height of (width,height)
 
@@ -1599,13 +2768,15 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the rectangle in the window
-            ● width                \t- Width (in pixels) of the rectangle
-            ● height               \t- Width (in pixels) of the rectangle
-            ● color             \t- Color of the interior of the rectangle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the rectangle in the window
+            - width                \t -- Width (in pixels) of the rectangle
+            - height               \t -- Width (in pixels) of the rectangle
+            - color             \t -- Color of the interior of the rectangle
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1614,12 +2785,12 @@ class Window :
             Examples:
                             window.draw.rectangle(400,200,300,100,"red") 
                             window.draw.rectangle(400,200,300,100,PanColor.ForestGreen())
-                            window.draw.rectangle(400,200,300,100,MyColor,6)        - Sets a pen size of 6   
+                            window.draw.rectangle(400,200,300,100,MyColor,pen_size=6)        - Sets a pen size of 6   
                             window.draw.rectangle(400,200,300,100,pybox.RgbColor(0,255,0))         
             """
-            return _pybox.WindowDrawRectangle(self.__id,x,y,width,height,color,color,pen_size,True)
+            return _pybox.WindowDrawRectangle(self.__id,x,y,width,height,color,True,**kwargs)
 
-        def rectangle_l(self,at : list,size : list,color,pen_size : int = 0) :
+        def rectangle_l(self,at : list,size : list,color,**kwargs) :
             """
             Draws an open/wireframe Rectangle on the screen at starting point (x,y) with a width and height of (width,height)
 
@@ -1631,13 +2802,14 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the rectangle in the window
-            ● size                \t- (Width, Height), in pixels, of the rectangle
-            ● height               \t- Width (in pixels) of the rectangle
-            ● color             \t- Color of the interior of the rectangle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the rectangle in the window
+            - size                \t -- (Width, Height), in pixels, of the rectangle
+            - color             \t -- Color of the interior of the rectangle
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1646,10 +2818,42 @@ class Window :
             Examples:
                             window.draw.rectangle_l((400,200),(300,100),"red") 
                             window.draw.rectangle_l((400,200),(300,100),PanColor.ForestGreen())
-                            window.draw.rectangle_l(Location,Size,MyColor,6)        - Sets a pen size of 6   
+                            window.draw.rectangle_l(Location,Size,MyColor,pen_size=6)        - Sets a pen size of 6   
                             window.draw.rectangle_l((400,200),(300,100),pybox.RgbColor(0,255,0))         
             """
-            return _pybox.WindowDrawRectangle(self.__id,at[0],at[1],size[0],size[1],color,color,pen_size,True)
+            return _pybox.WindowDrawRectangle(self.__id,at[0],at[1],size[0],size[1],color,True,**kwargs)
+        
+        def rectangle_r(self,size_rect : list,color,**kwargs) :
+            """
+            Draws an open/wireframe Rectangle on the screen at starting point (x,y) with a width and height of (width,height)
+
+            See fill_rectangle_r() to draw a filled Rectangle va. an open/wireframe Rectangle.
+            See rectangle() to set the Rectangle location, width, and height using a independent values.
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            Hint: use an odd-size pen_size for sharper edges.
+
+            Parameters
+
+            - size_rect             \t -- (x,y,width,height) list or array specifying (x,y) and (width,height) of rectangle
+            - color             \t -- Color of the interior of the rectangle
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
+            Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
+
+            Examples:
+                            window.draw.rectangle_r((400,200,300,100),"red") 
+                            window.draw.rectangle_r((400,200,300,100),PanColor.ForestGreen())
+                            window.draw.rectangle_r(my_rect,MyColor,pen_size=6)        - Sets a pen size of 6   
+                            window.draw.rectangle_r((400,200,300,100),pybox.RgbColor(0,255,0))         
+            """
+            return _pybox.WindowDrawRectangle(self.__id,size_rect[0],size_rect[1],size_rect[2],size_rect[3],color,True,**kwargs)
 
         #
         # Draw Ellipse Functions
@@ -1667,14 +2871,14 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the ellipse in the window
-            ● radius_x                \t- Width/Radius (in pixels) of the ellipse in the X direction
-            ● radius_y               \t- Height/Radius (in pixels) of the ellipse in the Y direction
-            ● inside_color   \t- Color of the interior of the ellipse
-            ● border_color   \t- [optional] Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the ellipse in the window
+            - radius_x                \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y               \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - inside_color   \t -- Color of the interior of the ellipse
+            - border_color   \t -- [optional] Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1701,13 +2905,13 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the rectangle in the window
-            ● size                \t- (Width, Height), in pixels, of the rectangle
-            ● inside_color   \t- Color of the interior of the ellipse
-            ● border_color   \t- [optional] Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the rectangle in the window
+            - size                \t -- (Width, Height), in pixels, of the rectangle
+            - inside_color   \t -- Color of the interior of the ellipse
+            - border_color   \t -- [optional] Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1734,12 +2938,12 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the ellipse in the window
-            ● radius_x                \t- Width/Radius (in pixels) of the ellipse in the X direction
-            ● radius_y               \t- Height/Radius (in pixels) of the ellipse in the Y direction
-            ● color                 \t- Color of the ellipse
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the ellipse in the window
+            - radius_x                \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y               \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - color                 \t -- Color of the ellipse
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1765,11 +2969,11 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the rectangle in the window
-            ● size                \t- (Width, Height), in pixels, of the rectangle
-            ● color                 \t- Color of ellipse
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the rectangle in the window
+            - size                \t -- (Width, Height), in pixels, of the rectangle
+            - color                 \t -- Color of ellipse
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1785,7 +2989,7 @@ class Window :
 
         # HR Ellipse Functions
 
-        def fill_ellipse(self,x, y, radius_x, radius_y, inside_color, border_color = 0,pen_size = 0) :
+        def fill_ellipse(self,x, y, radius_x, radius_y, inside_color, **kwargs) :
             """
             Draws a filled Ellipse on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -1797,14 +3001,19 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the ellipse in the window
-            ● radius_x                \t- Width/Radius (in pixels) of the ellipse in the X direction
-            ● radius_y               \t- Height/Radius (in pixels) of the ellipse in the Y direction
-            ● inside_color   \t- Color of the interior of the ellipse
-            ● border_color   \t- [optional] Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the ellipse in the window
+            - radius_x                \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y               \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - inside_color   \t -- Color of the interior of the ellipse
+            - pen_color   \t -- [optional] Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1812,14 +3021,14 @@ class Window :
 
             Examples:
                             window.draw.fill_ellipse(400,200,300,100,"red") 
-                            window.draw.fill_ellipse(400,200,300,100,"red","Green")       - Draws a Red ellipse with a green outer border (thickness of current pen size)
-                            window.draw.fill_ellipse(400,200,300,100,PanColor.ForestGreen())
-                            window.draw.fill_ellipse(400,200,300,100,MyColor,6)            - Sets a pen size of 6
+                            window.draw.fill_ellipse(400,200,300,100,"red",pen_color="Green")       - Draws a Red ellipse with a green outer border (thickness of current pen size)
+                            window.draw.fill_ellipse(400,200,300,100,pen_color=PanColor.ForestGreen())
+                            window.draw.fill_ellipse(400,200,300,100,MyColor,pen_size=6)            - Sets a pen size of 6
                             window.draw.fill_ellipse(400,200,300,100,pybox.RgbColor(0,255,0))         
             """               
-            return _pybox.WindowDrawEllipse(self.__id,x,y,radius_x,radius_y,inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawEllipse(self.__id,x,y,radius_x,radius_y,inside_color,False,**kwargs)
 
-        def fill_ellipse_l(self,at : list, size : list, inside_color, border_color = 0,pen_size = 0) :
+        def fill_ellipse_l(self,at : list, size : list, inside_color, **kwargs) :
             """
             Draws a filled Ellipse on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -1831,13 +3040,16 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the ellipse in the window
-            ● size                \t- (Width, Height), in pixels, of the ellipse
-            ● inside_color   \t- Color of the interior of the ellipse
-            ● border_color   \t- [optional] Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the ellipse in the window
+            - size                \t -- (Width, Height), in pixels, of the ellipse
+            - inside_color   \t -- Color of the interior of the ellipse
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1846,12 +3058,46 @@ class Window :
             Examples:
                             window.draw.fill_ellipse_l((400,200),(300,100),"red") 
                             window.draw.fill_ellipse_l((400,200),(300,100),PanColor.ForestGreen())
-                            window.draw.fill_ellipse_l(Location,Size,MyColor,6)            - Sets a pen size of 6
+                            window.draw.fill_ellipse_l(Location,Size,MyColor,pen_size=6)            - Sets a pen size of 6
                             window.draw.fill_ellipse_l((400,200),(300,100),pybox.RgbColor(0,255,0))         
             """               
-            return _pybox.WindowDrawEllipse(self.__id,at[0],at[1],size[0],size[1],inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawEllipse(self.__id,at[0],at[1],size[0],size[1],inside_color,False,**kwargs)
 
-        def ellipse(self,x, y, radius_x, radius_y, color,pen_size = 0) :
+        def fill_ellipse_r(self,size_rect : list, inside_color, **kwargs) :
+            """
+            Draws a filled Ellipse on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
+
+            See ellipse_r() to draw an open/wireframe Ellipse vs. a filled Ellipse. 
+            See fill_ellipse() to set the Ellipse location, width, and height using independent values.
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            Hint: use an odd-size pen_size for sharper edges.
+
+            Parameters
+
+            - size_rect             \t -- (x,y,width,height) list or array specifying (x,y) and (radius X ,radius Y) of ellipse
+            - inside_color   \t -- Color of the interior of the ellipse
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the ellipse (based on the current Pen Size).  When omitted, the entire ellipse is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
+            Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
+
+            Examples:
+                            window.draw.fill_ellipse_r(400,200,300,100),"red") 
+                            window.draw.fill_ellipse_r(400,200,300,100),PanColor.ForestGreen())
+                            window.draw.fill_ellipse_r(my_sizerect,Size,MyColor,pen_size=6)            - Sets a pen size of 6
+                            window.draw.fill_ellipse_r(400,200,300,100),pybox.RgbColor(0,255,0))         
+            """               
+            return _pybox.WindowDrawEllipse(self.__id,size_rect[0],size_rect[1],size_rect[2],size_rect[3],inside_color,False,**kwargs)
+
+        def ellipse(self,x, y, radius_x, radius_y, color,**kwargs) :
             """
             Draws an open/wireframe Ellipse on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -1863,12 +3109,15 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the ellipse in the window
-            ● radius_x                \t- Width/Radius (in pixels) of the ellipse in the X direction
-            ● radius_y               \t- Height/Radius (in pixels) of the ellipse in the Y direction
-            ● color             \t- Color of the ellipse
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the ellipse in the window
+            - radius_x                \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y               \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - color             \t -- Color of the ellipse
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1877,12 +3126,12 @@ class Window :
             Examples:
                             window.draw.ellipse(400,200,300,100,"red") 
                             window.draw.ellipse(400,200,300,100,PanColor.ForestGreen())
-                            window.draw.ellipse(400,200,300,100,MyColor,6)            - Sets a pen size of 6
+                            window.draw.ellipse(400,200,300,100,MyColor,pen_size=6)            - Sets a pen size of 6
                             window.draw.ellipse(400,200,300,100,pybox.RgbColor(0,255,0))         
             """             
-            return _pybox.WindowDrawEllipse(self.__id,x,y,radius_x,radius_y,color,0,pen_size,True)
+            return _pybox.WindowDrawEllipse(self.__id,x,y,radius_x,radius_y,color,True,**kwargs)
 
-        def ellipse_l(self,at : list, size : list, color,pen_size = 0) :
+        def ellipse_l(self,at : list, size : list, color,**kwargs) :
             """
             Draws an open/wireframe Ellipse on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -1894,11 +3143,14 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the ellipse in the window
-            ● size                \t- (Width, Height), in pixels, of the ellipse
-            ● color             \t- Color of the ellipse
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the ellipse in the window
+            - size                \t -- (Width, Height), in pixels, of the ellipse
+            - color             \t -- Color of the ellipse
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1907,10 +3159,42 @@ class Window :
             Examples:
                             window.draw.ellipse_l((400,200),(300,100),"red") 
                             window.draw.ellipse_l((400,200),(300,100),PanColor.ForestGreen())
-                            window.draw.ellipse_l((Location,Size,MyColor,6)            - Sets a pen size of 6
+                            window.draw.ellipse_l((Location,Size,MyColor,pen_size=6)            - Sets a pen size of 6
                             window.draw.ellipse_l((400,200),(300,100),pybox.RgbColor(0,255,0))         
             """                    
-            return _pybox.WindowDrawEllipse(self.__id,at[0],at[1],size[0],size[1],color,0,pen_size,True)     
+            return _pybox.WindowDrawEllipse(self.__id,at[0],at[1],size[0],size[1],color,True,**kwargs)     
+
+        def ellipse_r(self,size_rect : list, color,**kwargs) :
+            """
+            Draws an open/wireframe Ellipse on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
+
+            See fill_ellipse_r() to draw a filled Ellipse vs. an open/wireframe Ellipse
+            See ellipse() to set the Ellipse location, width, and height using independent values
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            Hint: use an odd-size pen_size for sharper edges.
+
+            Parameters
+
+            - size_rect             \t -- (x,y,width,height) list or array specifying (x,y) and (radius X ,radius Y) of ellipse
+            - color             \t -- Color of the ellipse
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
+            Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
+
+            Examples:
+                            window.draw.ellipse_r(400,200,300,100),"red") 
+                            window.draw.ellipse_r(400,200,300,100),PanColor.ForestGreen())
+                            window.draw.ellipse_r(my_size_rect,Size,MyColor,pen_size=6)            - Sets a pen size of 6
+                            window.draw.ellipse_r(400,200,300,100),pybox.RgbColor(0,255,0))         
+            """                    
+            return _pybox.WindowDrawEllipse(self.__id,size_rect[0],size_rect[1],size_rect[2],size_rect[3],color,True,**kwargs)     
 
         #
         # Draw Circle Functions
@@ -1928,13 +3212,13 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● inside_color   \t- Color of the interior of the circle
-            ● border_color   \t- [optional] Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - inside_color   \t -- Color of the interior of the circle
+            - border_color   \t -- [optional] Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1961,13 +3245,13 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● inside_color   \t- Color of the interior of the circle
-            ● border_color   \t- [optional] Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - inside_color   \t -- Color of the interior of the circle
+            - border_color   \t -- [optional] Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using border_color.
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -1994,11 +3278,11 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● color                 \t- Color of the circle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - color                 \t -- Color of the circle
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -2024,11 +3308,11 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● color                 \t- Color of circle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - color                 \t -- Color of circle
+            - pen_size         \t -- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -2044,7 +3328,7 @@ class Window :
 
         # HR Draw Circle Functions
 
-        def circle(self,x, y, radius, color,pen_size = 0) :
+        def circle(self,x, y, radius, color,**kwargs) :
             """
             Draws an open/wireframe Circle on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -2056,11 +3340,14 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● color             \t- Color of the circle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - color             \t -- Color of the circle
+             
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+           - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -2069,12 +3356,12 @@ class Window :
             Examples:
                             window.draw.circle(400,200,100,"red") 
                             window.draw.circle(400,200,100,PanColor.ForestGreen())
-                            window.draw.circle(400,200,100,MyColor,6)            - Sets a pen size of 6
+                            window.draw.circle(400,200,100,MyColor,pen_size=6)            - Sets a pen size of 6
                             window.draw.circle(400,200,100,pybox.RgbColor(0,255,0))         
             """             
-            return _pybox.WindowDrawCircle(self.__id,x,y,radius,color,color,pen_size,True)
+            return _pybox.WindowDrawCircle(self.__id,x,y,radius,color,True,**kwargs)
 
-        def circle_l(self,at, radius, color,pen_size = 0) :
+        def circle_l(self,at, radius, color,**kwargs) :
             """
             Draws an open/wireframe Circle on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -2086,11 +3373,14 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● color             \t- Color of the circle
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - color             \t -- Color of the circle
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -2099,12 +3389,12 @@ class Window :
             Examples:
                             window.draw.circle_l((400,200),100,"red") 
                             window.draw.circle_l((400,200),100,PanColor.ForestGreen())
-                            window.draw.circle_l((Location,Size,MyColor,6)            - Sets a pen size of 6
+                            window.draw.circle_l((Location,Size,MyColor,pen_size=6)            - Sets a pen size of 6
                             window.draw.circle_l((400,200),100,pybox.RgbColor(0,255,0))         
             """                    
-            return _pybox.WindowDrawCircle(self.__id,at[0],at[1],radius,color,color,pen_size,True)
+            return _pybox.WindowDrawCircle(self.__id,at[0],at[1],radius,color,True,**kwargs)
 
-        def fill_circle(self,x , y , radius, inside_color, border_color = 0,pen_size = 0) :
+        def fill_circle(self,x , y , radius, inside_color, **kwargs) :
             """
             Draws a filled Circle on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -2116,13 +3406,16 @@ class Window :
 
             Parameters
 
-            ● x,y                   \t- Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● inside_color   \t- Color of the interior of the circle
-            ● border_color   \t- [optional] Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - x,y                   \t -- Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - inside_color   \t -- Color of the interior of the circle
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -2132,12 +3425,12 @@ class Window :
                             window.draw.fill_circle(400,200,100,"red") 
                             window.draw.fill_circle(400,200,100,"red","Green")       - Draws a Red circle with a green outer border (thickness of current pen size)
                             window.draw.fill_circle(400,200,100,PanColor.ForestGreen())
-                            window.draw.fill_circle(400,200,100,MyColor,6)            - Sets a pen size of 6
+                            window.draw.fill_circle(400,200,100,MyColor,pen_size=6)            - Sets a pen size of 6
                             window.draw.fill_circle(400,200,100,pybox.RgbColor(0,255,0))         
             """               
-            return _pybox.WindowDrawCircle(self.__id,x,y,radius,inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawCircle(self.__id,x,y,radius,inside_color,False,**kwargs)
 
-        def fill_circle_l(self,at, radius, inside_color, border_color = 0,pen_size = 0) :
+        def fill_circle_l(self,at, radius, inside_color, **kwargs) :
             """
             Draws a filled Circle on the screen at starting point (x,y) with a width and height of (radius_x, radius_y)
 
@@ -2149,25 +3442,1018 @@ class Window :
 
             Parameters
 
-            ● at                   \t- (x,y) Location of the center of the circle in the window
-            ● radius                \t- Radius (in pixels) of the circle.
-            ● inside_color   \t- Color of the interior of the circle
-            ● border_color   \t- [optional] Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
-                                    \tof the inside_color.  See: Setpensize() to set the thickness of the border when using border_color.
-            ● pen_size         \t- [optional] Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
-                                    \tSee Setpensize() to set the default pen size (the default is 1) 
+            - at                   \t -- (x,y) Location of the center of the circle in the window
+            - radius                \t -- Radius (in pixels) of the circle.
+            - inside_color   \t -- Color of the interior of the circle
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_color   \t -- Color if the outside edge of the circle (based on the current Pen Size).  When omitted, the entire circle is drawn the color
+                                    \t -of the inside_color.  See: set_pen_size() to set the thickness of the border when using pen_color.
+            - pen_size         \t -- Pen size for the border color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                    \t -See set_pen_size() to set the default pen size (the default is 1) 
+            Examples:
+                            window.draw.fill_circle_l((400,200),100,"red") 
+                            window.draw.fill_circle_l((400,200),100,PanColor.ForestGreen())
+                            window.draw.fill_circle_l(Location,Size,MyColor,pen_size=6)            - Sets a pen size of 6
+                            window.draw.fill_circle_l((400,200),100,pybox.RgbColor(0,255,0))         
+
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
-
-            Examples:
-                            window.draw.fill_circle_l((400,200),100,"red") 
-                            window.draw.fill_circle_l((400,200),100,PanColor.ForestGreen())
-                            window.draw.fill_circle_l(Location,Size,MyColor,6)            - Sets a pen size of 6
-                            window.draw.fill_circle_l((400,200),100,pybox.RgbColor(0,255,0))         
             """               
-            return _pybox.WindowDrawCircle(self.__id,at[0],at[1],radius,inside_color,border_color,pen_size,False)
+            return _pybox.WindowDrawCircle(self.__id,at[0],at[1],radius,inside_color,False,**kwargs)
+
+        #
+        # Draw Polygon (and lines()) Functions
+        #
+
+        def polygon(self, pos : list,color,**kwargs) :
+            """
+            Draws an open/wireframe polygon on the screen using clockwise points in the list.
+            
+            Example: 
+            
+            my_list = [(400,400),(500,500),(500,600),(300,600),(300,500)]
+            window.draw.polygon(my_list,"green",pen_size=5) # draws a green polygon with a pen size of 5 that looks like a house. 
+
+            See fill_polygon() to draw a filled polygon vs. an open/wireframe polygon. 
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+
+            At least 3 points must be given to draw a polygon.  
+            
+            Parameters
+
+            - pos           \t -- List or array of clockwise polygon points.
+            - color         \t -- Color of the polygon
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                \t -See set_pen_size() to set the default pen size (the default is 1) 
+   
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.polygon(my_list,"yellow")
+                window.draw.polygon(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.polygon(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.polygon(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.polygon(my_list,"red,blue",pen_size=6)           # Specifies gradient color
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)
+            
+            """
+            _pybox.WindowDrawPolygon(self.__id,pos,color,0,**kwargs)
+
+        def fill_polygon(self, Loc : list,color,**kwargs) :
+            """
+            Draws an filled Polygon on the screen using clockwise points in the list.
+            
+            Example: 
+            
+            my_list = [(400,400),(500,500),(500,600),(300,600),(300,500)]
+            window.draw.fill_polygon(my_list,"green") # draws a filled green polygon with a pen size of 5 that looks like a house. 
+
+            See polygon() to draw an open/wireframe polygon vs. a filled polygon. 
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+
+            At least 3 points must be given to draw a polygon. 
+            
+            Parameters
+
+            - pos           \t -- List or array of clockwise polygon points.
+            - color         \t -- Color of the interior of the polygon
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the color if specified, which will draw a border around the polygon.  
+                                \t If the pen_size is not specified, the current default pen size is used.
+                                \t - See set_pen_size() to set the default pen size (the default is 1) 
+            - pen_color         \t -- Sets the  color of the border pen.  If no pen size is specified, the default/current pen size is used.
+            
+            
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.fill_polygon(my_list,"yellow")
+                window.draw.fill_polygon(my_list,"yellow(128)",pen_size=6,,pen_color="red")        # Sets an opacity of 128 for the yellow
+                window.draw.fill_polygon(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.fill_polygon(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.fill_polygon(my_list,"red,blue",pen_size=6)           # Specifies gradient color
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)
+            
+            """
+            _pybox.WindowDrawPolygon(self.__id,Loc,color,1,**kwargs)
+
+        def lines(self, pos : list,color,**kwargs) :
+            """
+            Draws an open/wireframe set of lines on the screen using points in the list.
+            ** note: This function is essentially the same as "draw.polygon".  The only difference is that the last point is not connected to the
+            first point (i.e. it is an open set of lines vs. a polygon)
+            
+            Example: 
+            
+            my_list = [(400,400),(500,500),(500,600),(300,600),(300,500)]
+            window.draw.lines(my_list,"green",pen_size=5) # draws a green set of lines with a pen size of 5. 
+
+            See fill_lines() to draw a filled set of lines vs. an open/wireframe set of lines. 
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of line points.
+            - color         \t -- Color of the set of lines
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t -- Pen size for the color if specified.  If the pen_size is not specified, the current default pen size is used.
+                            \t -See set_pen_size() to set the default pen size (the default is 1) 
+            - linecaps      \t - Sets the 'cap' type for the bezier curve.  By default these are round and the size of the line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+   
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.lines(my_list,"yellow")
+                window.draw.lines(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.lines(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.lines(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.lines(my_list,"yellow",line_caps="round anchor,arrow anchor")       # Adds a round circle and arrow to beginning & end
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)
+            
+            """
+            _pybox.WindowDrawPolygon(self.__id,pos,color,10,**kwargs)
+
+        def fill_lines(self, pos : list,color,**kwargs) :
+            """
+            Draws a filled set of lines on the screen using points in the list.
+            ** note: This function is essentially the same as "draw.fill_polygon".  The only difference is that the last point is not connected to the
+            first point when a pen (i.e. border) is used. (i.e. it is an open set of lines vs. a polygon)
+            
+            Without using a pen, fill_lines() is functionally equivalent to fill_polygon()
+            Example: 
+            
+            my_list = [(400,400),(500,500),(500,600),(300,600),(300,500)]
+            window.draw.fill_lines(my_list,"green",pen_size=5,pen_color="yellow") # draws a green set of lines with a pen size of 5. 
+
+            See lines() to draw an open/wireframe set of lines vs. a filled set of lines. 
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of line points.
+            - color         \t -- Color of the set of lines
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t -- Pen size for the color if specified.  If the pen_size is not specified, the current default pen size is used.
+                            \t -See set_pen_size() to set the default pen size (the default is 1) 
+            - pen_color     \t -- Sets the  color of the border pen.  If no pen size is specified, the default/current pen size is used.
+            - line_caps     \t - Line caps may be used when a pen is used as a border.  See lines() for more information.
+   
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.fill_lines(my_list,"yellow")
+                window.draw.fill_lines(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.fill_lines(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.fill_lines(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.fill_lines(my_list,"yellow",pen_color="cyan")       # sets border color to cyan (default is white)
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)
+            
+            """
+            _pybox.WindowDrawPolygon(self.__id,pos,color,11,**kwargs)  
+ 
+
+        #
+        # Bezier and Spline Curve Functions
+        #
+
+        def beziers(self, pos : list,color,**kwargs) :
+            """
+            Draws an open/wireframe sequence of connected Cubic Bezier splines. There are two control points between each two points, such as 
+            <p1,c1,c2,p2,c3,c4,p3>, in this case, using 4 control points, 2 each between the three points. 
+
+            - This function draws a 'Cubic Bezier Spline', requiring two control points between every two points.
+            See QuadBeziers() (i.e. Quadratic Bezier vs. cubic) for the Bezier Spline format that requires only one control point between each set of points.
+
+            - See fill_beziers() function to draw filled beziers. vs. open/wireframe beziers.
+            
+            Example (draws a sine-wave like bezier with 3 points and 4 control points between points 1 and 3): 
+            
+            my_list = [(50,400),(110,200),(170,600),(230,400),(290,200),(350,600),(410,400)]
+            window.draw.beziers(my_list,"green",pen_size=5)
+
+            See fill_beziers() to draw filled beziers vs. open/wireframe beziers. 
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of bezier points and control points.
+            - color         \t -- Color of the beziers curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size         \t -- Pen size for the color if specified.  If the pen_size is not specified, the current default pen size is used.
+                                \t -See set_pen_size() to set the default pen size (the default is 1) 
+            - pen_size      \t - Sets the thickness of the bezier curve.  Otherwise defaults to current Pen Size (which is usually 1)
+            - linecaps      \t - Sets the 'cap' type for the bezier curve.  By default these are round and the size of the bezier line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+  
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.beziers(my_list,"yellow")
+                window.draw.beziers(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.beziers(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.beziers(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.beziers(my_list,"yellow",line_caps="anchor round, anchor arrow")   # Adds a round circle and arrow to beginning & end
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)
+            
+            """            
+            _pybox.WindowDrawPolygon(self.__id,pos,color,2,**kwargs)
+
+        def fill_beziers(self, pos : list,color,**kwargs) :
+            """
+            Draws a filled sequence of connected Cubic Bezier splines. There are two control points between each two points, such as 
+            <p1,c1,c2,p2,c3,c4,p3>, in this case, using 4 control points, 2 each between the three points. The filled area is generally 
+            along the axis line between the first and last points.
+
+            - This function draws a 'Cubic Bezier Spline', requiring two control points between every two points.
+            See QuadBeziers() (i.e. Quadratic Bezier vs. cubic) for the Bezier Spline format that requires only one control point between each set of points.
+
+            - See beziers() function to draw open/wireframe beziers vs. filled
+            
+            Example (draws a sine-wave like bezier with 3 points and 4 control points between points 1 and 3): 
+            
+            my_list = [(50,400),(110,200),(170,600),(230,400),(290,200),(350,600),(410,400)]
+            window.draw.beziers(my_list,"green",pen_size=5,pen_color="yellow")  # draws green interior with yellow border of 5 pixels.
+
+            See fill_beziers() to draw filled beziers vs. open/wireframe beziers. 
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of bezier points and control points.
+            - color         \t -- Interior color of the beziers curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Sets the thickness of the bezier x=curve.  Otherwise defaults to current Pen Size (which is usually 1)
+            - pen_color     \t -- Sets the  color of the border pen.  If no pen size is specified, the default/current pen size is used.
+            - line_caps     \t - Sets the 'cap' type for the bezier curve.  By default these are round and the size of the bezier line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+  
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.beziers(my_list,"yellow")
+                window.draw.beziers(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.beziers(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.beziers(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.beziers(my_list,"yellow",line_caps="anchor round, anchor arrow")   # Adds a round circle and arrow to beginning & end
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)           
+            """
+            _pybox.WindowDrawPolygon(self.__id,pos,color,3,**kwargs)
+ 
+        def quad_beziers(self, pos : list,color,**kwargs) :
+            """
+            Draws a sequence of connected Quadratic Bezier splines. There is one control point between each two points, such as 
+            <p1,c1,p2,c2,p3>, in this case, using 2 control points, 1 each between the three points. 
+
+            - This function draws a 'Quadratic Bezier Spline', requiring one control point between every two points.
+            - See beziers() (i.e. Cubic Bezier vs. quadratic) for the Bezier Spline format that requiress two control points between each set of points, for more control.
+            - See fill_quad_beziers() function to draw filled quadratic beziers. vs. open/wireframe quadratic beziers.
+            
+            Example (draws a S-Curve Quadratic Bezier with 3 points and 2 control points between points 1 and 2): 
+            
+            my_list = [(590,277),(347,310),(556,374),(726,433),(453,480)]
+            window.draw.quad_beziers(my_list,"green",pen_size=5) # draws a green, S-shaped Quadratic Bezier Curve size of 5. 
+
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of bezier points and control points.
+            - color         \t -- Color of the beziers curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Sets the thickness of the bezier curve.  Otherwise defaults to current Pen Size (which is usually 1)
+            - linecaps      \t - Sets the 'cap' type for the bezier curve.  By default these are round and the size of the bezier line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+  
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.quad_beziers(my_list,"yellow")
+                window.draw.quad_beziers(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.quad_beziers(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.quad_beziers(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.quad_beziers(my_list,"yellow",line_caps="anchor round, anchor arrow")   # Adds a round circle and arrow to beginning & end
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)
+            
+            """
+            _pybox.WindowDrawPolygon(self.__id,pos,color,4,**kwargs)   
+
+        def fill_quad_beziers(self, pos : list,color,**kwargs) :
+            """
+            Draws a sequence of connected Quadratic Bezier splines. There is one control point between each two points, such as 
+            <p1,c1,p2,c2,p3>, in this case, using 2 control points, 1 each between the three points. 
+
+            - The filled area is generally along the axis line between the first and last points.
+            - This function draws a 'Quadratic Bezier Spline', requiring one control point between every two points.
+            - See fill_beziers() (i.e. Cubic Bezier vs. quadratic) for the Bezier Spline format that requiress two control points between each set of points, for more control.
+            - See quad_beziers() function to draw open/wireframe quadratic beziers vs. filled quadratic beziers.
+            
+            Example (draws a filled S-Curve Quadratic Bezier with 3 points and 2 control points between points 1 and 2): 
+            
+            my_list = [(590,277),(347,310),(556,374),(726,433),(453,480)]
+            window.draw.quad_beziers(my_list,"green",pen_size=5,pen_color=yellow) # draws a green Quadratic Bezier Curve, with yellow border of size of 5. 
+            
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of bezier points and control points.
+            - color         \t -- Interior color of the beziers curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Sets the thickness of the bezier x=curve.  Otherwise defaults to current Pen Size (which is usually 1)
+            - pen_color     \t -- Sets the  color of the border pen.  If no pen size is specified, the default/current pen size is used.
+            - line_caps     \t - Line caps may be used when a pen is used as a border.  See quad_beziers() for more information.
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.fill_quad_beziers(my_list,"yellow")
+                window.draw.fill_quad_beziers(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.fill_quad_beziers(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.fill_quad_beziers(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)           
+            """
+            _pybox.WindowDrawPolygon(self.__id,pos,color,5,**kwargs)   
+
+        def curve(self, Loc : list,color,**kwargs) :
+            """
+            Draws an open/wireframe Spline Curve of connected points. 
+            
+            A cardinal spline is a sequence of individual curves joined to form a larger curve. The spline is specified 
+            by an array of points and a tension parameter. A cardinal spline passes smoothly through each point in the array; 
+            there are no sharp corners and no abrupt changes in the tightness of the curve.
+        
+            - See beziers() and quad_beziers() for bezier-type curves.
+            - See fill_curve() function to draw a filled spline curve. vs. open/wireframe spline curve.
+            - See closed_curve() function to draw a closed spline curve (last point connects to first point)
+            
+            Example (Draws a sine-wave-like curve with 4 curve points):
+            
+            my_list = [(200,500),(278,333),(386,640),(465,486)]
+            window.draw.curve(my_list,"green",pen_size=5) # draws a green curve with a pen size of 5. 
+           
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of spline curve points.
+            - color         \t -- Color of the spline curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - tension       \t - Sets the tension. By default the tension is .5.  
+                            \t - Using smaller numbers (e.g. .1) makes the curves appear more and more like bent straight lines.
+                            \t - Using numbers > .5, e.g. 1.5, 2.0, etc. make the 'tension' on the curve higher, causing the curves to take longer to bend around to fit the curve.
+            - pen_size      \t - Sets the thickness of the spline curve.  Otherwise defaults to current Pen Size (which is usually 1)
+            - linecaps      \t - Sets the 'cap' type for the spline curve.  By default these are round and the size of the spline curve line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+  
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.curve(my_list,"yellow")
+                window.draw.curve(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.curve(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.curve(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.curve(my_list,"yellow",line_caps="anchor round, anchor arrow")   # Adds a round circle and arrow to beginning & end
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)                       
+            """
+            _pybox.WindowDrawPolygon(self.__id,Loc,color,6,**kwargs)   
+
+        def fill_curve(self, Loc : list,color,**kwargs) :
+            """
+            Draws a filled Spline Curve of connected points. 
+            
+            A cardinal spline is a sequence of individual curves joined to form a larger curve. The spline is specified 
+            by an array of points and a tension parameter. A cardinal spline passes smoothly through each point in the array; 
+            there are no sharp corners and no abrupt changes in the tightness of the curve.
+        
+            - The filled area is generally along the axis line between the first and last points.
+            - See fill_beziers() and fill_quad_beziers() for bezier-type curves.
+            - See curve() function to draw an open/wireframe spline curve. vs. a filled spline curve.
+            - See fill_closed_curve() function to draw a closed spline curve (last point connects to first point)
+            
+            Example (Draws a sine-wave-like curve with 4 curve points):
+            
+            my_list = [(200,500),(278,333),(386,640),(465,486)]
+            window.draw.fill_curve(my_list,"green",pen_size=5,pen_color="yellow") # draws a filled green curve with a yellow border of size of 5. 
+           
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of spline curve points.
+            - color         \t -- Color of the spline curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - tension       \t - Sets the tension. By default the tension is .5.  
+                            \t - Using smaller numbers (e.g. .1) makes the curves appear more and more like bent straight lines.
+                            \t - Using numbers > .5, e.g. 1.5, 2.0, etc. make the 'tension' on the curve higher, causing the curves to take longer to bend around to fit the curve.
+            - pen_size      \t - Sets the thickness of the spline curve.  Otherwise defaults to current Pen Size (which is usually 1)
+            - pen_color     \t -- Sets the  color of the border pen.  If no pen size is specified, the default/current pen size is used.
+            - line_caps     \t - Line caps may be used when a pen is used as a border.  See curve() for more information.
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.fill_curve(my_list,"yellow")
+                window.draw.fill_curve(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.fill_curve(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.fill_curve(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)                       
+            """
+            _pybox.WindowDrawPolygon(self.__id,Loc,color,7,**kwargs)   
+
+        def closed_curve(self, Loc : list,color,**kwargs) :
+            """
+            Draws an closed open/wireframe Spline Curve of connected points. See curve() function to draw non-closed spline curve.
+            
+            A cardinal spline is a sequence of individual curves joined to form a larger curve. The spline is specified 
+            by an array of points and a tension parameter. A cardinal spline passes smoothly through each point in the array; 
+            there are no sharp corners and no abrupt changes in the tightness of the curve.
+        
+            - See beziers() and quad_beziers() for bezier-type curves.
+            - See fill_closed_curve() function to draw a filled closed spline curve. vs. open/wireframe closed spline curve.
+            - See curve() function to draw a non-closed spline curve.
+            
+            Example (Draws a sideways figure-8/infinity symbol curve with 4 curve points):
+            
+            my_list = [(441,510),(432,377),(218,510),(227,377)]
+            window.draw.closed_curve(my_list,"green",pen_size=5) # draws a green curve with a pen size of 5. 
+           
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of spline curve points.
+            - color         \t -- Color of the spline curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - tension       \t - Sets the tension. By default the tension is .5.  
+                            \t - Using smaller numbers (e.g. .1) makes the curves appear more and more like bent straight lines.
+                            \t - Using numbers > .5, e.g. 1.5, 2.0, etc. make the 'tension' on the curve higher, causing the curves to take longer to bend around to fit the curve.
+            - pen_size      \t - Sets the thickness of the spline curve.  Otherwise defaults to current Pen Size (which is usually 1)  
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.closed_curve(my_list,"yellow")
+                window.draw.closed_curve(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.closed_curve(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.closed_curve(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+                window.draw.closed_curve(my_list,"yellow",line_caps="anchor round, anchor arrow")   # Adds a round circle and arrow to beginning & end
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)                       
+            """
+            _pybox.WindowDrawPolygon(self.__id,Loc,color,8,**kwargs)   
+
+        def fill_closed_curve(self, Loc : list,color,**kwargs) :
+            """
+            Draws a closed filled Spline Curve of connected points.  See fill_curve() to draw non-closed spline curve.
+            
+            A cardinal spline is a sequence of individual curves joined to form a larger curve. The spline is specified 
+            by an array of points and a tension parameter. A cardinal spline passes smoothly through each point in the array; 
+            there are no sharp corners and no abrupt changes in the tightness of the curve.
+        
+            - The filled area is generally along the axis line between the first and last points.
+            - See fill_beziers() and fill_quad_beziers() for bezier-type curves.
+            - See closed_curve() function to draw an open/wireframe spline curve. vs. a filled spline curve.
+            - See fill_curve() function to draw a non-closed spline curve
+            
+            Example (Draws a sideways figure-8/infinity symbol curve with 4 curve points, with a green/blue gradient):
+            
+            my_list = [(200,500),(278,333),(386,640),(465,486)]
+            window.draw.fill_closed_curve(my_list,"green,blue",pen_size=5,pen_color="yellow") # draws a filled green-to-blue curve with a yellow border of size of 5. 
+           
+            This drawing function responds to current opacity and transformations and will anti-alias output results.
+            
+            Parameters
+
+            - pos           \t -- List or array of spline curve points.
+            - color         \t -- Color of the spline curve
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - tension       \t - Sets the tension. By default the tension is .5.  
+                            \t - Using smaller numbers (e.g. .1) makes the curves appear more and more like bent straight lines.
+                            \t - Using numbers > .5, e.g. 1.5, 2.0, etc. make the 'tension' on the curve higher, causing the curves to take longer to bend around to fit the curve.
+            - pen_size      \t - Sets the thickness of the spline curve.  Otherwise defaults to current Pen Size (which is usually 1)
+            - pen_color     \t -- Sets the  color of the border pen.  If no pen size is specified, the default/current pen size is used.
+                                
+            Other useful keywords: angle, join_type, gradient_angle, set_gradient, set_center, opacity
+            
+            Examples:
+
+                window.draw.fill_closed_curve(my_list,"yellow")
+                window.draw.fill_closed_curve(my_list,"yellow,blue")
+                window.draw.fill_closed_curve(my_list,"yellow(128)",pen_size=6)        # Sets an opacity of 128 for the yellow
+                window.draw.fill_closed_curve(my_list,"{255,255,0}",pen_size=6)        # Another way to express yellow.
+                window.draw.fill_closed_curve(my_list,"{255,255,0,128}",pen_size=6)    # Another way to express yellow with opacity = 128
+
+            About Colors
+
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen", or 3-4 element arrays such as [0,255,255]. 
+
+            Opacity values may also be used on most functions, which can be specified in text by adding (opacity), e.g. "cyan(170)" for an opacity of 170
+            (opacity ranges from 0-255)                       
+            """
+            _pybox.WindowDrawPolygon(self.__id,Loc,color,9,**kwargs)   
+
+        def bezier(self,p1 : list, p2 : list, p3 : list,p4 : list,color,**kwargs) :
+            """
+            Draws an open/wireframe simple 4-point Cubic Bezier curve.  
+            
+            See fill_bezier() to draw a simple 4-point filled bezier curve vs. open/wireframe
+            
+            ** This function is included for compatibility with Windows GDI functions.
+            ** See: beziers() function for information on usage of bezier functions.
+            
+            Example (Draws a simple 4-point Cubic Bezier Curve in the shape of a horse-shoe curve)
+          
+            window.draw.bezier((200,500),(200,225),(500,225),(500,500),"green",pen_size=5) # draws a green set of lines with a pen size of 5. 
+            """
+            return _pybox.WindowDrawBezier(self.__id,p1,p2,p3,p4,color,True,**kwargs)
+
+        def fill_bezier(self,p1 : list, p2 : list, p3 : list,p4 : list,color,**kwargs) :
+            """
+            Draws a filled simple 4-point Cubic Bezier curve.  
+            
+            See bezier() to draw a simple 4-point open/wireframe bezier curve vs. filled
+            
+            ** This function is included for compatibility with Windows GDI functions.
+            ** See: fill_beziers() function for information on usage of bezier functions.
+            
+            Example (Draws a simple filled 4-point Cubic Bezier Curve in the shape of a horse-shoe curve)
+          
+            window.draw.fill_bezier((200,500),(200,225),(500,225),(500,500),"green,blue",pen_size=5,pen_color="yellow")
+            
+            --> The above draws a curve with a green and blue gradient, and a yellow border of 5 pixels.
+            """
+            return _pybox.WindowDrawBezier(self.__id,p1,p2,p3,p4,color,False,**kwargs)
+
+        def quad_bezier(self,p1 : list, p2 : list, p3 : list,color,**kwargs) :
+            """
+            Draws an open/wireframe simple 3-point Quadratic Bezier curve.  
+            
+            See fill_quad_bezier() to draw a simple 4-point filled quadratic Bezier curve vs. open/wireframe
+            
+            ** This function is included for compatibility with Windows GDI functions.
+            ** See: quad_beziers() function for information on usage of bezier functions.
+            
+            Example (Draws a simple 3-point Qaudratic Bezier Curve)
+          
+            window.draw.quad_bezier((200,500),(296,247),(400,500),"green",pen_size=5) # draws a green set of lines with a pen size of 5.  
+            """
+            return _pybox.WindowDrawQuadBezier(self.__id,p1,p2,p3,color,True,**kwargs)
+
+        def fill_quad_bezier(self,p1 : list, p2 : list, p3 : list,color,**kwargs) :
+            """
+            Draws a filled simple 3-point Quadratic Bezier curve.  
+            
+            See quad_bezier() to draw a simple 4-point open/wireframe bezier curve vs. filled
+            
+            ** This function is included for compatibility with Windows GDI functions.
+            ** See: fill_quad_beziers() function for information on usage of bezier functions.
+            
+            Example (Draws a simple filled 3-point Quadratic Bezier Curve in the shape of a horse-shoe curve)
+          
+            window.draw.fill_quad_bezier((200,500),(296,247),(400,500),"green,blue",pen_size=5,pen_color="yellow")
+            
+            --> The above draws a curve with a green and blue gradient, and a yellow border of 5 pixels.
+            """
+            return _pybox.WindowDrawQuadBezier(self.__id,p1,p2,p3,color,False,**kwargs)
+
+        #
+        # Arc and Pie Functions
+        #
+        
+        def arc(self,x ,y , radius_x, radius_y, start_angle, sweep_angle , arc_color, **kwargs) :
+            """
+            Draws an open/wireframe Arc in the window.  An 'Arc' is a partial ellipse.  
+            The same parameters of Width and Height (or RadiusX and RadiusY) are given. Input angles are in degrees. 
+            
+            - See arc_l() to use list/array/tuple for (x,y) and (radiusx,radiusy) values.            
+            - See fill_arc() to draw filled arc. vs. an open/wireframe
+            
+            Parameters: 
+         
+            - x,y           \t -- Location of the center of the ellipse in the window
+            - radius_x      \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y      \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+    
+          
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the arc.  Otherwise defaults to current Pen Size (which is usually 1), e.g. arc(x,y,rx,ry,"red",pen_size=10)
+            - join_type     \t - Used to set how angles on lines are joined.  Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps      \t - Sets the 'cap' type for the arc.  By default these are round and the size of the arc line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+                              
+            Example: 
+            
+            draw.arc(200,200,400,50,90,-180,"red") -- Draws an arc based on an ellipse of RadiusX=400, RadiusY = 400.  The 90 starts at the top of the axis. The -180 sweeps from
+            this point, creating an arc from the top of the ellipse, rotating clockwise (because the sweep angle is negative) to draw the ellipse down to the bottom of the ellipse.
+            """               
+            return _pybox.WindowDrawArc(self.__id,x,y,radius_x,radius_y,start_angle,sweep_angle,arc_color,0,**kwargs)
+
+        def arc_l(self,pos : list, size : list, start_angle, sweep_angle, arc_color, **kwargs) :
+            """
+            Draws an open/wireframe Arc in the window.  An 'Arc' is a partial ellipse.  The same parameters of Width and Height (or RadiusX and RadiusY) are given. Input angles are in degrees. 
+            
+            - See arc() to use individual x,y,radius_x and radius_y values instead of list/array/tuple.            
+            - See fill_arc() to draw filled arc. vs. an open/wireframe
+
+            Parameters: 
+          
+            - pos           \t -- (x,y) Location of the center of the ellipse in the window
+            - size          \t -- (Width, Height), in pixels, of the ellipse
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+    
+          
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the arc.  Otherwise defaults to current Pen Size (which is usually 1), e.g. arc(x,y,rx,ry,"red",pen_size=10)
+            - join_type     \t - Used to set how angles on lines are joined.  Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps     \t - Sets the 'cap' type for the arc.  By default these are round and the size of the arc line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+ 
+                              
+            Example: 
+            
+            draw.arc_l((200,200),(400,50),90,-180,"red") -- Draws an arc based on an ellipse of RadiusX=400, RadiusY = 400.  The 90 starts at the top of the axis. The -180 sweeps from
+            this point, creating an arc from the top of the ellipse, rotating clockwise (because the sweep angle is negative) to draw the ellipse down to the bottom of the ellipse.
+            """               
+            return _pybox.WindowDrawArc(self.__id,pos[0],pos[1],size[0],size[1],start_angle,sweep_angle,arc_color,0,**kwargs)
+        
+        def fill_arc(self,x , y , radius_x, radius_y, start_angle, sweep_angle , arc_color, **kwargs) :
+            """
+            Draws an filled Arc in the window.  An 'Arc' is a partial ellipse.  
+            The same parameters of Width and Height (or RadiusX and RadiusY) are given. Input angles are in degrees. 
+            
+            - The filled area is the area between the ends of the arc.
+            - See fill_arc_l() to use list/array/tuple for (x,y) and (radiusx,radiusy) values.            
+            - See arc() to draw an open/wireframe arc vs. a filled arc.
+            
+            Parameters: 
+         
+            - x,y           \t -- Location of the center of the ellipse in the window
+            - radius_x      \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y      \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+    
+          
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the arc.  Otherwise defaults to current Pen Size (which is usually 1), e.g. arc(x,y,rx,ry,"red",pen_size=10)
+            - join_type     \t - Used to set how angles on lines are joined (if a border/pen is used).  
+                            \t   Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps     \t - Line caps may be used when a pen is used as a border.  See arc() for more information.
+                              
+            Example: 
+            
+            draw.fill_arc(200,200,400,50,90,-180,"red") -- Draws an arc based on an ellipse of RadiusX=400, RadiusY = 400.  The 90 starts at the top of the axis. The -180 sweeps from
+            this point, creating an arc from the top of the ellipse, rotating clockwise (because the sweep angle is negative) to draw the ellipse down to the bottom of the ellipse.
+            """               
+            return _pybox.WindowDrawArc(self.__id,x,y,radius_x,radius_y,start_angle,sweep_angle,arc_color,1,**kwargs)
+        
+        def fill_arc_l(self,pos : list, size : list, start_angle, sweep_angle, arc_color, **kwargs) :
+            """
+            Draws a filled arc in the window.  An 'Arc' is a partial ellipse.  The same parameters of Width and Height (or RadiusX and RadiusY) are given. Input angles are in degrees. 
+            
+            - The filled area is the area between the ends of the arc.
+            - See fill_arc() individual values for x,y,radius_x and radius_y, instead of list/array/tuple.           
+            - See arc_l() to draw an open/wireframe arc vs. a filled arc.
+            
+            Parameters: 
+          
+            - pos           \t -- (x,y) Location of the center of the ellipse in the window
+            - size          \t -- (Width, Height), in pixels, of the ellipse
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+    
+          
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the arc.  Otherwise defaults to current Pen Size (which is usually 1), e.g. arc(x,y,rx,ry,"red",pen_size=10)
+            - join_type     \t - Used to set how angles on lines are joined (if a border/pen is used).  
+                            \t   Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps     \t - Line caps may be used when a pen is used as a border.  See arc() for more information.
+ 
+                              
+            Example: 
+            
+            draw.fill_arc_l((200,200),(400,50),90,-180,"red") -- Draws an arc based on an ellipse of RadiusX=400, RadiusY = 400.  The 90 starts at the top of the axis. The -180 sweeps from
+            this point, creating an arc from the top of the ellipse, rotating clockwise (because the sweep angle is negative) to draw the ellipse down to the bottom of the ellipse.
+            """               
+            return _pybox.WindowDrawArc(self.__id,pos[0],pos[1],size[0],size[1],start_angle,sweep_angle,arc_color,1,**kwargs)
+        
+        def pie(self,x , y , radius_x, radius_y, start_angle, sweep_angle , arc_color, **kwargs) :
+            """
+            Draws an open/wireframe pie chart slice, from the center of the ellipse described by RadiusX and RadiusY, from the start angle, for duration of the sweep angle.
+
+            - See pie_l() to use list/array/tuple for (x,y) and (radiusx,radiusy) values.            
+            - See fill_pie() to draw filled pie slice. vs. an open/wireframe
+            
+            Example:
+            
+            window.draw.pie(200,300,400,400,-75,150,"red") 
+            
+            This example draws a Pie-Chart slice centered at (200,200), with radius_x and radius_y of 400 (i.e. a circle),
+            with a start angle of -75 degrees, for a duration of 150 degrees.
+
+            0 Degrees starts directly to the right of the center of the ellipse/circle and moves in a clockwise direction.  
+            In the example above, this will draw a pie slice from the center of the circle, to the upper-right starting at -75 degrees, extending 
+            the same amount below the Y axis (since it is 150 degrees in length). 
+            
+            Parameters: 
+         
+            - x,y           \t -- Location of the center of the ellipse in the window
+            - radius_x      \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y      \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+    
+          
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the pie slice.  Otherwise defaults to current Pen Size (which is usually 1).
+            - join_type     \t - Used to set how angles on lines are joined.  Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps      \t - Sets the 'cap' type for the pie slice.  By default these are round and the size of the pie slice line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+              """               
+            return _pybox.WindowDrawArc(self.__id,x,y,radius_x,radius_y,start_angle,sweep_angle,arc_color,2,**kwargs)
+        
+        def pie_l(self,pos : list, size : list, start_angle, sweep_angle, arc_color, **kwargs) :
+            """
+            Draws an open/wireframe pie chart slice, from the center of the ellipse described by RadiusX and RadiusY, from the start angle, for duration of the sweep angle.
+
+            - See pie() to use individual values for x,y,radius_x, and radius_y, instead of list/array/tuple.       
+            - See fill_pie_l() to draw filled pie slice. vs. an open/wireframe
+            
+            Example:
+            
+            window.draw.pie_l((200,300),(400,400),-75,150,"red") 
+            
+            This example draws a Pie-Chart slice centered at (200,200), with radius_x and radius_y of 400 (i.e. a circle),
+            with a start angle of -75 degrees, for a duration of 150 degrees.
+
+            0 Degrees starts directly to the right of the center of the ellipse/circle and moves in a clockwise direction.  
+            In the example above, this will draw a pie slice from the center of the circle, to the upper-right starting at -75 degrees, extending 
+            the same amount below the Y axis (since it is 150 degrees in length). 
+            
+            Parameters: 
+         
+            - pos           \t -- (x,y) Location of the center of the ellipse in the window
+            - size          \t -- (Width, Height), in pixels, of the ellipse
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+    
+          
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the pie slice.  Otherwise defaults to current Pen Size (which is usually 1).
+            - join_type     \t - Used to set how angles on lines are joined.  Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps      \t - Sets the 'cap' type for the pie slice.  By default these are round and the size of the pie slice line itself.
+                            
+                            \t Possible linecap values are "flat" (no caps),"round","diamond","square" and "arrow".  use "default" to set default cap type.
+                            \t Add "anchor" to make caps larger, e.g. "round anchor","arrow anchor", etc.  ("flat" has no "anchor")
+                            
+                            \t This sets both cap types unless a ',' is used, such as "round,square anchor".  
+                            \t using a blank for the cap type sets the default, such as ",arrow anchor" or "arrow anchor,", which sets only the
+                            \t end cap and beginning cap to "anchor arrow", respectively, leaving the other cap type as the default. 
+            """               
+            return _pybox.WindowDrawArc(self.__id,pos[0],pos[1],size[0],size[1],start_angle,sweep_angle,arc_color,2,**kwargs)
+        
+        def fill_pie(self,x , y , radius_x, radius_y, start_angle, sweep_angle , arc_color, **kwargs) :
+            """
+            Draws an filled pie chart slice, from the center of the ellipse described by RadiusX and RadiusY, from the start angle, for duration of the sweep angle.
+
+            - See fill_pie() to use list/array/tuple for x,y,radius_x, and radius_y, rather than invidual values.       
+            - See pie() to draw an open/wireframe pie slice vs. a filled pie slice.
+            
+            Example:
+            
+            window.draw.fill_pie(200,300,400,400,-75,150,"red") 
+            
+            This example draws a Pie-Chart slice centered at (200,200), with radius_x and radius_y of 400 (i.e. a circle),
+            with a start angle of -75 degrees, for a duration of 150 degrees.
+
+            0 Degrees starts directly to the right of the center of the ellipse/circle and moves in a clockwise direction.  
+            In the example above, this will draw a pie slice from the center of the circle, to the upper-right starting at -75 degrees, extending 
+            the same amount below the Y axis (since it is 150 degrees in length). 
+            
+            Parameters: 
+         
+            - x,y           \t -- Location of the center of the ellipse in the window
+            - radius_x      \t -- Width/Radius (in pixels) of the ellipse in the X direction
+            - radius_y      \t -- Height/Radius (in pixels) of the ellipse in the Y direction
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the pie slice.  Otherwise defaults to current Pen Size (which is usually 1).
+            - join_type     \t - Used to set how angles on lines are joined (if a border/pen is used).  
+                            \t   Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps     \t - Line caps may be used when a pen is used as a border.  See pie() for more information.
+            """               
+            return _pybox.WindowDrawArc(self.__id,x,y,radius_x,radius_y,start_angle,sweep_angle,arc_color,3,**kwargs)
+        
+        def fill_pie_l(self,pos : list, size : list, start_angle, sweep_angle, arc_color, **kwargs) :
+            """
+            Draws an filled pie chart slice, from the center of the ellipse described by RadiusX and RadiusY, from the start angle, for duration of the sweep angle.
+
+            - See fill_pie() to use individual values for x,y,radius_x, and radius_y, rather than list/array/tuple values     
+            - See pie_l() to draw an open/wireframe pie slice vs. a filled pie slice.
+            
+            Example:
+            
+            window.draw.fill_pie_l((200,300),(400,400),-75,150,"red") 
+            
+            This example draws a Pie-Chart slice centered at (200,200), with radius_x and radius_y of 400 (i.e. a circle),
+            with a start angle of -75 degrees, for a duration of 150 degrees.
+
+            0 Degrees starts directly to the right of the center of the ellipse/circle and moves in a clockwise direction.  
+            In the example above, this will draw a pie slice from the center of the circle, to the upper-right starting at -75 degrees, extending 
+            the same amount below the Y axis (since it is 150 degrees in length). 
+            
+            Parameters: 
+         
+            - pos           \t -- (x,y) Location of the center of the ellipse in the window
+            - size          \t -- (Width, Height), in pixels, of the ellipse
+            - start_angle   \t -- Where to start drawing the ellipse.   0 degrees is directly right on the X-Axis, with a counter-clockwise rotation (i.e. 90 degrees is top, -90 is bottom)
+            - sweep_angle   \t -- How many degrees in a circle to draw the ellipse. 
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+         
+            - pen_size      \t - Sets the thickness of the pie slice.  Otherwise defaults to current Pen Size (which is usually 1).
+            - join_type     \t - Used to set how angles on lines are joined (if a border/pen is used).  
+                            \t   Default is "miter" can be sharp.  Setting join_type="round" (or "bevel") can make edges softer.
+            - line_caps     \t - Line caps may be used when a pen is used as a border.  See pie() for more information.
+            """               
+            return _pybox.WindowDrawArc(self.__id,pos[0],pos[1],size[0],size[1],start_angle,sweep_angle,arc_color,3,**kwargs)
+ 
 
         #
         # Draw Line Functions
@@ -2175,14 +4461,14 @@ class Window :
 
         def line_fast(self,x1 : int,y1 : int,x2 : int,y2 : int,color,pen_size : int = 0) : 
             """
-            Draws a 'fast' line in the window from (x1,y1) to (x2,y2).  See DrawLineL() to use list/array/tuple for (x,y) coordinates. 
+            Draws a 'fast' line in the window from (x1,y1) to (x2,y2).  See DrawLine_l() to use list/array/tuple for (x,y) coordinates. 
 
             This drawing function is a 'fast' function that does not use anti-aliasing and is about 10x faster than
             non-fast drawing functions.  These functions are useful for general drawing and do not respond to opacity or transformations.
 
             Parameters:
 
-            ● color         \t- Color to use for drawing the line
+            - color         \t -- Color to use for drawing the line
 
             About Colors
 
@@ -2200,7 +4486,7 @@ class Window :
 
             Parameters:
 
-            ● color         \t- Color to use for drawing the line
+            - color         \t -- Color to use for drawing the line
 
             About Colors
 
@@ -2219,7 +4505,7 @@ class Window :
 
             Parameters:
 
-            ● color         \t- Color to use for drawing the line
+            - color         \t -- Color to use for drawing the line
 
             About Colors
 
@@ -2237,7 +4523,7 @@ class Window :
 
             Parameters:
 
-            ● color         \t- Color to use for drawing the line
+            - color         \t -- Color to use for drawing the line
 
             About Colors
 
@@ -2252,22 +4538,22 @@ class Window :
             """
             Draws multiple line segments with one color or one color for each line segment.
 
-            ● There must be at least two line segments to draw
-            ● There can be 0 and 1 line segments specified.  If so, the function is ignored.
+            - There must be at least two line segments to draw
+            - There can be 0 and 1 line segments specified.  If so, the function is ignored.
             
             Parameters
 
-            ● Loc           \t- A list or array of line segments in (x,y) form.  x and y values may be integer or floating-point values.
-            ● color         \t- A single color of color for each line segment (endpoint segment color is used)
-            ● array_size     \t- [optional] When given, this is the size of the array to use.  color and Loc must be of at least ArraySize (when ArraySize is specified).
-                            \t When ArraySize is specified, the size of Loc and Color are used (Loc and Color must be of the exact same size when ArraySize is not specified).
-            ● pen_size       \t [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
-                                \tSee draw.Setpensize() to set a general pen size rather than specifying it in the function.
+            - Loc           \t -- A list or array of line segments in (x,y) form.  x and y values may be integer or floating-point values.
+            - color         \t -- A single color of color for each line segment (endpoint segment color is used)
+            - array_size     \t -- [optional] When given, this is the size of the array to use.  color and Loc must be of at least ArraySize (when ArraySize is specified).
+                            \t - When ArraySize is specified, the size of Loc and Color are used (Loc and Color must be of the exact same size when ArraySize is not specified).
+            - pen_size       \t - [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
+                                \t -See draw.set_pen_size() to set a general pen size rather than specifying it in the function.
 
             """
             _pybox.WindowDrawLineSegments(self.__id,Loc,color,array_size,pen_size)
 
-        def line(self,x1,y1,x2,y2,color,pen_size : int = 0) : 
+        def line(self,x1,y1,x2,y2,color,**kwargs) : 
             """
             Draws a line in the window from (x1,y1) to (x2,y2).  See DrawLineL() to use list/array/tuple for (x,y) coordinates. 
 
@@ -2276,20 +4562,21 @@ class Window :
 
             Parameters:
 
-            ● x1,y1         \t- x,y start (x,y) point
-            ● x2,y2         \t- x,y end (x,y) point
-            ● color         \t- Color to use for drawing the line
-            ● pen_size      \t [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
-                                \tSee draw.Setpensize() to set a general pen size rather than specifying it in the function.
+            - x1,y1         \t -- x,y start (x,y) point
+            - x2,y2         \t -- x,y end (x,y) point
+            - color         \t -- Color to use for drawing the line
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
 
+            - pen_size      \t - Pen Size to use for every line. When omitted, the current pen size is used. See draw.set_pen_size() to set a general pen size rather than specifying it in the function. This value may be integer or floating-point.
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
             """
-            return _pybox.WindowDrawLine(self.__id,x1,y1,x2,y2,color,pen_size)    
+            return _pybox.WindowDrawLine(self.__id,x1,y1,x2,y2,color,**kwargs)    
 
-        def line_l(self,p1 : list, p2 : list,color,pen_size : int = 0) : 
+        def line_l(self,p1 : list, p2 : list,color,**kwargs) : 
             """
             Draws a line in the window from (x1,y1) to (x2,y2).  See DrawLine() to use individual x,y coordinates.
 
@@ -2298,20 +4585,22 @@ class Window :
 
             Parameters:
 
-            ● p1            \t- list, array, or tuple of start (x,y) point
-            ● p2            \t- list, array, or tuple of end (x,y) point
-            ● color         \t- Color to use for drawing the line
-            ● pen_size      \t [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
-                                \tSee draw.Setpensize() to set a general pen size rather than specifying it in the function.
+            - p1            \t -- list, array, or tuple of start (x,y) point
+            - p2            \t -- list, array, or tuple of end (x,y) point
+            - color         \t -- Color to use for drawing the line
+            
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Pen Size to use for every line. When omitted, the current pen size is used. See draw.set_pen_size() to set a general pen size rather than specifying it in the function. This value may be integer or floating-point.
 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
             """
-            return _pybox.WindowDrawLine(self.__id,p1[0],p1[1],p2[0],p2[1],color,pen_size)
+            return _pybox.WindowDrawLine(self.__id,p1[0],p1[1],p2[0],p2[1],color,**kwargs)
    
-        def lineto(self,x1,y1,color,pen_size) : 
+        def lineto(self,x1,y1,color,**kwargs) : 
             """
             Draws a line in the window from the current point (last line or Set Point).  See DrawLineToL() to use list, tuple, or array for x,y starting point.
 
@@ -2320,19 +4609,21 @@ class Window :
 
             Parameters:
 
-            ● x1,y1         \t- x,y end point of line.
-            ● color         \t- Color to use for drawing the line
-            ● pen_size      \t [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
-                                \tSee draw.Setpensize() to set a general pen size rather than specifying it in the function.
+            - x1,y1         \t -- x,y end point of line.
+            - color         \t -- Color to use for drawing the line
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Pen Size to use for every line. When omitted, the current pen size is used. See draw.set_pen_size() to set a general pen size rather than specifying it in the function. This value may be integer or floating-point.
 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
             """
-            return _pybox.WindowDrawLineTo(self.__id,x1,y1,color,pen_size)
+            return _pybox.WindowDrawLineTo(self.__id,x1,y1,color,**kwargs)
 
-        def lineto_l(self,p1 : list,color,pen_size : int = 0) : 
+        def lineto_l(self,p1 : list,color,**kwargs) : 
             """
             Draws a line in the window from the current point (last line or Set Point).  See DrawLineTo() to use individual x,y coordinates.
 
@@ -2341,20 +4632,21 @@ class Window :
 
             Parameters:
 
-            ● p1            \t- list, array, or tuple of end (x,y) point
-            ● color         \t- Color to use for drawing the line
-            ● pen_size      \t [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
-                                \tSee draw.Setpensize() to set a general pen size rather than specifying it in the function.
+            - p1            \t -- list, array, or tuple of end (x,y) point
+            - color         \t -- Color to use for drawing the line
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Pen Size to use for every line. When omitted, the current pen size is used. See draw.set_pen_size() to set a general pen size rather than specifying it in the function. This value may be integer or floating-point.
 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
             """        
-            return _pybox.WindowDrawLineTo(self.__id,p1[0],p1[1],color,pen_size)
+            return _pybox.WindowDrawLineTo(self.__id,p1[0],p1[1],color,**kwargs)
 
-        def lineto_ex(self,first,x1,y1,color,pen_size) : 
+        def lineto_ex(self,first,x1,y1,color,**kwargs) : 
             """
             Draws a line in the window from the current point (last line or Set Point).  See DrawLineToL() to use list, tuple, or array for x,y starting point.
 
@@ -2363,22 +4655,23 @@ class Window :
 
             Parameters:
 
-            ● first         \t- [int or bool] When false (or 0 when an integer), the Line is drawn as a LineTo to the point given
-                                \t when true (or non-zero when an integer), the point is set as the first point, but not drawn.
-            ● x1,y1         \t- x,y end point of line.
-            ● color         \t- Color to use for drawing the line
-            ● pen_size      \t [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
-                                \tSee draw.Setpensize() to set a general pen size rather than specifying it in the function.
+            - first         \t -- [int or bool] When false (or 0 when an integer), the Line is drawn as a LineTo to the point given
+                                \t - when true (or non-zero when an integer), the point is set as the first point, but not drawn.
+            - x1,y1         \t -- x,y end point of line.
+            - color         \t -- Color to use for drawing the line
 
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Pen Size to use for every line. When omitted, the current pen size is used. See draw.set_pen_size() to set a general pen size rather than specifying it in the function. This value may be integer or floating-point.
 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
             """
-            return _pybox.WindowDrawLineToEx(self.__id,first,x1,y1,color,pen_size)
+            return _pybox.WindowDrawLineToEx(self.__id,first,x1,y1,color,**kwargs)
 
-        def lineto_ex_l(self,first,p1 : list,color,pen_size : int = 0) : 
+        def lineto_ex_l(self,first,p1 : list,color,**kwargs) : 
             """
             Draws a line in the window from the current point (last line or Set Point).  See DrawLineTo() to use individual x,y coordinates.
 
@@ -2387,19 +4680,165 @@ class Window :
 
             Parameters:
 
-            ● first         \t- [int or bool] When false (or 0 when an integer), the Line is drawn as a LineTo to the point given
-                                \t when true (or non-zero when an integer), the point is set as the first point, but not drawn.
-            ● p1            \t- list, array, or tuple of end (x,y) point
-            ● color         \t- Color to use for drawing the line
-            ● pen_size      \t [optional] Pen Size to use for every line.  This is a static value and does not currently support arrays. When omitted, the current pen size is used.
-                                \tSee draw.Setpensize() to set a general pen size rather than specifying it in the function.
+            - first         \t -- [int or bool] When false (or 0 when an integer), the Line is drawn as a LineTo to the point given
+                                \t - when true (or non-zero when an integer), the point is set as the first point, but not drawn.
+            - p1            \t -- list, array, or tuple of end (x,y) point
+            - color         \t -- Color to use for drawing the line
+
+            Keywords and/or Pybox options can be included.  Some various options are as follows:
+
+            - pen_size      \t - Pen Size to use for every line. When omitted, the current pen size is used. See draw.set_pen_size() to set a general pen size rather than specifying it in the function. This value may be integer or floating-point.
 
             About Colors
 
             Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
             Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
             """        
-            return _pybox.WindowDrawLineToEx(self.__id,first,p1[0],p1[1],color,pen_size)
+            return _pybox.WindowDrawLineToEx(self.__id,first,p1[0],p1[1],color,**kwargs)
+        
+        def draw_grid(self,spacing : int = 25,**kwargs) -> bool :
+            """
+            Draws a grid of lines in the X and Y axis to create a graph on the screen.
+
+            The "spacing" parameter controls how many pixels are between each set of lines.
+        
+            Keywords and Pybox options can be included.  Some various options are as follows:
+
+            - color                       \t -Sets the color of the grid, i.e. "white","red","45,67,123", etc. Default color is RGB(42,42,42) (i.e. dark gray)
+
+            The default for the "spacing" parameter is 25 pixels.
+
+            Examples:
+     
+            \t -MyWindow.draw_grid()                \t -- Draws default grid
+            \t -MyWindow.write(50)                  \t -- Draws a grid with spacing of 50 pixels 
+            \t -MyWindow.write("green")             \t -- Draws a grid with the color green
+            \t -MyWindow.write(50,"0,255,255")      \t -- Draws a grid with spacing of 50 and an RGB color of (0,255,255) or "cyan"
+            """
+            return _pybox.WindowDrawGrid(self.__id,spacing,**kwargs)
+
+        def vector(self,p1 : list, p2 : list,line_size,color,**kwargs) : 
+            """
+            Draws a vector from point p1 to p2.  A vector is the same thing as a line, but with some differences and a number of controls that 
+            can be used to modify its behavior and appearance.
+        
+            The vector also has beginning and end 'caps'.  The default is for the beginning of the line to have a round shape (e.g. round cap), and
+            the end of the line to have a larger arrow shape (known as an 'arrow' cap, but because it's larger it's known as an 'arrow anchor')
+        
+            The default behavior for draw_vector is to draw the vector in a white color, with a round beginning cap and an 'arrow anchor' ending cap.
+        
+            Input
+        
+            - p1,p2             - Beginning and End Points of the line, such as (100,400),(600,700) or (x1,y1),(x2,y2), etc.
+            - line_size         -size of the line in pixels.
+            - color             - color of vector line.
+        
+            Example of simple usage: window.draw_vector(p1,p2,10) or draw_vector((x1,y1),(x2,y2),10)
+        
+            Text, colors, and many others may be assign through the following keywords
+
+            - title         - Sets the title to display on the vector line, e.g. title="This is a vector.  Default behavior is no title.
+            - opacity       - Sets the opacity to draw the line.  Range is 0-255, with 0 transparent and 255 fully opaque. Default is 255 (fully opaque).
+            - angle         - Rotates the vector at its center by the angle specified.  "angle" is in degrees.  "AngleDeg" may also be used to specify degrees
+            - angle_rad     - Same as "angle", but uses radians instead of degrees, e.g. angle_rad = 1.57 (for 90 degrees)
+            - text_size     - Sets the relative font size of the label.  The default font varies in size based on line thickness. 
+                              text_size values can me "xxsmall","xsmall","small","medium","large,"xlarge", "xxlarge".  Default is "small".  "default" may also be used as an option.
+        
+            - label_font (or "font")    - Sets a specific font size or type for the vector line.  The font will not change based on line thickness when set in this manner.
+                                          Fonts may be set with just a size, such as a number, e.g. font=25 (for default font Arial at 25 points), or a full font name, e.g. font="time new roman,25"
+        
+            - label_just (or "just")    - Sets the justification of the vector label text.  Default is "top-left".  
+                                          Options are: "top-left","top-left-center","top-center","top-right-center","top-right".  "bottom" and "middle" may be used instead of top to specify the 
+                                          bottom of the vector line or middle of the line (vertically), respectively.  Example: just="bottom-right"
+
+            - capsize       - Sets the beginning and end cap of the vector to a multiple of the capsize specified.  This is useful only for 'anchor' cap types
+                              such as 'round achor', 'arrow anchor',etc.  The anchor types grow and shrink based on line thickness.
+                              using "capsize" can make the beginning and end caps smaller or larger.
+                              example capize=2 makes any anchor cap 2x larger.  see "begcapsize" and "endcapsize" to control cap sizes individually.
+
+            - begcap_size (or "begcap")   - Sets the begininng cap size if the begnining cap is an 'anchor' cap type.  See documentation on 'capsize', which will set both
+                                            beginning and end cap together.
+                          
+            - endcap_size (or "endcap")  - Sets the end cap size if the end cap is an 'anchor' cap type.  See documentation on 'capsize', which will set both
+                                           beginning and end cap together.
+ 
+            - begcap_type       - Sets the beginning cap type.  by default, the cap type for the begining of the vector is "round"
+                                  possible types are "round","diamond","arrow","square","flat","round anchor","diamond anchor","arrow anchor","diamond anchor"
+                                  "anchor" types are larger and can be made smaller or larger with "capsize" or "begcap_size"
+                                       
+            - endcap_type       - Sets the ending cap type.  by default, the cap type for the enf of the vector is "arrow anchor"
+                                  possible types are "round","diamond","arrow","square","flat","round anchor","diamond anchor","arrow anchor","diamond anchor"
+                                  "anchor" types are larger and can be made smaller or larger with "capsize" or "begcap_size"
+            - begcap_color      - Sets the color of the beginning cap of the vector.  This is useful for "anchor" cap types which are larger.  
+                                  Example: begcap_color="yellow"                             
+            - endcap_color      - Sets the color of the ending cap of the vector.  This is useful for "anchor" cap types which are larger.  
+                                  By default, the begining and end caps are the same color as the vector line itself.  Example: endcap_color="red"  
+            - label_pad_x (or "pad_x")  - Sets extra spacing on the left or right of the label on the vector.  Positive values move the title to the right
+                                          (as formed by p1-p2), with negative values moving the title to the left.
+            - label_pad_y (or "pad_y")  - Sets extra spacing on the top or bottom of the label on the vector.  Positive values move the title upwards
+                                          (as formed by p1-p2), with negative values moving the title downward.
+            - label_opacity     - Sets the opacity of the vector's label.  By default, the opacity of the vector label is the same as the line, either by default or
+                                  when the line opacity is specifically specified.  Using label_opacity will cause the label's opacity to use this value.
+            - label_color   - Sets the color of the vector label, e.g. label_color="red".  By default, the label's color is white, regardless of the line color.
+            - label_angle   - Sets the label of the angle with 3 options: "horizontal" (default), "vertical", or "vertical 180".  "vertical" and vertical 180" make the label
+                              appear sideways on the line, with "vertial 180" reversing it's direction, with the start of the text appearing away from the line.
+                              Add the term "static" to keep the label the exact orientation regardless of line angle, e.g. 'label_angle="horizontal,static"' will cause
+                              the text to display at 0 degrees relative to the screen rather than the line itself.
+                          
+            - label_up      - Keeps the vector's label right-side up. As the vector rotates and the label's orientation, using "label_up=True" will keep the label
+                              right-side up when the label's angle is such that the label would otherwise appear upside-down.
+            - set_center    - Sets the center of the vector, regardless of p1 and p2.  This calculates the relative center of the vector (i.e. (p1+p2)/2-p1), and
+                              places the center of the vector at the new (x,y) coordinates.  Example set_center=(500,200) or set_center=(x,y)
+                              This is useful in simply specifying a length in the draw_vector call as p1 and p2, such as draw_vector((0,0),(0,x),...) then
+                              setting the center and angle of the vector with "set_canter" and "angle" keywords, respectively/
+            - show_center   - puts a circle in the center of the vector.  This is for purely diagnostic purposes, showing the center is where it should be based on 
+                              the calling's functions calculation.  Use "show_center=True" to show the circle in cyan.  
+                              Use "show_center=<color>" to set the color, e.g. 'show_center="black"'
+            """
+            return _pybox.WindowDrawVector(self.__id,p1[0],p1[1],p2[0],p2[1],line_size,color,**kwargs)
+    
+        def set_pixel(self,x : int, y : int, color : any) :
+            """
+            Draws a single RGB pixel in the window at point specified by x,y
+  
+            see: set_pixel_l() to use list, tuples, or arrays for the x,y location
+            
+            Parameters
+
+            x,y   \t- location to place pixel inside of window
+            color \t- RGB color of pixel 
+            
+            Color may be 3-value integer or float in a list, tuple, or array,
+            e.g. (255,255,0) for yellow, etc.
+            
+            note: Colors using strings such as "yellow", "green", etc. may cause slowness when outputting numerous pixels.
+            """
+            return _pybox.WindowDrawPixel(self.__id,x,y,color)
+           
+        def set_pixel_l(self,at, color : any) :
+            """
+            Draws a single RGB pixel in the window at point specified by x,y
+  
+            see: set_pixel() to use individual x,y values instead of tuple/list/array
+            
+            Parameters
+
+            at  \t- location to place pixel inside of window
+            color \t- RGB color of pixel 
+            
+            About Colors
+
+            Color may be 3-value integer or float in a list, tuple, or array, e.g. (255,255,0) for yellow, etc.
+            
+            Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
+            Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
+            
+            note: Colors using strings such as "yellow", "green", etc. may cause slowness when outputting numerous pixels.
+            """
+            return _pybox.WindowDrawPixel(self.__id,at[0],at[1],color)
+           
+          
+        
 
     #
     # Main Window Class Functions
@@ -2414,7 +4853,7 @@ class Window :
         See pybox.exit_button() to bring up an exit button in a separate window with a message.
         Parameters
 
-        ● text       \t- [optional].  Message to put in the window above the button.  If not specified, a default "program is finished" message is place in the window.
+        - text       \t -- [optional].  Message to put in the window above the button.  If not specified, a default "program is finished" message is place in the window.
 
         About exit_button() and Displays using Windows and Graphics
 
@@ -2440,7 +4879,7 @@ class Window :
 
         For example,
 
-        \tMyWindow.set_write_indent(20)
+        \t -MyWindow.set_write_indent(20)
 
         will set all new lines at position 20. 
 
@@ -2459,7 +4898,7 @@ class Window :
 
         For example,
 
-        \tMyWindow.set_write_padding(5)
+        \t -MyWindow.set_write_padding(5)
 
         will add 5 extra pixels for every newline on top of the size of the font.
 
@@ -2477,7 +4916,7 @@ class Window :
 
         For example,
 
-        \tMyWindow.set_write_pos(50,100)
+        \t -MyWindow.set_write_pos(50,100)
 
         will cause the next Window.Write() output to start at (50,100). 
 
@@ -2495,7 +4934,7 @@ class Window :
 
         For example,
 
-        \tMyWindow.set_write_pos_l((50,100))
+        \t -MyWindow.set_write_pos_l((50,100))
 
         will cause the next Window.Write() output to start at (50,100). 
 
@@ -2524,7 +4963,7 @@ class Window :
         
         Parameters
 
-        ● color         \t- Background color to set next text output 
+        - color         \t -- Background color to set next text output 
         
         About Colors
 
@@ -2533,10 +4972,10 @@ class Window :
 
         Examples:
 
-        Window.set_bg_color("red")                      \t- Sets the window's background color to the color red
-        Window.set_bg_color(SageColor.Red())            \t- Sets the window's background color to red, also
-        Window.set_bg_color(PanColor.ForestGreen())     \t- Sets the window's background color to PanColor.ForestGreen
-        Window.set_bg_color(MyColor)                    \t- Sets the window's background color to a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
+        Window.set_bg_color("red")                      \t -- Sets the window's background color to the color red
+        Window.set_bg_color(SageColor.Red())            \t -- Sets the window's background color to red, also
+        Window.set_bg_color(PanColor.ForestGreen())     \t -- Sets the window's background color to PanColor.ForestGreen
+        Window.set_bg_color(MyColor)                    \t -- Sets the window's background color to a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
         """
         return _pybox.WindowSetBgColor(self.__id,color)
 
@@ -2551,7 +4990,7 @@ class Window :
         
         Parameters
 
-        ● color         \t- Foreground/Text color to set next output 
+        - color         \t -- Foreground/Text color to set next output 
         
         About Colors
 
@@ -2560,10 +4999,10 @@ class Window :
 
         Examples:
 
-        Window.set_fg_color("red")                      \t- Sets the window's text color to the color red
-        Window.set_fg_color(SageColor.Red())            \t- Sets the window's text color to red, also
-        Window.set_fg_color(PanColor.ForestGreen())     \t- Sets the window's text color to PanColor.ForestGreen
-        Window.set_fg_color(MyColor)                    \t- Sets the window's text color to a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
+        Window.set_fg_color("red")                      \t -- Sets the window's text color to the color red
+        Window.set_fg_color(SageColor.Red())            \t -- Sets the window's text color to red, also
+        Window.set_fg_color(PanColor.ForestGreen())     \t -- Sets the window's text color to PanColor.ForestGreen
+        Window.set_fg_color(MyColor)                    \t -- Sets the window's text color to a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
         """        
         return _pybox.WindowSetFgColor(self.__id,color)
 
@@ -2578,7 +5017,7 @@ class Window :
         
         Parameters
 
-        ● color         \t- Foreground/Text color to set next output 
+        - color         \t -- Foreground/Text color to set next output 
         
         About Colors
 
@@ -2587,10 +5026,10 @@ class Window :
 
         Examples:
 
-        Window.set_text_color("red")                      \t- Sets the window's text color to the color red
-        Window.set_text_color(SageColor.Red())            \t- Sets the window's text color to red, also
-        Window.set_text_color(PanColor.ForestGreen())     \t- Sets the window's text color to PanColor.ForestGreen
-        Window.set_text_color(MyColor)                    \t- Sets the window's text color to a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
+        Window.set_text_color("red")                      \t -- Sets the window's text color to the color red
+        Window.set_text_color(SageColor.Red())            \t -- Sets the window's text color to red, also
+        Window.set_text_color(PanColor.ForestGreen())     \t -- Sets the window's text color to PanColor.ForestGreen
+        Window.set_text_color(MyColor)                    \t -- Sets the window's text color to a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
         """
         return _pybox.WindowSetFgColor(self.__id,color)
 
@@ -2611,12 +5050,12 @@ class Window :
         When this function is used once  (or VsynStartThread()) has been called, Sagebox will return with GetEvent() with 
         VsyncReady as an event, which can be checked with VsyncReady(). 
 
-        ● Use VsyncEndThread() to stop the thread that looks for the vertical sync. 
+        - Use VsyncEndThread() to stop the thread that looks for the vertical sync. 
     
         When GetEvent() returns, it may return from any sort of event, so VsyncReady() must be called to ensure a Vsync has occured.
    
-        ● Use VsyncWait() to stop the thread and wake it up every Vsync period (usually every 60ms, but dependent on monitor settings).
-            \tif the code between VsyncWait() calls takes longer then the vertical sync, VsyncWait() will come back when the next vertical sync is triggered.
+        - Use VsyncWait() to stop the thread and wake it up every Vsync period (usually every 60ms, but dependent on monitor settings).
+            \t -if the code between VsyncWait() calls takes longer then the vertical sync, VsyncWait() will come back when the next vertical sync is triggered.
  
         See the pybox GPU/SDL functions (TBD, but being worked on) for accurate and more flexible GPU graphics.
 
@@ -2634,21 +5073,21 @@ class Window :
 
         Optional Input parameters:
 
-        ● text      \t- Initial listbox text.  This can be empty.  Multiple entries can be set separated by newlines (i.e. "Item 1\Item 2") listbox.AddItem() can also be used to add text items.
-        ● width     \t- Sets the width of the listbox in the window.  This has a default of 200
-        ● height    \t- Sets the Height of of the listbox in the window.  This has a default of 400
+        - text      \t -- Initial listbox text.  This can be empty.  Multiple entries can be set separated by newlines (i.e. "Item 1\Item 2") listbox.AddItem() can also be used to add text items.
+        - width     \t -- Sets the width of the listbox in the window.  This has a default of 200
+        - height    \t -- Sets the Height of of the listbox in the window.  This has a default of 400
 
         Keywords and/or Pybox options can be included.  Some various options are as follows:
 
-        ● fgColor   \t- Sets the foreground color of items in the list box
-        ● bgColor   \t- Sets the background color of items in the list box
-        ● Defalut   \t- Sets the default selected item (assuming text is set in the initilization).  See: listbox.SetSelection()
-        ● Font      \t- Sets the font of the listbox text.   The default is about 12 points. 
+        - fgColor   \t -- Sets the foreground color of items in the list box
+        - bgColor   \t -- Sets the background color of items in the list box
+        - Defalut   \t -- Sets the default selected item (assuming text is set in the initilization).  See: listbox.SetSelection()
+        - Font      \t -- Sets the font of the listbox text.   The default is about 12 points. 
 
         Note: The list box height is automatically adjusted to the nearest font size that will fit into the window. 
 
-        Examples:   \tMyListbox = Window.new_listbox(10,10)    \t - Open new listbox at (10,10) in the window
-                    \tMyListbox = Window.new_listbox(PosX,PosY,"Item 1\\nItem 2",fgcolor="Red")  
+        Examples:   \t -MyListbox = Window.new_listbox(10,10)    \t - - Open new listbox at (10,10) in the window
+                    \t -MyListbox = Window.new_listbox(PosX,PosY,"Item 1\\nItem 2",fgcolor="Red")  
         """
         return Listbox(_pybox.WindowNewListbox(self.__id,int(x),int(y),text,opt.size(width,height),*args,**kwargs))
 
@@ -2658,22 +5097,22 @@ class Window :
 
         Optional Input parameters:
 
-        ● text      \t- Initial listbox text.  This can be empty.  Multiple entries can be set separated by newlines (i.e. "Item 1\Item 2") listbox.AddItem() can also be used to add text items.
-        ● width     \t- Sets the width of the listbox in the window.  This has a default of 200
-        ● height    \t- Sets the Height of of the listbox in the window.  This has a default of 400
+        - text      \t -- Initial listbox text.  This can be empty.  Multiple entries can be set separated by newlines (i.e. "Item 1\Item 2") listbox.AddItem() can also be used to add text items.
+        - width     \t -- Sets the width of the listbox in the window.  This has a default of 200
+        - height    \t -- Sets the Height of of the listbox in the window.  This has a default of 400
 
         Pybox options can be included.  Some various options are as follows:
 
-        ● fgColor   \t- Sets the foreground color of items in the list box
-        ● bgColor   \t- Sets the background color of items in the list box
-        ● Defalut   \t- Sets the default selected item (assuming text is set in the initilization).  See: listbox.SetSelection()
-        ● Font      \t- Sets the font of the listbox text.   The default is about 12 points. 
+        - fgColor   \t -- Sets the foreground color of items in the list box
+        - bgColor   \t -- Sets the background color of items in the list box
+        - Defalut   \t -- Sets the default selected item (assuming text is set in the initilization).  See: listbox.SetSelection()
+        - Font      \t -- Sets the font of the listbox text.   The default is about 12 points. 
 
         Note: The list box height is automatically adjusted to the nearest font size that will fit into the window. 
 
-        Examples:   \tMyListbox = Window.new_listbox_l((10,10))                                          \t - Open new listbox at (10,10) in the window
-                    \tMyListbox = Window.new_listbox_l(MyLocation,"Item 1\\nItem 2",opt.fgcolor("Red"))  
-                    \tMyListbox = Window.new_listbox_l(MyLocation,"Item 1\\nItem 2",height=300,fgcolor="Red")  
+        Examples:   \t -MyListbox = Window.new_listbox_l((10,10))                                          \t - - Open new listbox at (10,10) in the window
+                    \t -MyListbox = Window.new_listbox_l(MyLocation,"Item 1\\nItem 2",opt.fgcolor("Red"))  
+                    \t -MyListbox = Window.new_listbox_l(MyLocation,"Item 1\\nItem 2",height=300,fgcolor="Red")  
         """        
         return Listbox(_pybox.WindowNewListbox(self.__id,int(loc[0]),int(loc[1]),text,opt.size(width,height),*args,**kwargs))
 
@@ -2685,24 +5124,24 @@ class Window :
 
         Parameters:
 
-        title       \t- Sets the text of the button. 
+        title       \t -- Sets the text of the button. 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● fgColor   \t- Sets the foreground color of items in the list box
-        ● font      \t- Sets the font of the button text.   The default is about 12 points. 
-        ● style     \t- Style("large") will create a larger button
-                    \t- Style("Windows") will create a windows-style rectangular button
-                    \t- Style("Panel") will create a rectangular button that blends with the window
-                    \t- Style("Panel2") will create a rectangular button that blends with no depth when pressing.
-                    \t- Style("<mystyle>") will create a button of a style that has been created by the program with CreateButtonStyle()
+        - fgColor   \t -- Sets the foreground color of items in the list box
+        - font      \t -- Sets the font of the button text.   The default is about 12 points. 
+        - style     \t -- Style("large") will create a larger button
+                    \t -- Style("Windows") will create a windows-style rectangular button
+                    \t -- Style("Panel") will create a rectangular button that blends with the window
+                    \t -- Style("Panel2") will create a rectangular button that blends with no depth when pressing.
+                    \t -- Style("<mystyle>") will create a button of a style that has been created by the program with CreateButtonStyle()
 
-                    \tWith "Windows","Panel" and "Panel2" styles, setting the text color and background color (with opt.fgcolor() and opt.bgcolor()
-                    \tcan make a big difference.
+                    \t -With "Windows","Panel" and "Panel2" styles, setting the text color and background color (with opt.fgcolor() and opt.bgcolor()
+                    \t -can make a big difference.
 
-        Examples:   \tMyWindow.new_button(40,100,"This is a button")
-                    \tMyWindow.new_button(40,100,"This is a larger button",opt.font(20),opt.style("Windows"))
-                    \tMyWindow.new_button(40,100,"This is a larger button with red foreground",opt.bgcolor("Red"),opt.style("Panel"))
+        Examples:   \t -MyWindow.new_button(40,100,"This is a button")
+                    \t -MyWindow.new_button(40,100,"This is a larger button",opt.font(20),opt.style("Windows"))
+                    \t -MyWindow.new_button(40,100,"This is a larger button with red foreground",opt.bgcolor("Red"),opt.style("Panel"))
         """
         return Button(_pybox.WindowNewButton(self.__id,title,int(x),int(y),*args,**kwargs))
 
@@ -2714,24 +5153,24 @@ class Window :
 
         Parameters:
 
-        title       \t- Sets the text of the button. 
+        title       \t -- Sets the text of the button. 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● fgColor   \t- Sets the foreground color of items in the list box
-        ● Font      \t- Sets the font of the button text.   The default is about 12 points. 
-        ● Style     \t- Style("large") will create a larger button
-                    \t- Style("Windows") will create a windows-style rectangular button
-                    \t- Style("Panel") will create a rectangular button that blends with the window
-                    \t- Style("Panel2") will create a rectangular button that blends with no depth when pressing.
-                    \t- Style("<mystyle>") will create a button of a style that has been created by the program with CreateButtonStyle()
+        - fgColor   \t -- Sets the foreground color of items in the list box
+        - Font      \t -- Sets the font of the button text.   The default is about 12 points. 
+        - Style     \t -- Style("large") will create a larger button
+                    \t -- Style("Windows") will create a windows-style rectangular button
+                    \t -- Style("Panel") will create a rectangular button that blends with the window
+                    \t -- Style("Panel2") will create a rectangular button that blends with no depth when pressing.
+                    \t -- Style("<mystyle>") will create a button of a style that has been created by the program with CreateButtonStyle()
 
-                    \tWith "Windows","Panel" and "Panel2" styles, setting the text color and background color (with opt.fgcolor() and opt.bgcolor()
-                    \tcan make a big difference.
+                    \t -With "Windows","Panel" and "Panel2" styles, setting the text color and background color (with opt.fgcolor() and opt.bgcolor()
+                    \t -can make a big difference.
 
-        Examples:   \tMyWindow.new_button_l(40,100,"This is a button")
-                    \tMyWindow.new_button_l(40,100,"This is a larger button",opt.font(20),opt.style("Windows"))
-                    \tMyWindow.new_button_l(40,100,"This is a larger button with red foreground",opt.bgcolor("Red"),opt.style("Panel"))
+        Examples:   \t -MyWindow.new_button_l(40,100,"This is a button")
+                    \t -MyWindow.new_button_l(40,100,"This is a larger button",opt.font(20),opt.style("Windows"))
+                    \t -MyWindow.new_button_l(40,100,"This is a larger button with red foreground",opt.bgcolor("Red"),opt.style("Panel"))
         """
         return Button(_pybox.WindowNewButton(self.__id,title,int(at[0]),int(at[1]),*args,**kwargs))
 
@@ -2743,21 +5182,21 @@ class Window :
 
         Parameters:
 
-        ● title     \t- Sets the title of the Slider
-        ● width     \t- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
+        - title     \t -- Sets the title of the Slider
+        - width     \t -- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range             \t- Set the range of the slider.  The default range is (1,100)          
-        ● Default           \t- Set the default value of the slider.  The edfault is (0)
-        ● TextColor         \t- Sets the color of the label of the slider.
-        ● ValueColor        \t- Sets the text color of the value (same as fgColor()
-        ● Style("small")    \t- Sets a smaller slider handle
+        - Range             \t -- Set the range of the slider.  The default range is (1,100)          
+        - Default           \t -- Set the default value of the slider.  The edfault is (0)
+        - TextColor         \t -- Sets the color of the label of the slider.
+        - ValueColor        \t -- Sets the text color of the value (same as fgColor()
+        - Style("small")    \t -- Sets a smaller slider handle
 
-        Examples:       \twindow.new_slider(10,10,"This is a slider")
-                        \twindow.new_slider(x,y,"This is a slider",range=(100,500),default=200)
-                        \twindow.new_slider(10,10,"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
-                        \twindow.new_slider(10,10,"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - (same as previous example)
+        Examples:       \t -window.new_slider(10,10,"This is a slider")
+                        \t -window.new_slider(x,y,"This is a slider",range=(100,500),default=200)
+                        \t -window.new_slider(10,10,"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
+                        \t -window.new_slider(10,10,"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - - (same as previous example)
         """
         return Slider(_pybox.WindowNewSlider(self.__id,title,int(x),int(y),width,*args,**kwargs))
 
@@ -2774,21 +5213,21 @@ class Window :
 
         Parameters:
 
-        ● title     \t- Sets the title of the Slider
-        ● width     \t- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
+        - title     \t -- Sets the title of the Slider
+        - width     \t -- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
 
         Pybox options can be included.  Some various options are as follows:
 
-        ● Range             \t- Set the range of the slider.  The default range is (1,1.0)          
-        ● Default           \t- Set the default value of the slider.  The edfault is (0)
-        ● TextColor         \t- Sets the color of the label of the slider.
-        ● ValueColor        \t- Sets the text color of the value (same as fgColor()
-        ● Style("small")    \t- Sets a smaller slider handle
+        - Range             \t -- Set the range of the slider.  The default range is (1,1.0)          
+        - Default           \t -- Set the default value of the slider.  The edfault is (0)
+        - TextColor         \t -- Sets the color of the label of the slider.
+        - ValueColor        \t -- Sets the text color of the value (same as fgColor()
+        - Style("small")    \t -- Sets a smaller slider handle
 
-        Examples:       \twindow.new_slider_f(10,10,"This is a slider")
-                        \twindow.new_slider_f(x,y,"This is a slider",range=(1,5),default=2.5)
-                        \twindow.new_slider_f(10,10,"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
-                        \twindow.new_slider_f(10,10,"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - (same as previous example)
+        Examples:       \t -window.new_slider_f(10,10,"This is a slider")
+                        \t -window.new_slider_f(x,y,"This is a slider",range=(1,5),default=2.5)
+                        \t -window.new_slider_f(10,10,"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
+                        \t -window.new_slider_f(10,10,"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - - (same as previous example)
 
         """
         return Slider(_pybox.WindowNewSlider(self.__id,title,int(x),int(y),width,opt._opt__as_float(),*args,**kwargs))
@@ -2801,21 +5240,21 @@ class Window :
 
         Parameters:
 
-        ● title     \t- Sets the title of the Slider
-        ● width     \t- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
+        - title     \t -- Sets the title of the Slider
+        - width     \t -- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range             \t- Set the range of the slider.  The default range is (1,100)          
-        ● Default           \t- Set the default value of the slider.  The edfault is (0)
-        ● TextColor         \t- Sets the color of the label of the slider.
-        ● ValueColor        \t- Sets the text color of the value (same as fgColor()
-        ● Style("small")    \t- Sets a smaller slider handle
+        - Range             \t -- Set the range of the slider.  The default range is (1,100)          
+        - Default           \t -- Set the default value of the slider.  The edfault is (0)
+        - TextColor         \t -- Sets the color of the label of the slider.
+        - ValueColor        \t -- Sets the text color of the value (same as fgColor()
+        - Style("small")    \t -- Sets a smaller slider handle
 
-        Examples:       \twindow.new_slider_l((10,10),"This is a slider")
-                        \twindow.new_slider_l(MyLocation,"This is a slider",range=(100,500),default=200)
-                        \twindow.new_slider_l((10,10),"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
-                        \twindow.new_slider_l((10,10),"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - (same as previous example)
+        Examples:       \t -window.new_slider_l((10,10),"This is a slider")
+                        \t -window.new_slider_l(MyLocation,"This is a slider",range=(100,500),default=200)
+                        \t -window.new_slider_l((10,10),"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
+                        \t -window.new_slider_l((10,10),"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - - (same as previous example)
         """        
         return Slider(_pybox.WindowNewSlider(self.__id,title,at[0],at[1],width,*args,**kwargs))
 
@@ -2833,53 +5272,54 @@ class Window :
 
         Parameters:
 
-        ● title     \t- Sets the title of the Slider
-        ● width     \t- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
+        - title     \t -- Sets the title of the Slider
+        - width     \t -- [optional] Sets the width of the slider.  This defaults to about 200 pixels in width.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range             \t- Set the range of the slider.  The default range is (1,1.0)          
-        ● Default           \t- Set the default value of the slider.  The edfault is (0)
-        ● TextColor         \t- Sets the color of the label of the slider.
-        ● ValueColor        \t- Sets the text color of the value (same as fgColor()
-        ● Style("small")    \t- Sets a smaller slider handle
+        - Range             \t -- Set the range of the slider.  The default range is (1,1.0)          
+        - Default           \t -- Set the default value of the slider.  The edfault is (0)
+        - TextColor         \t -- Sets the color of the label of the slider.
+        - ValueColor        \t -- Sets the text color of the value (same as fgColor()
+        - Style("small")    \t -- Sets a smaller slider handle
 
-        Examples:       \twindow.new_slider_fl((10,10),"This is a slider")
-                        \twindow.new_slider_fl(MyLocation,"This is a slider",range=(1,2),default=2.5)
-                        \twindow.new_slider_fl((10,10),"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
-                        \twindow.new_slider_fl((10,10),"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - (same as previous example)
+        Examples:       \t -window.new_slider_fl((10,10),"This is a slider")
+                        \t -window.new_slider_fl(MyLocation,"This is a slider",range=(1,2),default=2.5)
+                        \t -window.new_slider_fl((10,10),"This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small"))
+                        \t -window.new_slider_fl((10,10),"This is a slider",textcolor=Yellow,valuecolor=red,Style="small")        \t - - (same as previous example)
         """        
         return Slider(_pybox.WindowNewSlider(self.__id,title,at[0],at[1],width,*args,**kwargs))
+    
     def text_widget(self, x : int = 0, y: int = 0,text : str = None,width : int = 0, height : int = 0, *args, **kwargs ) -> CTextWidget :
         """
         Create a text widget in the window at (x,y).   See: text_widget_l() to create a text widget using a list or tuple for the (x,y) position.
 
         Parameters:
 
-        ● text          \t- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
-                        \t When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
-                        \t the text with spaces to reserve width.
-        ● width         \t [optional] Sets the width of the text widget in pixels.  The default is 200 pixels.
-        ● height        \t [optional] Sets the height of the text widget in pixels.  The default is the height of the current font or specified font (when opt.font() is used)
+        - text          \t -- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
+                        \t - When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
+                        \t - the text with spaces to reserve width.
+        - width         \t - [optional] Sets the width of the text widget in pixels.  The default is 200 pixels.
+        - height        \t - [optional] Sets the height of the text widget in pixels.  The default is the height of the current font or specified font (when opt.font() is used)
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● TextColor         \t Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
-        ● bgColor           \t Sets the background color of the widget.  The default blends with the window
-        ● Font              \t Sets the font of the text in the text widget
-        ● CenterX,CenterY   \t Centers the text widget in the window horizontally or vertically, respectively.
-        ● TextCenter        \t Centers the text inside of the widget (which can be longer than the text itself).
-                                \t Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
-                                \t Text Widget and the text have been specificed separately.
+        - TextColor         \t - Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
+        - bgColor           \t - Sets the background color of the widget.  The default blends with the window
+        - Font              \t - Sets the font of the text in the text widget
+        - CenterX,CenterY   \t - Centers the text widget in the window horizontally or vertically, respectively.
+        - TextCenter        \t - Centers the text inside of the widget (which can be longer than the text itself).
+                                \t - Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
+                                \t - Text Widget and the text have been specificed separately.
 
-        ● JustBottomCenter, JustBottomLeft, JustBottomRight, JustTopCenter, JustTopLeft, JustTopRight
-        ● PadX,PadY     \t Use thse with the above positioning to move the widget left,right,up, down from automatic placement.
-                        \t For example, using JustBottomCenter() with PadY(-10) will move the text widget away from the bottom,
+        - JustBottomCenter, JustBottomLeft, JustBottomRight, JustTopCenter, JustTopLeft, JustTopRight
+        - PadX,PadY     \t - Use thse with the above positioning to move the widget left,right,up, down from automatic placement.
+                        \t - For example, using JustBottomCenter() with PadY(-10) will move the text widget away from the bottom,
 
-        Examples:   \twindow.text_widget(10,10,"This is a text Widget",font=(20))
-                    \twindow.text_widget(0,50,"This is a text widget",centerx=true) \t Centers Text Widget horizontally
-                    \twindow.text_widget(0,0,width=400,textcenter=True,just_bottomcenter=True,pady=-10,font=20)
-                    \twindow.text_widget(0,0,width=400,opt.textcenter(),opt.justbottomcenter(),opt.pady(-10),opt.font(20))    \t-> Same as previous example.
+        Examples:   \t -window.text_widget(10,10,"This is a text Widget",font=(20))
+                    \t -window.text_widget(0,50,"This is a text widget",centerx=true) \t - Centers Text Widget horizontally
+                    \t -window.text_widget(0,0,width=400,textcenter=True,just_bottomcenter=True,pady=-10,font=20)
+                    \t -window.text_widget(0,0,width=400,opt.textcenter(),opt.justbottomcenter(),opt.pady(-10),opt.font(20))    \t --> Same as previous example.
         """
         return CTextWidget(_pybox.WindowTextWidget(self.__id,int(x),int(y),text,width,height,*args,**kwargs))
 
@@ -2889,30 +5329,30 @@ class Window :
 
         Parameters:
 
-        ● text          \t- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
-                        \t When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
-                        \t the text with spaces to reserve width.
-        ● width         \t [optional] Sets the width of the text widget in pixels.  The default is 200 pixels.
-        ● height        \t [optional] Sets the height of the text widget in pixels.  The default is the height of the current font or specified font (when opt.font() is used)
+        - text          \t -- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
+                        \t - When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
+                        \t - the text with spaces to reserve width.
+        - width         \t - [optional] Sets the width of the text widget in pixels.  The default is 200 pixels.
+        - height        \t - [optional] Sets the height of the text widget in pixels.  The default is the height of the current font or specified font (when opt.font() is used)
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● TextColor         \t Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
-        ● bgColor           \t Sets the background color of the widget.  The default blends with the window
-        ● Font              \t Sets the font of the text in the text widget
-        ● CenterX,CenterY   \t Centers the text widget in the window horizontally or vertically, respectively.
-        ● TextCenter        \t Centers the text inside of the widget (which can be longer than the text itself).
-                                \t Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
-                                \t Text Widget and the text have been specificed separately.
+        - TextColor         \t - Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
+        - bgColor           \t - Sets the background color of the widget.  The default blends with the window
+        - Font              \t - Sets the font of the text in the text widget
+        - CenterX,CenterY   \t - Centers the text widget in the window horizontally or vertically, respectively.
+        - TextCenter        \t - Centers the text inside of the widget (which can be longer than the text itself).
+                                \t - Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
+                                \t - Text Widget and the text have been specificed separately.
 
-        ● JustBottomCenter, JustBottomLeft, JustBottomRight, JustTopCenter, JustTopLeft, JustTopRight
-        ● PadX,PadY         \t Use thse with the above positioning to move the widget left,right,up, down from automatic placement.
-                            \t For example, using JustBottomCenter() with PadY(-10) will move the text widget away from the bottom,
+        - JustBottomCenter, JustBottomLeft, JustBottomRight, JustTopCenter, JustTopLeft, JustTopRight
+        - PadX,PadY         \t - Use thse with the above positioning to move the widget left,right,up, down from automatic placement.
+                            \t - For example, using JustBottomCenter() with PadY(-10) will move the text widget away from the bottom,
 
-        Examples:   \twindow.text_widget_l((10,10),"This is a text Widget",font=(20))
-                    \twindow.text_widget_l((0,50),"This is a text widget",centerx=true) \t Centers Text Widget horizontally
-                    \twindow.text_widget_l(my_location,width=400,textcenter=True,just_bottomcenter=True,pady=-10,font=20)
-                    \twindow.text_widget_l((0,0),width=400,opt.textcenter(),opt.justbottomcenter(),opt.pady(-10),opt.font(20))    \t-> Same as previous example.
+        Examples:   \t -window.text_widget_l((10,10),"This is a text Widget",font=(20))
+                    \t -window.text_widget_l((0,50),"This is a text widget",centerx=true) \t - Centers Text Widget horizontally
+                    \t -window.text_widget_l(my_location,width=400,textcenter=True,just_bottomcenter=True,pady=-10,font=20)
+                    \t -window.text_widget_l((0,0),width=400,opt.textcenter(),opt.justbottomcenter(),opt.pady(-10),opt.font(20))    \t --> Same as previous example.
         """
         return CTextWidget(_pybox.WindowTextWidget(self.__id,at[0],at[1],text,size[0],size[1],*args,**kwargs))
 
@@ -2924,33 +5364,33 @@ class Window :
 
         Optional Parameters:
 
-        ● width         \tSets the width of the input box in pixels.  The default is 250 pixels.
-        ● height        \tSets the height of the input box in pixels.  The default is set to the default Font for 1 line of text. 
-        ● text          \tThis sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
+        - width         \t -Sets the width of the input box in pixels.  The default is 250 pixels.
+        - height        \t -Sets the height of the input box in pixels.  The default is set to the default Font for 1 line of text. 
+        - text          \t -This sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● font          \tSets the font for the input box.  The default is the current font of the window
-        ● numbersonly   \tCauses the input box to only accept numbers. 
-        ● readonly      \tSets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
-        ● textcolor     \tSets the color of the text in the input box
-        ● bgcolor       \tSets the background color of the text in the input box
-        ● label         \tSets a label to the right of the input box
-                        \tLabelRight, LabelLeft, LabelBottom, and LabelTop can be used to set the location of the label.
-        ● label_color    \tSets the color of the label (i.e. opt.label_color("Red"))
-        ● multiline     \tSets the input box as a multi-line input box.  This allows more than one line to be entered.
-                        \tA button or some method to end input must be used unless "WantReturn" is specified
-        ● wantreturn    \tFor multi-line boxes, this sends a "return pressed" message when the return key is pressed.
-        ● password      \tCauses the input box to display '*' for all text.
-        ● noborder      \tCauses the input box to not use a border so it will blend into the window more seamlessly.
-        ● thickborder,Recessed      \tThese are two different border styles that can be used.
-        ● vscroll, hscroll          \tAdds a vertical scrollbar (useful for multi-line boxes) and horizontal scroll bar, respectively
-        ● wincolors     \tSets the background input box color and text color to the current window color instead of the default white-and-black colors. 
+        - font          \t -Sets the font for the input box.  The default is the current font of the window
+        - numbersonly   \t -Causes the input box to only accept numbers. 
+        - readonly      \t -Sets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
+        - textcolor     \t -Sets the color of the text in the input box
+        - bgcolor       \t -Sets the background color of the text in the input box
+        - label         \t -Sets a label to the right of the input box
+                        \t -LabelRight, LabelLeft, LabelBottom, and LabelTop can be used to set the location of the label.
+        - label_color    \t -Sets the color of the label (i.e. opt.label_color("Red"))
+        - multiline     \t -Sets the input box as a multi-line input box.  This allows more than one line to be entered.
+                        \t -A button or some method to end input must be used unless "WantReturn" is specified
+        - wantreturn    \t -For multi-line boxes, this sends a "return pressed" message when the return key is pressed.
+        - password      \t -Causes the input box to display '*' for all text.
+        - noborder      \t -Causes the input box to not use a border so it will blend into the window more seamlessly.
+        - thickborder,Recessed      \t -These are two different border styles that can be used.
+        - vscroll, hscroll          \t -Adds a vertical scrollbar (useful for multi-line boxes) and horizontal scroll bar, respectively
+        - wincolors     \t -Sets the background input box color and text color to the current window color instead of the default white-and-black colors. 
 
-        Examples:   \twindow.new_inputbox(40,50)             \t- create input box at location 40,50
-                    \twindow.new_inputbox(40,50,height=500)  \t- create an input box of height 500 pixels
-                    \tWindow.new_inputbox(40,50,opt.font(20),opt.label("Enter Data"))
-                    \tWindow.new_inputbox(40,50,text="This is the default text")
+        Examples:   \t -window.new_inputbox(40,50)             \t -- create input box at location 40,50
+                    \t -window.new_inputbox(40,50,height=500)  \t -- create an input box of height 500 pixels
+                    \t -Window.new_inputbox(40,50,opt.font(20),opt.label("Enter Data"))
+                    \t -Window.new_inputbox(40,50,text="This is the default text")
         """
         return InputBox(_pybox.WindowNewInputBox(self.__id,int(x),int(y),int(width),int(height),text,*args,**kwargs))
 
@@ -2962,33 +5402,33 @@ class Window :
 
         Optional Parameters:
 
-        ● width         \tSets the width of the input box in pixels.  The default is 250 pixels.
-        ● height        \tSets the height of the input box in pixels.  The default is set to the default Font for 1 line of text. 
-        ● text          \tThis sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
+        - width         \t -Sets the width of the input box in pixels.  The default is 250 pixels.
+        - height        \t -Sets the height of the input box in pixels.  The default is set to the default Font for 1 line of text. 
+        - text          \t -This sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● font          \tSets the font for the input box.  The default is the current font of the window
-        ● numbersonly   \tCauses the input box to only accept numbers. 
-        ● readonly      \tSets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
-        ● textcolor     \tSets the color of the text in the input box
-        ● bgcolor       \tSets the background color of the text in the input box
-        ● label         \tSets a label to the right of the input box
-                        \tLabelRight, LabelLeft, LabelBottom, and LabelTop can be used to set the location of the label.
-        ● label_color    \tSets the color of the label (i.e. opt.label_color("Red"))
-        ● multiline     \tSets the input box as a multi-line input box.  This allows more than one line to be entered.
-                        \tA button or some method to end input must be used unless "WantReturn" is specified
-        ● wantreturn    \tFor multi-line boxes, this sends a "return pressed" message when the return key is pressed.
-        ● password      \tCauses the input box to display '*' for all text.
-        ● noborder      \tCauses the input box to not use a border so it will blend into the window more seamlessly.
-        ● thickborder,Recessed      \tThese are two different border styles that can be used.
-        ● vscroll, hscroll          \tAdds a vertical scrollbar (useful for multi-line boxes) and horizontal scroll bar, respectively
-        ● wincolors     \tSets the background input box color and text color to the current window color instead of the default white-and-black colors. 
+        - font          \t -Sets the font for the input box.  The default is the current font of the window
+        - numbersonly   \t -Causes the input box to only accept numbers. 
+        - readonly      \t -Sets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
+        - textcolor     \t -Sets the color of the text in the input box
+        - bgcolor       \t -Sets the background color of the text in the input box
+        - label         \t -Sets a label to the right of the input box
+                        \t -LabelRight, LabelLeft, LabelBottom, and LabelTop can be used to set the location of the label.
+        - label_color    \t -Sets the color of the label (i.e. opt.label_color("Red"))
+        - multiline     \t -Sets the input box as a multi-line input box.  This allows more than one line to be entered.
+                        \t -A button or some method to end input must be used unless "WantReturn" is specified
+        - wantreturn    \t -For multi-line boxes, this sends a "return pressed" message when the return key is pressed.
+        - password      \t -Causes the input box to display '*' for all text.
+        - noborder      \t -Causes the input box to not use a border so it will blend into the window more seamlessly.
+        - thickborder,Recessed      \t -These are two different border styles that can be used.
+        - vscroll, hscroll          \t -Adds a vertical scrollbar (useful for multi-line boxes) and horizontal scroll bar, respectively
+        - wincolors     \t -Sets the background input box color and text color to the current window color instead of the default white-and-black colors. 
 
-        Examples:   \twindow.new_inputbox_l(40,50)             \t- create input box at location 40,50
-                    \twindow.new_inputbox_l(40,50,height=500)  \t- create an input box of height 500 pixels
-                    \tWindow.new_inputbox_l(40,50,opt.font(20),opt.label("Enter Data"))
-                    \tWindow.new_inputbox_l(40,50,text="This is the default text")
+        Examples:   \t -window.new_inputbox_l(40,50)             \t -- create input box at location 40,50
+                    \t -window.new_inputbox_l(40,50,height=500)  \t -- create an input box of height 500 pixels
+                    \t -Window.new_inputbox_l(40,50,opt.font(20),opt.label("Enter Data"))
+                    \t -Window.new_inputbox_l(40,50,text="This is the default text")
         """
         return InputBox(_pybox.WindowNewInputBox(self.__id,int(at[0]),int(at[1]),int(width),int(height),text,*args,**kwargs))
 
@@ -2998,34 +5438,34 @@ class Window :
 
         The write() function will write text to the window and can be used with many options.
 
-        A basic for is: window.write("Hello World"), window.write("Hello World"), as well as window.write(f"My Variable is: {MyVariable") 
+        A basic example is: window.write("Hello World"), window.write("Hello World"), as well as window.write(f"My Variable is: {MyVariable") 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● font                          \tSet the font to be used for the text
-        ● center_x, center_x, center_xy    \tCenter the text in various ways (i.e. CenterX centers in the X-axis, etc.)
-        ● textcolor                     \tSet the text color for the text.
-        ● bgcolor                       \tSet the background color for the text
-        ● at                            \tSet the position in the window of the text, i.e. Write("Hello World",opt.at(x,y))
+        - font                          \t -Set the font to be used for the text
+        - center_x, center_x, center_xy    \t -Center the text in various ways (i.e. CenterX centers in the X-axis, etc.)
+        - textcolor                     \t -Set the text color for the text.
+        - bgcolor                       \t -Set the background color for the text
+        - at                            \t -Set the position in the window of the text, i.e. Write("Hello World",opt.at(x,y))
 
         Controls can be embedded in the text line to change colors and font sizes:
 
-        For example:    \twindow.write("This {r}word{} is in the color red").
-                        \tNote the {} to close.  With Python formatted strings, an extra "{}" is needed, such as f"MyValue {{r}}{myvalue}{{}} is in red". 
+        For example:    \t -window.write("This {r}word{} is in the color red").
+                        \t -Note the {} to close.  With Python formatted strings, an extra "{}" is needed, such as f"MyValue {{r}}{myvalue}{{}} is in red". 
 
         More than one control can be used such as: write("This is in {r}Red{} and this is in {b}Blue". 
         You do not need the closing {} if it is as the end of the line.
 
-        ● {<color>}     \tWhere the color is a defined color such as {red} (or {r}), {blue}, {skyblue}, etc.   You can use abbreviations for most primary colors, such as
-                            \t {y} = {yellow}, etc.
-        ● {font size}   \ti.e. "This is in the normal font, and {30}this is in a 30-point font"
-        ● {font name}   \ti.e. "This is in the normal font, and {Courier New,20}This is in a 20-point Courier New font"
-        ● {bitmap}      \tThis is TBD in a coming version, and will accept bitmap names to print in the output window.
+        - {<color>}     \t -Where the color is a defined color such as {red} (or {r}), {blue}, {skyblue}, etc.   You can use abbreviations for most primary colors, such as
+                            \t - {y} = {yellow}, etc.
+        - {font size}   \t -i.e. "This is in the normal font, and {30}this is in a 30-point font"
+        - {font name}   \t -i.e. "This is in the normal font, and {Courier New,20}This is in a 20-point Courier New font"
+        - {bitmap}      \t -This is TBD in a coming version, and will accept bitmap names to print in the output window.
        
-        Examples:   \tMyWindow.write("Hello World",opt.font(40),opt.center_xy())     \t- Writes a big "Hello World" in the center of the screen
-                    \tMyWindow.write("Hello World",opt.fgcolor("red")               \t- Writes "Hello World" in red
-                    \tMyWindow.write("{r}Hello World")                              \t - Also writes "Hello World" in red
-                    \tMyWindow.write("Hello World",opt.font(50))                    \t - Writes "Hello World" in a 50-point font size.
+        Examples:   \t -MyWindow.write("Hello World",opt.font(40),opt.center_xy())     \t -- Writes a big "Hello World" in the center of the screen
+                    \t -MyWindow.write("Hello World",opt.fgcolor("red")               \t -- Writes "Hello World" in red
+                    \t -MyWindow.write("{r}Hello World")                              \t - - Also writes "Hello World" in red
+                    \t -MyWindow.write("Hello World",opt.font(50))                    \t - - Writes "Hello World" in a 50-point font size.
         """
         return _pybox.WindowWrite(self.__id,outstring,*args,**kwargs)
 
@@ -3056,16 +5496,16 @@ class Window :
         Sets the current font of the window.  The font may be a simple number, a font name and size, or a created font using CreateFont()
 
         Examples:  
-            \tMyWindow.set_font(40)                      \t- Sets font size 40 of the default font (Arial)
-            \tMyWindow.set_font("Times New Roman")      \t- Sets "Times New Roman" as the font
-            \tMyWindow.set_font("italic")               \t- Sets an italic version of the current font
-            \tMyWindow.set_font("bold")                 \t- Sets a bold version of the current font
-            \tMyWindow.set_font("Verdana,italic,30")     \t- Sets a Veriana, italic, 30-point font
-            \tMyWindow.set_font("MyFont")                \t- Sets a previously created font named "MyFont"
+            \t -MyWindow.set_font(40)                      \t -- Sets font size 40 of the default font (Arial)
+            \t -MyWindow.set_font("Times New Roman")      \t -- Sets "Times New Roman" as the font
+            \t -MyWindow.set_font("italic")               \t -- Sets an italic version of the current font
+            \t -MyWindow.set_font("bold")                 \t -- Sets a bold version of the current font
+            \t -MyWindow.set_font("Verdana,italic,30")     \t -- Sets a Veriana, italic, 30-point font
+            \t -MyWindow.set_font("MyFont")                \t -- Sets a previously created font named "MyFont"
 
         """
         return _pybox.WindowSetFont(self.__id,opt.font(font),*args)
-    def get_window_size(self,bFrameSize : bool = False) -> numpy.array :
+    def get_window_size(self,bFrameSize : bool = False) -> list :
         """
         Returns the canvas size of the window (i.e. the interior size of the window) as an array (width,height)
 
@@ -3077,16 +5517,23 @@ class Window :
 
         Example:
 
-        \tsize = MyWindow.get_window_size()
-        \t
-        \twidth = size[0]
-        \theight = size[1]
+        \t -size = MyWindow.get_window_size()
+        \t -
+        \t -width = size[0]
+        \t -height = size[1]
 
         Example:
 
         center = MyWindow.get_window_size()/2
         """
-        return numpy.array(_pybox.WindowGetWindowSize(self.__id,bFrameSize))
+ #       return numpy.array(_pybox.WindowGetWindowSize(self.__id,bFrameSize))
+        return _pybox.WindowGetWindowSize(self.__id,bFrameSize)
+        
+    def get_window_center(self,bFrameSize : bool = False) -> list :
+        """
+        Returns center coordinates of the Window's client (visible) area. 
+        """
+        return _pybox.WindowGetWindowCenter(self.__id,bFrameSize)
 
     def size(self,bFrameSize : bool = False) -> numpy.array :
         """
@@ -3100,16 +5547,17 @@ class Window :
 
         Example:
 
-        \tsize = MyWindow.size()
-        \t
-        \twidth = size[0]
-        \theight = size[1]
+        \t -size = MyWindow.size()
+        \t -
+        \t -width = size[0]
+        \t -height = size[1]
 
         Example:
 
         center = MyWindow.size()/2
         """
-        return numpy.array(_pybox.WindowGetWindowSize(self.__id,bFrameSize))
+ #       return numpy.array(_pybox.WindowGetWindowSize(self.__id,bFrameSize))
+        return _pybox.WindowGetWindowSize(self.__id,bFrameSize)
 
 
     def get_window_width(self,frameSize : bool = False) -> int :
@@ -3120,12 +5568,12 @@ class Window :
 
         Parameters:
 
-        ● frameSize     \t- When 'True', the width of the window including the frame is returned.  Otherwise only the interior width is returned.
+        - frameSize     \t -- When 'True', the width of the window including the frame is returned.  Otherwise only the interior width is returned.
 
         Example:
 
-        WinWidth = Win.get_window_width()        \t - Return Window interior width.
-        WinWidth = Win.get_window_width(True)     \t - Return Window frame width
+        WinWidth = Win.get_window_width()        \t - - Return Window interior width.
+        WinWidth = Win.get_window_width(True)     \t - - Return Window frame width
 
         """
         return _pybox.WindowGetWindowWidth(self.__id,frameSize)
@@ -3138,12 +5586,12 @@ class Window :
 
         Parameters:
 
-        ● frameSize     \t- When 'True', the width of the window including the frame is returned.  Otherwise only the interior width is returned.
+        - frameSize     \t -- When 'True', the width of the window including the frame is returned.  Otherwise only the interior width is returned.
 
         Example:
 
-        WinWidth = Win.width()        \t - Return Window interior width.
-        WinWidth = Win.width(True)     \t - Return Window frame width
+        WinWidth = Win.width()        \t - - Return Window interior width.
+        WinWidth = Win.width(True)     \t - - Return Window frame width
 
         """
         return _pybox.WindowGetWindowWidth(self.__id,frameSize)
@@ -3156,12 +5604,12 @@ class Window :
 
         Parameters:
 
-        ● frameSize     \t- When 'True', the height of the window including the frame is returned.  Otherwise only the interior height is returned.
+        - frameSize     \t -- When 'True', the height of the window including the frame is returned.  Otherwise only the interior height is returned.
 
         Example:
 
-        WinWidth = Win.get_window_height()        \t - Return Window interior height.
-        WinWidth = Win.get_window_height(True)     \t - Return Window frame height
+        WinWidth = Win.get_window_height()        \t - - Return Window interior height.
+        WinWidth = Win.get_window_height(True)     \t - - Return Window frame height
 
         """
         return _pybox.WindowGetWindowHeight(self.__id,frameSize)
@@ -3174,12 +5622,12 @@ class Window :
 
         Parameters:
 
-        ● frameSize     \t- When 'True', the height of the window including the frame is returned.  Otherwise only the interior height is returned.
+        - frameSize     \t -- When 'True', the height of the window including the frame is returned.  Otherwise only the interior height is returned.
 
         Example:
 
-        WinWidth = Win.height()        \t - Return Window interior height.
-        WinWidth = Win.height(True)     \t - Return Window frame height
+        WinWidth = Win.height()        \t - - Return Window interior height.
+        WinWidth = Win.height(True)     \t - - Return Window frame height
 
         """
         return _pybox.WindowGetWindowHeight(self.__id,frameSize)    
@@ -3231,12 +5679,12 @@ class Window :
 
         Optional Parameters
 
-        ● size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
-                    \tnote: leaving one value at 0 will cause the bitmap to be scaled proportionally.
+        - size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
+                    \t -note: leaving one value at 0 will cause the bitmap to be scaled proportionally.
 
                        For example, "window.display_bitmap(MyBitmap,Size=(500,0))" will cause the bitmap to be displayed at a width of 500 pixels 
                        and height to be proportional to the width and display correctly.
-        ● Reversed  \t This will cause the bitmap to be displayed upside-down, since bitmaps can vary.  Also use display_bitmap_r() to display the bitmaps upside-down
+        - Reversed  \t - This will cause the bitmap to be displayed upside-down, since bitmaps can vary.  Also use display_bitmap_r() to display the bitmaps upside-down
 
         About Bitmaps: 
         
@@ -3251,13 +5699,13 @@ class Window :
 
         Optional Keywords and Parameters
 
-        ● size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
-                    \tnote: leaving one value at 0 will cause the bitmap to be scaled proportionally.
+        - size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
+                    \t -note: leaving one value at 0 will cause the bitmap to be scaled proportionally.
 
                      for Example, "window.display_bitmap_l(MyBitmap,Size=(500,0))" will cause the bitmap to be displayed at a width of 500 pixels 
                      and height to be proportional to the width and display correctly.
 
-        ● Reversed   - This will cause the bitmap to be displayed upside-down, since bitmaps can vary.  Also use display_bitmap_r_l() to display the bitmaps upside-down
+        - Reversed   - This will cause the bitmap to be displayed upside-down, since bitmaps can vary.  Also use display_bitmap_r_l() to display the bitmaps upside-down
 
         About Bitmaps: 
         
@@ -3274,8 +5722,8 @@ class Window :
 
         Optional Keywords and Parameters
 
-        ● size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
-                    \tnote: leaving one value at 0 will cause the bitmap to be scaled proportionally.
+        - size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
+                    \t -note: leaving one value at 0 will cause the bitmap to be scaled proportionally.
 
                        For example, "window.display_bitmap_r(MyBitmap,Size=(500,0))" will cause the bitmap to be displayed at a width of 500 pixels and 
                        height to be proportional to the width and display correctly.
@@ -3295,8 +5743,8 @@ class Window :
 
         Optional Parameters
 
-        ● size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
-                    \tnote: leaving one value at 0 will cause the bitmap to be scaled proportionally.
+        - size      - Sets the size of the bitmap -- the default is the same size as the bitmap. 
+                    \t -note: leaving one value at 0 will cause the bitmap to be scaled proportionally.
 
                        For Example, "window.DisplayBitmapR(MyBitmap,size=(500,0))" will cause the bitmap to be displayed at a width of 500 pixels and 
                        height to be proportional to the width and display correctly.
@@ -3316,10 +5764,10 @@ class Window :
 
         Options:
 
-        ● x,y       \t- Location of the bitmap in the window
-        ● bitmap    \t- The bitmap.  The bitmap may be a pybox bitmap (CBitmap) or an RGB array bitmap (i.e. SciPy -- See DisplayBitmap() for more details.
-        ● angle     \t- The angle in radians to display the bitmap.  The default is 0 (no rotation).  
-        ● Zoom      \t- The zoom factor to display the bitmap.  The default is 1.0 -- for example, 2.0 is 2x the size, etc.
+        - x,y       \t -- Location of the bitmap in the window
+        - bitmap    \t -- The bitmap.  The bitmap may be a pybox bitmap (CBitmap) or an RGB array bitmap (i.e. SciPy -- See DisplayBitmap() for more details.
+        - angle     \t -- The angle in radians to display the bitmap.  The default is 0 (no rotation).  
+        - Zoom      \t -- The zoom factor to display the bitmap.  The default is 1.0 -- for example, 2.0 is 2x the size, etc.
 
         note: If the bitmap is displayed upside down, add 3.14159 to the angle (i.e. 180 degrees)
 
@@ -3341,10 +5789,10 @@ class Window :
 
         Options:
 
-        ● x,y       \t- Location of the bitmap in the window
-        ● bitmap    \t- The bitmap.  The bitmap may be a pybox bitmap (CBitmap) or an RGB array bitmap (i.e. SciPy -- See DisplayBitmap() for more details.
-        ● angle     \t- The angle in radians to display the bitmap.  The default is 0 (no rotation).  
-        ● Zoom      \t- The zoom factor to display the bitmap.  The default is 1.0 -- for example, 2.0 is 2x the size, etc.
+        - x,y       \t -- Location of the bitmap in the window
+        - bitmap    \t -- The bitmap.  The bitmap may be a pybox bitmap (CBitmap) or an RGB array bitmap (i.e. SciPy -- See DisplayBitmap() for more details.
+        - angle     \t -- The angle in radians to display the bitmap.  The default is 0 (no rotation).  
+        - Zoom      \t -- The zoom factor to display the bitmap.  The default is 1.0 -- for example, 2.0 is 2x the size, etc.
 
         Masks
 
@@ -3361,19 +5809,19 @@ class Window :
 
         Options:
 
-        text        \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                    \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+        text        \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                    \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range         \tSet a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
-        ● Default       \tSets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-        ● NoCancel      \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                        \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
+        - Range         \t -Set a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
+        - Default       \t -Sets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+        - NoCancel      \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                        \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
 
-        Examples:       \tMy Value = window.get_integer("Enter a number")
-                        \tMy Value = window.get_integer("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
-                        \tMy Value = window.get_integer("Enter a number\nNumber should be between 1 and 100,opt.range(1,100),opt.default(10))
+        Examples:       \t -My Value = window.get_integer("Enter a number")
+                        \t -My Value = window.get_integer("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
+                        \t -My Value = window.get_integer("Enter a number\nNumber should be between 1 and 100,opt.range(1,100),opt.default(10))
         """
         return _pybox.WindowGetInteger(self.__id,text,*args, **kwargs)
 
@@ -3384,19 +5832,19 @@ class Window :
 
         Options:
 
-        text        \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                    \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+        text        \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                    \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● range         \tSet a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
-        ● default       \tSets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-        ● noCancel     \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                        \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
+        - range         \t -Set a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
+        - default       \t -Sets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+        - noCancel     \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                        \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
 
-        Examples:       \tMy Value = window.get_float("Enter a number")
-                        \tMy Value = window.get_float("+This is the title bar title\\nEnter a number",range=(1,100),nocancel)
-                        \tMy Value = window.get_float("Enter a number\nNumber should be between 1 and 100,opt.range(1,100),opt.default(10))
+        Examples:       \t -My Value = window.get_float("Enter a number")
+                        \t -My Value = window.get_float("+This is the title bar title\\nEnter a number",range=(1,100),nocancel)
+                        \t -My Value = window.get_float("Enter a number\nNumber should be between 1 and 100,opt.range(1,100),opt.default(10))
         """
         return _pybox.WindowGetFloat(self.__id,text,*args,**kwargs)
 
@@ -3416,18 +5864,30 @@ class Window :
         """
         return _pybox.WindowSetClsBitmap(self.__id,bitmap,cls_now)
 
+    def set_realtime(self) :
+        """
+        Sets RealTime status for Window.
+        
+        This sets the status of the Window for real-time drawing, includes setting the high-resolution timer and turning off Auto Updates to the Window.
+        
+        This can be used when drawing real-time graphics to a window for smoother graphics using the vertical resync. 
+        
+        Also See: vsync_wait()
+        """
+        return _pybox.WindowSetBool(self.__id,0,True)
+      
     def cls(self,color1 = None,color2 = None) :
         """
         Clears the window to a blank canvas.
 
-        Example: window.Cls()       \t- this clears the window to the current color(s) or bitmap set for Cls()
+        Example: window.Cls()       \t -- this clears the window to the current color(s) or bitmap set for Cls()
 
         Also see: ClsHold() to clear the window but also stop the window from updating until Update is called (or ClsHold() is called again)
 
         Parameters
 
-            color1      \t- [optional] This is the color to clear the screen
-            color2      \t- [optional] When two colors are used, the window is cleared with a gradient of the two colors
+            color1      \t -- [optional] This is the color to clear the screen
+            color2      \t -- [optional] When two colors are used, the window is cleared with a gradient of the two colors
 
         About Colors
 
@@ -3436,14 +5896,248 @@ class Window :
 
         Examples:
 
-        cls()                           \t- Clear the window with the current background color of the window
-        cls("red")                      \t- Clear the window with the color red
-        cls(SageColor.Red())            \t- Clears the color with red, also
-        cls(PanColor.ForestGreen())     \t- Clears the window with PanColor.ForestGreen
-        cls(MyColor)                    \t- Clears the window with a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
-        cls("black","blue")             \t- Clears the window with a gradient from black to blue
+        cls()                           \t -- Clear the window with the current background color of the window
+        cls("red")                      \t -- Clear the window with the color red
+        cls(SageColor.Red())            \t -- Clears the color with red, also
+        cls(PanColor.ForestGreen())     \t -- Clears the window with PanColor.ForestGreen
+        cls(MyColor)                    \t -- Clears the window with a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
+        cls("black,blue")             \t -- Clears the window with a gradient from black to blue
         """
-        return _pybox.WindowCls(self.__id,color1,color2)
+        return _pybox.WindowCls(self.__id,color1,color2,False)
+    
+    def cls_radial(self,color1 = None,color2 = None) :
+        return _pybox.WindowCls(self.__id,color1,color2,True)
+
+    def draw_grid(self,spacing : int = 25,**kwargs) -> bool :
+        """
+        Draws a grid of lines in the X and Y axis to create a graph on the screen.
+
+        The "spacing" parameter controls how many pixels are between each set of lines.
+        
+        Keywords and Pybox options can be included.  Some various options are as follows:
+
+        - color                       \t -Sets the color of the grid, i.e. "white","red","45,67,123", etc. Default color is RGB(42,42,42) (i.e. dark gray)
+
+        The default for the "spacing" parameter is 25 pixels.
+
+        Examples:
+     
+        \t -MyWindow.draw_grid()                \t -- Draws default grid
+        \t -MyWindow.write(50)                  \t -- Draws a grid with spacing of 50 pixels 
+        \t -MyWindow.write("green")             \t -- Draws a grid with the color green
+        \t -MyWindow.write(50,"0,255,255")      \t -- Draws a grid with spacing of 50 and an RGB color of (0,255,255) or "cyan"
+        """
+        return _pybox.WindowDrawGrid(self.__id,spacing,**kwargs)
+    
+    def draw_vector(self,p1 : list, p2 : list,line_size,color,**kwargs) : 
+        """
+        Draws a vector from point p1 to p2.  A vector is the same thing as a line, but with some differences and a number of controls that 
+        can be used to modify its behavior and appearance.
+        
+        The vector also has beginning and end 'caps'.  The default is for the beginning of the line to have a round shape (e.g. round cap), and
+        the end of the line to have a larger arrow shape (known as an 'arrow' cap, but because it's larger it's known as an 'arrow anchor')
+        
+        The default behavior for draw_vector is to draw the vector in a white color, with a round beginning cap and an 'arrow anchor' ending cap.
+        
+        Input
+        
+        - p1,p2             - Beginning and End Points of the line, such as (100,400),(600,700) or (x1,y1),(x2,y2), etc.
+        - line_size         -size of the line in pixels.
+        - color             - color of vector line.
+        
+        Example of simple usage: window.draw_vector(p1,p2,10) or draw_vector((x1,y1),(x2,y2),10)
+        
+        Text, colors, and many others may be assign through the following keywords
+
+        - title         - Sets the title to display on the vector line, e.g. title="This is a vector.  Default behavior is no title.
+        - opacity       - Sets the opacity to draw the line.  Range is 0-255, with 0 transparent and 255 fully opaque. Default is 255 (fully opaque).
+        - angle         - Rotates the vector at its center by the angle specified.  "angle" is in degrees.  "AngleDeg" may also be used to specify degrees
+        - angle_rad     - Same as "angle", but uses radians instead of degrees, e.g. angle_rad = 1.57 (for 90 degrees)
+        - text_size     - Sets the relative font size of the label.  The default font varies in size based on line thickness. 
+                          text_size values can me "xxsmall","xsmall","small","medium","large,"xlarge", "xxlarge".  Default is "small".  "default" may also be used as an option.
+        
+        - label_font (or "font")    - Sets a specific font size or type for the vector line.  The font will not change based on line thickness when set in this manner.
+                                      Fonts may be set with just a size, such as a number, e.g. font=25 (for default font Arial at 25 points), or a full font name, e.g. font="time new roman,25"
+        
+        - label_just (or "just")    - Sets the justification of the vector label text.  Default is "top-left".  
+                                      Options are: "top-left","top-left-center","top-center","top-right-center","top-right".  "bottom" and "middle" may be used instead of top to specify the 
+                                      bottom of the vector line or middle of the line (vertically), respectively.  Example: just="bottom-right"
+
+        - capsize       - Sets the beginning and end cap of the vector to a multiple of the capsize specified.  This is useful only for 'anchor' cap types
+                          such as 'round achor', 'arrow anchor',etc.  The anchor types grow and shrink based on line thickness.
+                          using "capsize" can make the beginning and end caps smaller or larger.
+                          example capize=2 makes any anchor cap 2x larger.  see "begcapsize" and "endcapsize" to control cap sizes individually.
+
+        - begcap_size (or "begcap")   - Sets the begininng cap size if the begnining cap is an 'anchor' cap type.  See documentation on 'capsize', which will set both
+                                        beginning and end cap together.
+                          
+        - endcap_size (or "endcap")  - Sets the end cap size if the end cap is an 'anchor' cap type.  See documentation on 'capsize', which will set both
+                                       beginning and end cap together.
+ 
+        - begcap_type       - Sets the beginning cap type.  by default, the cap type for the begining of the vector is "round"
+                              possible types are "round","diamond","arrow","square","flat","round anchor","diamond anchor","arrow anchor","diamond anchor"
+                              "anchor" types are larger and can be made smaller or larger with "capsize" or "begcap_size"
+                                       
+        - endcap_type       - Sets the ending cap type.  by default, the cap type for the enf of the vector is "arrow anchor"
+                              possible types are "round","diamond","arrow","square","flat","round anchor","diamond anchor","arrow anchor","diamond anchor"
+                              "anchor" types are larger and can be made smaller or larger with "capsize" or "begcap_size"
+        - begcap_color      - Sets the color of the beginning cap of the vector.  This is useful for "anchor" cap types which are larger.  
+                              Example: begcap_color="yellow"                             
+        - endcap_color      - Sets the color of the ending cap of the vector.  This is useful for "anchor" cap types which are larger.  
+                              By default, the begining and end caps are the same color as the vector line itself.  Example: endcap_color="red"  
+        - label_pad_x (or "pad_x")  - Sets extra spacing on the left or right of the label on the vector.  Positive values move the title to the right
+                                      (as formed by p1-p2), with negative values moving the title to the left.
+        - label_pad_y (or "pad_y")  - Sets extra spacing on the top or bottom of the label on the vector.  Positive values move the title upwards
+                                      (as formed by p1-p2), with negative values moving the title downward.
+        - label_opacity     - Sets the opacity of the vector's label.  By default, the opacity of the vector label is the same as the line, either by default or
+                              when the line opacity is specifically specified.  Using label_opacity will cause the label's opacity to use this value.
+        - label_color   - Sets the color of the vector label, e.g. label_color="red".  By default, the label's color is white, regardless of the line color.
+        - label_angle   - Sets the label of the angle with 3 options: "horizontal" (default), "vertical", or "vertical 180".  "vertical" and vertical 180" make the label
+                          appear sideways on the line, with "vertial 180" reversing it's direction, with the start of the text appearing away from the line.
+                          Add the term "static" to keep the label the exact orientation regardless of line angle, e.g. 'label_angle="horizontal,static"' will cause
+                          the text to display at 0 degrees relative to the screen rather than the line itself.
+                          
+        - label_up      - Keeps the vector's label right-side up. As the vector rotates and the label's orientation, using "label_up=True" will keep the label
+                          right-side up when the label's angle is such that the label would otherwise appear upside-down.
+        - set_center    - Sets the center of the vector, regardless of p1 and p2.  This calculates the relative center of the vector (i.e. (p1+p2)/2-p1), and
+                          places the center of the vector at the new (x,y) coordinates.  Example set_center=(500,200) or set_center=(x,y)
+                          This is useful in simply specifying a length in the draw_vector call as p1 and p2, such as draw_vector((0,0),(0,x),...) then
+                          setting the center and angle of the vector with "set_canter" and "angle" keywords, respectively/
+        - show_center   - puts a circle in the center of the vector.  This is for purely diagnostic purposes, showing the center is where it should be based on 
+                          the calling's functions calculation.  Use "show_center=True" to show the circle in cyan.  
+                          Use "show_center=<color>" to set the color, e.g. 'show_center="black"'
+        """
+        return _pybox.WindowDrawVector(self.__id,p1[0],p1[1],p2[0],p2[1],line_size,color,**kwargs)
+    
+    def new_turtle_graphics(self,**kwargs) :
+        """
+        Gets a new TurtleShell object for Turtle Graphics-type drawing.
+        
+        - Returns a TurtleShell object for drawing to the window in turtle-graphics style.
+        - This incldes real-time Turtle Graphics.
+        
+        TurtleShell is still in development. 
+        
+        This section will be filled out more in future releases.
+        
+        See various TurtleShell examples and function descriptions in the returned TurtleShell object
+        
+        Some Notes:
+        -----------
+        
+        TurtleShell operates the same as Turtle Graphics in most ways.  The functions are the same, with some additions for opacities and gradients, as well as other functions.
+    
+        - TurtleShell does not display each segment drawing, showing each segment after it is drawn.  
+        - As with Turtle Graphics, the speed can be set to show each element drawing.
+        
+        - Setting a speed to zero will allow for real-time graphics. 
+        - TurtleShell is meant to be a Turtle Graphics environmemt with some additions to allow more functionality than original turtle graphics.
+        - TurtleShell is a prototype at the moment, and the idea is to bring more functions into it, including GPU-based and 3-D Turtle Graphics.
+    
+        See various examples and documentation on TurtleShell functions for more information.
+        """
+        return TurtleShell(_pybox.WindowNewTurtleShell(self.__id,**kwargs))
+    
+    def get_mouse_region(self,**kwargs) -> MouseRegion :
+        """
+        Returns a reference to the Window's Mouse Region object.  Each window has one Mouse Region object that it maintains.        <para></para>
+        
+        Mouse Regions can be used to easily highlight, select, and move various 'mouse region' areas, allowing the window to maintain
+        a number of selectable objects for the main program.
+        
+        For example, if you have a curve with a number of selectable points, the Mouse Region object can maintain (and display) these points so the
+        main program does not have to get the mouse input and determine which area is being highlighted, selected, moved, etc.
+        
+        - Keywords can be added for control of the mouse region, notably kw::AutoDraw() to set any drawing characteristics when MouseRegion::AutoDraw() is called.
+        - ** Important Note **. Don't call MouseRegion::UpdatePoints() with the Mouse Region obtained through this function.  UpdatePoints() is automatically called.
+        
+        Keywords usable with mouse_region:
+        
+        - auto_draw           \t - Set auto_draw characteristics for all new regions/points added. See auto_draw() function in returns MouseRegion object.
+        - bound_box()          \t - Sets a bounding region for all new regions/points added.      
+         """ 
+        return MouseRegion(_pybox.WindowGetMouseRegion(self.__id,**kwargs))
+
+    def use_win_as_cls(self,use_bitmap : bool = True) :
+        """
+        Sets the current display in the window as the bitmap to display when the Cls() function is used.
+        
+        - Use cls() with any color or bitmap to clear the bitmap usage.
+        - This function may also be called to remove the bitmap as the Cls Bitmap by setting use_bitmap to False, e.g. use_win_as_cls(False)
+
+        Input Parameters :
+        
+        - use_bitmap        \t- [optional] When true, this sets the current window display as the cls() bitmap.  
+                                \t When False, this returns cls() to its normative state that simply clears the window canvas.
+        """
+        return _pybox.WindowUseWinasCls(self.__id,use_bitmap)
+    
+    def clip_window(self,x : int,y : int, width : int, height : int) :
+        """
+        Clips the window in the given rectangle, restricting output and drawing to that region.
+        
+        This can be used to restrict write areas, cls(), drawing, etc. 
+        
+        For example, a graph can be drawn with the clip and will not exceed the clip area.  This can be very useful and 
+        allow such drawing and output in place of creating a child window to perform the same task.
+        
+        - Use  reset_clip() or clip_window() (with no paramaters) to remove the clipping region
+        - see clip_window_l() to use a list for x,y and w,h input (respectively), e.g. clip_window_l(pos,size)
+        - see clip_window_r() to use a list for input x,y, width height, e.g. clip_window_r((x,y,w,h))
+        
+        Input Parameters:
+        
+        - x,y                   -\t x,y position of upper-left of clip rectangle
+        - width, height         -\t width and height of rectangle from upper-left (x,y)
+        """
+        return _pybox.WindowClipWindow(self.__id,x,y,width,height)
+
+    def clip_window_l(self,pos : list,size : list) :
+        """
+        Clips the window in the given rectangle, restricting output and drawing to that region.
+        
+        This can be used to restrict write areas, cls(), drawing, etc. 
+        
+        For example, a graph can be drawn with the clip and will not exceed the clip area.  This can be very useful and 
+        allow such drawing and output in place of creating a child window to perform the same task.
+        
+        - Use  reset_clip() or clip_window() (with no paramaters) to remove the clipping region
+        - see clip_window() to use independent values for x,y, and width,height, e.g. clip_window(x,y,width,height)
+        - see clip_window_r() to use a list for input x,y, width height, e.g. clip_window_r((x,y,w,h))
+        
+        Input Parameters:
+        
+        - pos                   -\t x,y position of upper-left of clip rectangle
+        - size                  -\t width and height of rectangle from upper-left (x,y)
+        """
+        return _pybox.WindowClipWindow(self.__id,size_rect[0],size_rect[1],size_rect[2],size_rect[3])
+   
+    def clip_window_r(self,size_rect : list) :
+        """
+        Clips the window in the given rectangle, restricting output and drawing to that region.
+        
+        This can be used to restrict write areas, cls(), drawing, etc. 
+        
+        For example, a graph can be drawn with the clip and will not exceed the clip area.  This can be very useful and 
+        allow such drawing and output in place of creating a child window to perform the same task.
+        
+        - Use  reset_clip() or clip_window() (with no paramaters) to remove the clipping region
+        - see clip_window() to use independent values for x,y, and width,height, e.g. clip_window(x,y,width,height)
+        - see clip_window_l() to use a list for x,y and w,h input (respectively), e.g. clip_window_l(pos,size)
+        
+        Input Parameters:
+        
+        - size_rect             -\t list/array with 4 values: x,y, width and height (x,y position of upper-left of clip rectangle, and width, height)
+        """
+        return _pybox.WindowClipWindow(self.__id,size_rect[0],size_rect[1],size_rect[2],size_rect[3])
+
+    def reset_clip(self) :
+        """
+        Resets any clipping region active for the current window. 
+        
+        See clip_window() for more information
+        """
+        return _pybox.WindowResetClip(self.__id)
 
     def update(self) :
         """
@@ -3464,6 +6158,7 @@ class Window :
         See set_auto_update() for more information.
         """
         return _pybox.WindowUpdate(self.__id)
+    
     def dont_update(self) :
         """
         Tells Pybox not to update any window until the next pdate() is called manually by the program. 
@@ -3473,7 +6168,7 @@ class Window :
         """
         return _pybox.WindowDontUpdate(self.__id)
 
-    def set_auto_update(self,updateType : UpdateType) :
+    def set_auto_update(self,updateType : str) :
         """
         Sets the auto update type in pybox. See Update() for more information.
 
@@ -3567,16 +6262,16 @@ class Window :
         Optional Parameters: 
 
         1. True - a value of True (i.e. MouseDragEvent(True)) will return true for a Drag Event if the mouse button is simply clicked
-        \t(but not moved).  Otherwise, you can use a MouseButtonDown() call
+        \t -(but not moved).  Otherwise, you can use a MouseButtonDown() call
 
         2. pybox.peek -- Since this is an event, this function will return true only once until the event occurs again.
-        \tusing Peek (i.e. MouseDragEvent(Peek)) will keep the event status as True so it may be called again to receive the
-        \tsame event (True) status.
+        \t -using Peek (i.e. MouseDragEvent(Peek)) will keep the event status as True so it may be called again to receive the
+        \t -same event (True) status.
 
         Examples: 
 
-        Win.mouse_drag_event()          \t\t-- Returns True if the mouse is being dragged (does not include initial click)
-        Win.mouse_drag_event(True,peek) \t-- Include the initial mouse button click, and do not reset the event
+        Win.mouse_drag_event()          \t\t --- Returns True if the mouse is being dragged (does not include initial click)
+        Win.mouse_drag_event(True,peek) \t --- Include the initial mouse button click, and do not reset the event
 
         See also MouseDragPos() and MouseDragPrev() to get the mouse coordinates of the Mouse Drag Event.
  
@@ -3738,10 +6433,10 @@ class Window :
         """
         Creates a standard menu bar in the window with the menu items in the menuString.
 
-        ● The menu string can contain simple items such as: window.create_menu("Help,About,Exit")
-        ● Menu string can also contain submenu items, such as: window.create_menu("File[Open,Save,SaveAs],About,Exit")
-        ● Menu items can be retrieved by name, such as "File","About", or in the case of sub-menu items, "File:Open"
-        ● Menu items can be retrieved by value as well.
+        - The menu string can contain simple items such as: window.create_menu("Help,About,Exit")
+        - Menu string can also contain submenu items, such as: window.create_menu("File[Open,Save,SaveAs],About,Exit")
+        - Menu items can be retrieved by name, such as "File","About", or in the case of sub-menu items, "File:Open"
+        - Menu items can be retrieved by value as well.
 
         To set a value in a menu, enter a number for each top-level item, such as "File=100[Open,Save,Save As],About=200,Exit=300"
 
@@ -3774,10 +6469,10 @@ class Window :
         """
         Creates a standard menu bar in the window with the menu items in the menuString.
 
-        ● The menu string can contain simple items such as: window.quick_menu("Help,About,Exit")
-        ● Menu string can also contain submenu items, such as: window.quick_menu("File[Open,Save,SaveAs],About,Exit")
-        ● Menu items can be retrieved by name, such as "File","About", or in the case of sub-menu items, "File:Open"
-        ● Menu items can be retrieved by value as well.
+        - The menu string can contain simple items such as: window.quick_menu("Help,About,Exit")
+        - Menu string can also contain submenu items, such as: window.quick_menu("File[Open,Save,SaveAs],About,Exit")
+        - Menu items can be retrieved by name, such as "File","About", or in the case of sub-menu items, "File:Open"
+        - Menu items can be retrieved by value as well.
 
         To set a value in a menu, enter a number for each top-level item, such as "File=100[Open,Save,Save As],About=200,Exit=300"
 
@@ -3817,7 +6512,7 @@ class Window :
 
         Parameters:
 
-        ● menu_item      \t- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
+        - menu_item      \t -- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
 
         note: This function will always return the value of the last menu item selected.  Use MenuItemSelected() to determine when a menu item is selected.
         """
@@ -3830,8 +6525,8 @@ class Window :
 
         Parameters:
 
-        ● menu_item      \t- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
-        ● enable         \t- when True (default), the menu item is enabled.  Othewise it is disabled.
+        - menu_item      \t -- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
+        - enable         \t -- when True (default), the menu item is enabled.  Othewise it is disabled.
 
         """
         return _pybox.WindowEnableMenuItem(self.__id,menu_item,enable)
@@ -3843,8 +6538,8 @@ class Window :
 
         Parameters:
 
-        ● menu_item      \t- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
-        ● bDisable         \t- when True (default), the menu item is disabled.  Othewise it is enabled.
+        - menu_item      \t -- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
+        - bDisable         \t -- when True (default), the menu item is disabled.  Othewise it is enabled.
 
         """        
         return _pybox.WindowDisableMenuItem(self.__id,menu_item,disable)
@@ -3855,8 +6550,8 @@ class Window :
 
         Parameters:
 
-        ● menu_item     \t- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
-        ● checked           \t- when True, the menu item is checked.  When False, the menu item is unchecked.
+        - menu_item     \t -- this can be the numerical ID of the menu item or the menu item's name (i.e. "File", "File:Save As", etc.)
+        - checked           \t -- when True, the menu item is checked.  When False, the menu item is unchecked.
 
         """                
         return _pybox.WindowSetMenuItemCheck(self.__id,menu_item,checked)
@@ -3868,7 +6563,7 @@ class Window :
 
         Parameters:
 
-        ● show_menu         \t- when True (default), the menu is shown in the window.  When False, the menu is hidden.
+        - show_menu         \t -- when True (default), the menu is shown in the window.  When False, the menu is hidden.
 
         """        
         return _pybox.WindowShowMenu(self.__id,show_menu)
@@ -3880,7 +6575,7 @@ class Window :
 
         Parameters:
 
-        ● hide_menu         \t- when True (default), the menu is hidden from the window display.  When False, the menu appears in the window.
+        - hide_menu         \t -- when True (default), the menu is hidden from the window display.  When False, the menu appears in the window.
 
         """        
         return _pybox.WindowHideMenu(self.__id,hide_menu)
@@ -3942,7 +6637,7 @@ class Window :
         See: get_menu_id() to retrieve the menu id number of a string text menu item, such as "File:Save As"
 
         See: is_menu_id_selected() to determine if a specific menu item ID has been selected.  This function will accept menu strings, such as:
-        \tiis_menu_id_selected("File:Save as") 
+        \t -iis_menu_id_selected("File:Save as") 
         """
         return _pybox.WindowGetSelectedMenuItem(self.__id)
 
@@ -3961,6 +6656,59 @@ class Window :
         """
         return _pybox.WindowPrintMenuItems(self.__id)
 
+    def color_selector(self,at=None,**kwargs) -> _ColorSelector :
+        """
+        Opens a Color Selector widget, either in the current window or as a popup window. 
+        
+        With the color selector, you can select an RGB color using the wheel or input boxes next to the wheel itself. 
+        A color rectangle is shown with the currently selected color.
+        
+        color_selector returns a _ColorSelector object which can be used to look at changes in the color wheel in the window's main event loop. 
+        
+        See the _ColorSelector object functions for more information.
+        
+        Parameters:
+        
+        - at          \t - Where to put the Color Selector (in the window or as a popup).  If this is not used, the Color Selector is placed automatically.
+
+        Keywords usable when creating the Color Selector:
+
+        - Popup         \t - When true (i.e. Popup=True), the window pops up as a separate window.  Otherwise, it is placed in the current window at the location specified
+        - x,y           \t - 'x' and 'y' keywords can be used in place of using the 'at' parameter, i.e. x=500, y=200 instead of (500,200) or at=(500,200)
+  
+        examples:\t - color_sel = mywin.color_selector(at=(500,200),popup=True)     --> Opens a Color Selector window as an individual window on the screen at x=500 and y=200
+        - color_sel = mywin.color_selector(at=(500,200))     --> Opens a Color Selector window inside the window 'mywin, at window location x=500 and y=200
+        - color_sel = pybox.color_selector(at=500,200)  --> Opens the same type of window, but as a pybox function without a parent window.
+        
+        - while mywin.GetEvent() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
+        """
+        return _ColorSelector(_pybox.WindowColorSelector(self.__id,opt.at(at),**kwargs))
+
+    def color_wheel(self,at=None,**kwargs) -> _ColorWheel :
+        """    
+        Creates a Color Wheel widget, put into the existing window as a single color wheel with no other controls but the wheel itself.
+        
+        With the color selector, you can select an RGB color using the wheel or input boxes next to the wheel itself. 
+        A color rectangle is shown with the currently selected color.
+            
+        color_wheel returns a _ColorWheel object which can be used to look at changes in the color wheel in the window's main event loop. 
+            
+        See the _ColorWheel object functions for more information.
+            
+        Parameters:
+            
+        - at          \t - Where to put the Color Selector (in the window or as a popup).  If this is not used, the Color Selector is placed automatically.
+
+        Keywords usable when creating the Color Selector:
+
+        - x,y           \t - 'x' and 'y' keywords can be used in place of using the 'at' parameter, i.e. x=500, y=200 instead of (500,200) or at=(500,200)
+  
+        example:\t - color_wheel = mywin.color_wheel((500,200))     --> Opens a Color Wheel window in the window at (500,200)
+            
+        - while mywin.GetEvent() : if (color_wheel.value_changed()) print("Color value = ",color_wheel.get_rgb_value()) --> prints values as the wheel is moved.
+        """
+        return _ColorWheel(_pybox.WindowColorWheel(self.__id,opt.at(at),**kwargs))
+    
 class DevControl :
     "--comment--"
     def __init__(self,_id) : self.id = _id
@@ -3975,32 +6723,32 @@ class DevControl :
 
         set_config() works with the following keywords:
 
-        ● bgcolor         \tSets the background color of the dev window.  This can be a single color or a string with one or two colors (for a gradient)
-                          \tnote: this should be used before any controls are placed in the dev window. Also see set_bg_color() for more options
+        - bgcolor         \t -Sets the background color of the dev window.  This can be a single color or a string with one or two colors (for a gradient)
+                          \t -note: this should be used before any controls are placed in the dev window. Also see set_bg_color() for more options
 
-        ● bgbitmap        \tSets the bitmap of the dev window background.  This can be a pybox Cbitmap type, and bitmap array (i.e. opencv, etc.),
-                          \tor a text string with the location of the bitmap.
-                          \tnote: this should be used before any controls are placed in the dev window. Also see set_bgbitmap() for more options.
+        - bgbitmap        \t -Sets the bitmap of the dev window background.  This can be a pybox Cbitmap type, and bitmap array (i.e. opencv, etc.),
+                          \t -or a text string with the location of the bitmap.
+                          \t -note: this should be used before any controls are placed in the dev window. Also see set_bgbitmap() for more options.
 
-        ● ypos            \tSets the position of the next control.  This can be used to set the location of the first control when setting bgbitmap when the bitmap contains a top header.
+        - ypos            \t -Sets the position of the next control.  This can be used to set the location of the first control when setting bgbitmap when the bitmap contains a top header.
 
-        ● autoclose_x     \tSets the auto close 'x' button on or off.  By default, an 'x' is placed on the window to allow the user to close it.
-                          \tautoclose_x=false will turn this 'x' off and also prevent the 'x' from appearing when the Dev Window is the only window open during get_event() calls.
-                          \tsee the 'allowclose' option to set the 'x' visibility in other ways
+        - autoclose_x     \t -Sets the auto close 'x' button on or off.  By default, an 'x' is placed on the window to allow the user to close it.
+                          \t -autoclose_x=false will turn this 'x' off and also prevent the 'x' from appearing when the Dev Window is the only window open during get_event() calls.
+                          \t -see the 'allowclose' option to set the 'x' visibility in other ways
 
-        ● autoclose       \tWhen set to true, this will cause the Dev Window to close automatically when no other non-dev (or other primary) windows are open.
-                          \t otherwise, when set to false (default) the Dev Window will remain open when other windows are closed (with an 'x' placed for closure).
+        - autoclose       \t -When set to true, this will cause the Dev Window to close automatically when no other non-dev (or other primary) windows are open.
+                          \t - otherwise, when set to false (default) the Dev Window will remain open when other windows are closed (with an 'x' placed for closure).
 
-        ● closeable       \tSets the 'x' button on or off when multiple windows are open.  By default, the 'x' appears in all Dev Windows to allow the user
-                          \tto close it, at which time the window will automatically close. closeable=True will force the 'x' on the window.
+        - closeable       \t -Sets the 'x' button on or off when multiple windows are open.  By default, the 'x' appears in all Dev Windows to allow the user
+                          \t -to close it, at which time the window will automatically close. closeable=True will force the 'x' on the window.
 
-                          \tsetting closeable=false will remove the 'x' when there are non-Dev windows open. the 'x' will appear when no other windows are open
-                          \tto allow the user to close the window. See 'autoclose_x' option to disable the 'x' permanently.
+                          \t -setting closeable=false will remove the 'x' when there are non-Dev windows open. the 'x' will appear when no other windows are open
+                          \t -to allow the user to close the window. See 'autoclose_x' option to disable the 'x' permanently.
 
-        ● topbar          \tTurns the topbar off (when false). When topbar=false, the top title bar will not appear in the dev window.
-                            \tthis is used for setting the background color and bgbitmap to help personalize the dev window.
-                             \tnote --> topbar must be used before the bgbitmap or bgcolor option, otherwise it will have no effect.
-                           \tsee set_bgbitmap() and set_bg_color() for more information
+        - topbar          \t -Turns the topbar off (when false). When topbar=false, the top title bar will not appear in the dev window.
+                            \t -this is used for setting the background color and bgbitmap to help personalize the dev window.
+                             \t -note --> topbar must be used before the bgbitmap or bgcolor option, otherwise it will have no effect.
+                           \t -see set_bgbitmap() and set_bg_color() for more information
         """
         return _pybox.DevControlSetConfig(*args,**kwargs)
 
@@ -4012,7 +6760,7 @@ class DevControl :
 
         Parameters:
 
-            ● add_closebutton      \t- When 'true', a close button will be added as a control at the bottom of the dev window
+            - add_closebutton      \t -- When 'true', a close button will be added as a control at the bottom of the dev window
         """
         return _pybox.DevControlWindowClosed(self.id,add_closebutton)
 
@@ -4035,10 +6783,10 @@ class DevControl :
 
         Parameters:
 
-            ● color1      \t- Color of the background 
-            ● color2      \t- [optional] When given, this sets a gradient from color 1 to color 2
-            ● display_bar \t- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
-                          \t when set to False, the top display bar is removed and the bitmap starts at the top of the window.
+            - color1      \t -- Color of the background 
+            - color2      \t -- [optional] When given, this sets a gradient from color 1 to color 2
+            - display_bar \t -- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
+                          \t - when set to False, the top display bar is removed and the bitmap starts at the top of the window.
         About Colors
 
         Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -4064,13 +6812,13 @@ class DevControl :
 
         Parameters:
 
-            ● bitmap      \t- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
-            ● display_bar \t- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
+            - bitmap      \t -- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
+            - display_bar \t -- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
 
         Keywords and other options
 
-            ● pady      \t- opt.pady() or pady=True can be used to set the position of the next control relative to the bottom of the bitmap.
-                        \t For example, pady(20) will add 20 pixels to the bottom of the bitmap for the next control
+            - pady      \t -- opt.pady() or pady=True can be used to set the position of the next control relative to the bottom of the bitmap.
+                        \t - For example, pady(20) will add 20 pixels to the bottom of the bitmap for the next control
 
                         This can be useful when a background bitmap has a header, so the first control can start underneath it.
 
@@ -4093,19 +6841,19 @@ class DevControl :
 
         Parameters:
 
-            ● bitmap      \t- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
-            ● text        \t- [optional] Text to place directly to the right of the bitmap.  Pybox options can be used
-                            \t to set the font and text color
+            - bitmap      \t -- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
+            - text        \t -- [optional] Text to place directly to the right of the bitmap.  Pybox options can be used
+                            \t - to set the font and text color
 
                             The center of the text is aligned to be at the center vertical center of the bitmap. 
 
         Keywords and other options
 
-            ● font,textcolor       \t- These can set the font and color of the text. i.e. opt.textcolor("green") or opt.font(20)
-            ● pady                 \t- this will add to the Y value of the next control relative to the bottom of the bitmap or text
-                                    \t (whichever hangs over more).  For example, pady(20) will add 20 pixels to the start of the next control.
+            - font,textcolor       \t -- These can set the font and color of the text. i.e. opt.textcolor("green") or opt.font(20)
+            - pady                 \t -- this will add to the Y value of the next control relative to the bottom of the bitmap or text
+                                    \t - (whichever hangs over more).  For example, pady(20) will add 20 pixels to the start of the next control.
 
-                                    \tThis can be useful when the bitmap (and text) is a header, to add space before the next control starts
+                                    \t -This can be useful when the bitmap (and text) is a header, to add space before the next control starts
 
         Examples:
 
@@ -4127,22 +6875,22 @@ class DevControl :
         The Text Widget can be used to create static or dynamic text of any font size in the Dev Window.
         Parameters:
 
-        ● text          \t- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
-                        \t When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
-                        \t the text with spaces to reserve width.
+        - text          \t -- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
+                        \t - When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
+                        \t - the text with spaces to reserve width.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● TextColor         \t Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
-        ● Font              \t Sets the font of the text in the text widget
-        ● TextCenter        \t Centers the text inside of the widget (which can be longer than the text itself).
-                                \t Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
-                                \t Text Widget and the text have been specificed separately.
+        - TextColor         \t - Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
+        - Font              \t - Sets the font of the text in the text widget
+        - TextCenter        \t - Centers the text inside of the widget (which can be longer than the text itself).
+                                \t - Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
+                                \t - Text Widget and the text have been specificed separately.
 
 
         Examples:   
-                    \tmy_dev.new_text(This is a text Widget)
-                    \tmy_dev.new_text(This is a text Widget",font=20,textcolor="Yellow")
+                    \t -my_dev.new_text(This is a text Widget)
+                    \t -my_dev.new_text(This is a text Widget",font=20,textcolor="Yellow")
         """        
         return CTextWidget(_pybox.DevControlTextWidget(self.id,text,*args,**kwargs))
 
@@ -4154,19 +6902,19 @@ class DevControl :
 
         Parameters:
 
-        ● title     \t- Sets the title of the Slider
+        - title     \t -- Sets the title of the Slider
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range             \t- Set the range of the slider.  The default range is (1,100)          
-        ● Default           \t- Set the default value of the slider.  The edfault is (0)
-        ● TextColor         \t- Sets the color of the label of the slider.
-        ● Style("small")    \t- Sets a smaller slider handle
+        - Range             \t -- Set the range of the slider.  The default range is (1,100)          
+        - Default           \t -- Set the default value of the slider.  The edfault is (0)
+        - TextColor         \t -- Sets the color of the label of the slider.
+        - Style("small")    \t -- Sets a smaller slider handle
 
-        Examples:       \tMyDevWindow.new_slider("This is a slider")
-                        \tMyDevWindow.new_slider("This is a slider",range=100,500,default=200)
-                        \tMyDevWindow.new_slider("This is a slider",textcolor="Yellow",valuecolor="red",style="small")
-                        \tMyDevWindow.new_slider("This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small))        \t - (same as previous example)
+        Examples:       \t -MyDevWindow.new_slider("This is a slider")
+                        \t -MyDevWindow.new_slider("This is a slider",range=100,500,default=200)
+                        \t -MyDevWindow.new_slider("This is a slider",textcolor="Yellow",valuecolor="red",style="small")
+                        \t -MyDevWindow.new_slider("This is a slider",opt.textcolor("Yellow"),opt.valuecolor("red"),opt.style("small))        \t - - (same as previous example)
         """
         return Slider(_pybox.DevControlSlider(self.id,title,*args,**kwargs))
 
@@ -4183,18 +6931,18 @@ class DevControl :
 
        Parameters:
 
-        ● title     \t- Sets the title of the Slider
+        - title     \t -- Sets the title of the Slider
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range             \t- Set the range of the slider.  The default range is (1,100)          
-        ● Default           \t- Set the default value of the slider.  The edfault is (0)
-        ● TextColor         \t- Sets the color of the label of the slider.
-        ● Style("small")    \t- Sets a smaller slider handle
+        - Range             \t -- Set the range of the slider.  The default range is (1,100)          
+        - Default           \t -- Set the default value of the slider.  The edfault is (0)
+        - TextColor         \t -- Sets the color of the label of the slider.
+        - Style("small")    \t -- Sets a smaller slider handle
 
-        Examples:       \tMyDevWindow.new_slider_f("This is a slider")
-                        \tMyDevWindow.new_slider_f("This is a slider",range=100,500,default=200)
-                        \tMyDevWindow.new_slider_f("This is a slider",textcolor="Yellow",valuecolor="red",style="small")
+        Examples:       \t -MyDevWindow.new_slider_f("This is a slider")
+                        \t -MyDevWindow.new_slider_f("This is a slider",range=100,500,default=200)
+                        \t -MyDevWindow.new_slider_f("This is a slider",textcolor="Yellow",valuecolor="red",style="small")
         """
         return Slider(_pybox.DevControlSlider(self.id,title,opt._opt__as_float(),*args,**kwargs))
 
@@ -4205,16 +6953,16 @@ class DevControl :
 
         Parameters:
 
-        ● title    \t- Sets the title of the checkbox 
+        - title    \t -- Sets the title of the checkbox 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Default    \t- Default(True) sets the check in the checkbox.  Default(False) leaves the checkbox unchecked.
+        - Default    \t -- Default(True) sets the check in the checkbox.  Default(False) leaves the checkbox unchecked.
 
         Examples:
-                    \tMyDevWindow.new_checkbox("Check me!")
-                    \tMyDevWindow.new_checkbox("Check me!",default=True)
-                    \tMyDevWindow.new_checkbox("Check me!",opt.default(True))
+                    \t -MyDevWindow.new_checkbox("Check me!")
+                    \t -MyDevWindow.new_checkbox("Check me!",default=True)
+                    \t -MyDevWindow.new_checkbox("Check me!",opt.default(True))
         """
         return Button(_pybox.DevControlCheckbox(self.id,title,*args,**kwargs))
 
@@ -4226,16 +6974,16 @@ class DevControl :
 
         Parameters:
         
-        text        \t- Sets the text of the button. 
+        text        \t -- Sets the text of the button. 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Font     \t- Sets the font for the button text 
-        ● Style    \t- This can be a style of the default button or the name of a created button style.
+        - Font     \t -- Sets the font for the button text 
+        - Style    \t -- This can be a style of the default button or the name of a created button style.
 
         Example:   
-                    \tMyDevWindow.new_button("This is a button")
-                    \tMyDevWindow.new_button("This is a button",font=18,style="red"))
+                    \t -MyDevWindow.new_button("This is a button")
+                    \t -MyDevWindow.new_button("This is a button",font=18,style="red"))
         """
         return Button(_pybox.DevControlButton(self.id,text,*args,**kwargs))
 
@@ -4252,20 +7000,20 @@ class DevControl :
 
         Parameters:
 
-        ● text          \t- [optional] Initial text in the combobox.  This text can be one line or multiple lines representing multiple entries.  See examples.
-        ● titlecell     \t- [optional] Tells the combobox to display this string int the combobox tab when no item is selected.  Otherwise the first added item is displayed.
+        - text          \t -- [optional] Initial text in the combobox.  This text can be one line or multiple lines representing multiple entries.  See examples.
+        - titlecell     \t -- [optional] Tells the combobox to display this string int the combobox tab when no item is selected.  Otherwise the first added item is displayed.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Default    \t- Default selection.  This is the index to the default selection (0 is the first selection, 1 the second, etc.)
+        - Default    \t -- Default selection.  This is the index to the default selection (0 is the first selection, 1 the second, etc.)
 
         Examples:
 
-                    \tMyDevWindow.new_combobox() 
-                    \tMyDevWindow.new_combobox("First Item") 
-                    \tMyDevWindow.new_combobox("First Item\\nSecond Item\\nThird Item") 
-                    \tMyDevWindow.new_combobox(titlecell="This is a combobox") 
-                    \tMyDevWindow.new_combobox("First Item\\nSecond Item\\nThird Item",default=2) 
+                    \t -MyDevWindow.new_combobox() 
+                    \t -MyDevWindow.new_combobox("First Item") 
+                    \t -MyDevWindow.new_combobox("First Item\\nSecond Item\\nThird Item") 
+                    \t -MyDevWindow.new_combobox(titlecell="This is a combobox") 
+                    \t -MyDevWindow.new_combobox("First Item\\nSecond Item\\nThird Item",default=2) 
         """
         return Combobox(_pybox.DevControlCombobox(self.id,text,opt.cb_titlecell(title_cell),*args,**kwargs))
 
@@ -4275,22 +7023,22 @@ class DevControl :
 
         Optional Parameters:
 
-        ● title         \t- [optional] Label of the input box (displays to the left), but can shorten the input box itself.
-        ● text          \t- [optional] This sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
+        - title         \t -- [optional] Label of the input box (displays to the left), but can shorten the input box itself.
+        - text          \t -- [optional] This sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● NumbersOnly   \t- Causes the input box to only accept numbers. 
-        ● ReadOnly      \t- Sets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
-        ● TextColor     \t- Sets the color of the text in the input box
-        ● bgColor       \t- Sets the background color of the text in the input box
-        ● Password      \t- Causes the input box to display '*' for all text.
-        ● WinColors     \t- Sets the background input box color and text color to the current window color instead of the default white-and-black colors. 
-        ● ThickBorder,Recessed      \tThese are two different border styles that can be used.
+        - NumbersOnly   \t -- Causes the input box to only accept numbers. 
+        - ReadOnly      \t -- Sets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
+        - TextColor     \t -- Sets the color of the text in the input box
+        - bgColor       \t -- Sets the background color of the text in the input box
+        - Password      \t -- Causes the input box to display '*' for all text.
+        - WinColors     \t -- Sets the background input box color and text color to the current window color instead of the default white-and-black colors. 
+        - ThickBorder,Recessed      \t -These are two different border styles that can be used.
 
-        Examples:   \tMyDevWindow.new_inputbox("This is the title)          
-                    \tMyDevWindow.new_inputbox(text="This is the default text")
-                    \tMyDevWindow.new_inputbox("this is the title,"This is the default text",wincolors=True,thickborder=True)
+        Examples:   \t -MyDevWindow.new_inputbox("This is the title)          
+                    \t -MyDevWindow.new_inputbox(text="This is the default text")
+                    \t -MyDevWindow.new_inputbox("this is the title,"This is the default text",wincolors=True,thickborder=True)
         """
         return InputBox(_pybox.DevControlInputBox(self.id,title,opt.default(text),*args,**kwargs))
 
@@ -4303,14 +7051,14 @@ class DevControl :
 
         Optional Parameters:
 
-        ● title         \t- [optional] Title of the window.  This displays above the window. The default is no title.
-        ● numlines      \t- [optional] Sets the number of lines for the default font in the window.  The default is 10 lines
+        - title         \t -- [optional] Title of the window.  This displays above the window. The default is no title.
+        - numlines      \t -- [optional] Sets the number of lines for the default font in the window.  The default is 10 lines
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Font          \t- Set the font for the window
-        ● TextColor     \t- Set the text/foreground color for the window
-        ● bgColor       \t- Set the background color for the window. 
+        - Font          \t -- Set the font for the window
+        - TextColor     \t -- Set the text/foreground color for the window
+        - bgColor       \t -- Set the background color for the window. 
         """
         return Window(_pybox.DevControlWindow(self.id,title,int(numlines),*args,**kwargs))
 
@@ -4325,22 +7073,277 @@ class DevControl :
 
         Parameters
 
-        ● title                 \t - The title/label of the radio button group.  A box is drawn around the radio buttons with the title name.
-        ● buttons       \t - The buttons to place in the checkbox group.  This can be one more more buttons, each button name separated by a a newline,
-                                    \tfor example, "button" for just one button, or "button 1\\nbutton 2\\nbutton 3" for 3 radio buttons.
+        - title                 \t - - The title/label of the radio button group.  A box is drawn around the radio buttons with the title name.
+        - buttons       \t - - The buttons to place in the checkbox group.  This can be one more more buttons, each button name separated by a a newline,
+                                    \t -for example, "button" for just one button, or "button 1\\nbutton 2\\nbutton 3" for 3 radio buttons.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Default       \t- Sets the default index for the highlighted button.  There can only be one active radio button.  Default sets the
-                            \t index of the active/highlighted button (i.e. 0 = first button, 1 = second button, etc.)
+        - Default       \t -- Sets the default index for the highlighted button.  There can only be one active radio button.  Default sets the
+                            \t - index of the active/highlighted button (i.e. 0 = first button, 1 = second button, etc.)
 
         Examples:        
-                        \tMyDevWindow.new_radio_buttons("These are radio buttons","This is the button")
-                        \tMyDevWindow.new_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3")
-                        \tMyDevWindow.new_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3",default=1)
+                        \t -MyDevWindow.new_radio_buttons("These are radio buttons","This is the button")
+                        \t -MyDevWindow.new_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3")
+                        \t -MyDevWindow.new_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3",default=1)
 
         """
         return RadioButtonGroup(_pybox.DevControlRadioButtons(self.id,buttons,opt.label(label),*args,**kwargs))
+
+class TurtleShell :
+    """
+    TurtleShell operates the same as Turtle Graphics in most ways.  The functions are the same, with some additions for opacities and gradients, as well as other functions.
+    
+    - TurtleShell does not display each segment drawing, showing each segment after it is drawn.  
+    - As with Turtle Graphics, the speed can be set to show each element drawing.
+    
+    - Setting a speed to zero will allow for real-time graphics. 
+    - TurtleShell is meant to be a Turtle Graphics environmemt with some additions to allow more functionality than original turtle graphics.
+    - TurtleShell is a prototype at the moment, and the idea is to bring more functions into it, including GPU-based and 3-D Turtle Graphics.
+    
+    See various examples and documentation on TurtleShell functions for more information.
+    """
+    def __init__(self,_id) : self.id = _id
+    def pen_up(self) -> bool :
+        """
+        Lifts the pen up.  Any actions performed with the pen up will not draw..
+        When the pen is up, no graphics are drawn the the screen, allowing for positioning without graphic output.
+        Use pen_down() to put graphic output to the window (lines, circles, etc.) 
+        """
+        return _pybox.WinTurtleGenBool(self.id,0)
+
+    def pen_down(self) -> bool :
+        """
+        the pen down.  This causes any graphic output function (e.g. circle, forward, etc.) to draw grahics to the screen.
+        the pen is up (e.g. pen_up() function), no graphics are drawn the the screen, allowing for positioning without graphic output.
+        """
+        return _pybox.WinTurtleGenBool(self.id,1)
+
+    def end_fill(self) -> bool :
+        """
+        When a fill is in-progress after starting it with begin_fill(), calling end_fill() fills the area defined by all drawing calls called after begin_fill().
+        See begin_fill() for more information.
+        """
+        return _pybox.WinTurtleGenBool(self.id,3)
+
+    def right(self,angle) -> bool :
+        """
+        Rotates the current heading clockwise (i.e. right) the number of degrees in input angle.
+
+        Angle is in degrees.
+        """
+        return _pybox.WinTurtleGenMixedValue(self.id,0,angle)
+    
+    def left(self,angle) -> bool :
+        """
+        Rotates the current heading counter-clockwise (i.e. left) the number of degrees in input angle.
+
+        Angle is in degrees.
+        """
+        return _pybox.WinTurtleGenMixedValue(self.id,1,angle)
+    
+    def pen_size(self,pen_size) -> bool :
+        """
+        Sets the pen radius size for all drawing operations.  The default is 2 pixels.
+        
+        Example: 
+        
+        pen_size(10) sets the thickness for all drawing functions to a radius of 10 pixels.
+        
+        Input Parameters:
+        
+        - pen_size  \t- New pen radius
+        """
+        return _pybox.WinTurtleGenMixedValue(self.id,2,pen_size)
+    
+    def set_heading(self,heading) -> bool :
+        """
+        Sets the current heading for draw operations (i.e. heading of the turtle).
+
+        Functions such as right(), left(), circle(), etc. adjust the heading accordingly.
+
+        set_heading() sets a specific heading (value is in degrees)
+        
+        Input Parameters:
+        
+        -angle      \t - Angle (in degrees) of new heading.
+        """
+        return _pybox.WinTurtleGenMixedValue(self.id,3,heading)
+    
+    def set_speed(self,speed) -> bool :
+        """
+        Sets the speed of drawing operations.  Unlike classical Turtle Graphics, Turtle Shell currently draws entire elements at a time, such as a line, circle, etc.
+
+        The input value sets the delay between showing drawn values in milliseconds.
+
+        For example, setting speed(20) sets 20ms between showing drawn output.
+
+        Setting speed(.5) sets half a millisecond.
+        
+        - note: speed(0) is a special case and will not show any drawing operations, relying on the program to update the window itself.  
+        - This can be used for real-time drawing, to display the entirety of the results all at one time, not using time to display partial results.
+        - Use window.set_realtime() (or set kw::Realtime() as a keyword when creating a window) to set Realtime() status for a window, for smoother real-time output. 
+        """
+        return _pybox.WinTurtleGenMixedValue(self.id,4,speed)
+    
+    def forward(self,num_pixels) -> bool :
+        """
+        Moves the current location forward at the angle of the current heading, the number of pixels specified.
+        
+        If the pen is down, a line is drawn from the current point to the next point.
+        
+        See pen_up() to move forward without using the pen.
+        
+        Also see: move_to(), which moves directly to a specified point.
+        """
+        return _pybox.WinTurtleGenMixedValue(self.id,5,num_pixels)
+    
+    def begin_fill(self,color,opacity : int = None) -> bool :
+        """
+        Starts a filled area enclosed by subsequent drawing functions.
+        After begin_fill() is called, drawing functions are drawn and remembered.
+        When end_fill() is called, the area enclosed by the drawing functions is filled with the color.
+        the 'color' value sets the color for the fill. This color may jave an opacity, e.g. "red" (full opacity, the same as "red(255)") or "red(128)" (half-transparent)
+
+        Input Parameters
+        
+        - Color         \t - Color to fill the enclosed area when end_fill() is called, e.g. "green", "green(128)", MyColor value, etc.
+        - opacity       \t - [optional] opacity of color.  This can be used to add an opacity to a color if it doesn't already have an opacity value.
+                              \t For example, "red(128)" already has an opacity value of 128.  However, for a calculated color, it can be easier to add an opacity with this parameter.
+        """
+        return _pybox.WinTurtleGenColorValue(self.id,0,color,opacity)
+    
+    def set_color(self,color) -> bool :
+        """
+        Sets the color for subsequent drawing operations. 
+        
+        Example:
+        
+        t.forward(100)  # draw 100 pixels in current heading in current color
+        t.color("red")  # Set color to "red"
+        t.forward(100)  # draws 100 pixels in current heading in color "red"
+        
+        ** note: color() and set_color() are the same function
+        """
+        return _pybox.WinTurtleGenColorValue(self.id,1,color,0)
+    
+    def color(self,color) -> bool :
+        """
+        Sets the color for subsequent drawing operations. 
+        
+        Example:
+        
+        t.forward(100)  # draw 100 pixels in current heading in current color
+        t.color("red")  # Set color to "red"
+        t.forward(100)  # draws 100 pixels in current heading in color "red"
+        
+        ** note: color() and set_color() are the same function
+        """
+        return _pybox.WinTurtleGenColorValue(self.id,1,color,0)
+    
+    def set_pos(self,x : int,y : int) -> bool :
+        """
+        Sets the position of the current pointer (or turtle).
+        
+        The if the pen is down, a line will be drawn from the current position to the new position. The heading will not change.
+        
+        - See set_pos_l() to use a list or array for (x,y) values.
+        - note: move_to() and set_pos() are the same function.
+        
+        Use pen_up() to move to a position without drawing a line. 
+        
+        Input Parameters:
+        
+        - x         \t- x position of new location
+        - y         \t- y position of new location
+        """
+        return _pybox.WinTurtleSetPos(self.id,x,y)
+    
+    def set_pos_l(self,pos : list) -> bool :
+        """
+        Sets the position of the current pointer (or turtle).
+        
+        The if the pen is down, a line will be drawn from the current position to the new position. The heading will not change.
+        
+        - See set_pos() to use individual values for position (i.e. x and y vs. a list)
+        - note: move_to_l() and set_pos_l() are the same function.
+        
+        Use pen_up() to move to a position without drawing a line. 
+        
+        This function is the same as move_to().
+        
+        Input Parameters:
+        
+        - pos         \t- position of new location
+        """
+        return _pybox.WinTurtleSetPos(self.id,pos[0],pos[1])
+    
+    def move_to(self,x : int,y : int) -> bool :
+        """
+        Sets the position of the current pointer (or turtle).
+        
+        The if the pen is down, a line will be drawn from the current position to the new position. The heading will not change.
+        
+        - See move_to_l() to use a list or array for (x,y) values.
+        - note: move_to() and set_pos() are the same function.
+        
+        Use pen_up() to move to a position without drawing a line. 
+        
+        Input Parameters:
+        
+        - x         \t- x position of new location
+        - y         \t- y position of new location
+        """
+        return _pybox.WinTurtleSetPos(self.id,x,y)
+    
+    def move_to_l(self,pos : list) -> bool :
+        """
+        Sets the position of the current pointer (or turtle).
+        
+        The if the pen is down, a line will be drawn from the current position to the new position. The heading will not change.
+        
+        - See move_to() to use individual values for position (i.e. x and y vs. a list)
+        - note: move_to_l() and set_pos_l() are the same function.
+        
+        Use pen_up() to move to a position without drawing a line. 
+        
+        This function is the same as move_to().
+        
+        Input Parameters:
+        
+        - pos         \t- position of new location
+        """
+        return _pybox.WinTurtleSetPos(self.id,pos[0],pos[1])
+    
+    def circle(self,radius,sweep_angle = 360,steps : int = 0) -> bool :
+        """
+        Draws a circle, arc, polygon or polygonal-arc, depending on input values.
+        
+        The heading is change from the current heading to the angle of the output of the circle or last polygonal line.
+        
+        If no Sweep Angle is entered, a full circle is drawn. Otherwise in arc is drawn.
+        
+        The "Steps" value, draws the circle as a polygon with sides equal to the "Steps" value, drawing lines from point to point, rather than a circle.
+
+        Input Parameters:
+        
+        - radius        \t- Radius of Circle (or partial circle/arc)
+        - sweep_angle   \t- Angle to cover in circle (blank is 360, or a full circle)
+        - steps         \t- Number of segments to draw for circle or arc (no value or 0 draws a circle or arc without segment lines)        """
+        return _pybox.WinTurtleCircle(self.id,radius,sweep_angle,steps)
+    
+    def get_heading(self) -> float :
+        """
+        Returns the current heading of the 'turtle'
+        """
+        return _pybox.WinTurtleGetFloat(self.id,0)
+    
+    def get_pos(self) -> list :
+        """
+        Returns the current position of the 'turtle' relative to the center of the window.
+        """
+        return _pybox.WinTurtleGetFloatList(self.id,0)
+    
 
 class _ImageBeforeAfter :
     "ImageBeforeAfter class.  This class allows you to control a window popped up with pybox.ImageBeforeAfter()"
@@ -4495,18 +7498,18 @@ class dialog :
 
         Parameters:
 
-        ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-        ● title         -\t This is the title of the image that will display in the title bar
-        ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-        ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-        ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+        - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+        - title         \t - This is the title of the image that will display in the title bar
+        - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+        - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+        - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● reverse       \t- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: img_view_r()
-        ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  Normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-        ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                            \tIf no Label is given with no Title, the title bar text will also be the label text.
+        - reverse       \t -- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: img_view_r()
+        - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  Normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+        - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                            \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
         About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
         or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -4535,17 +7538,17 @@ class dialog :
 
         Parameters:
 
-        ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-        ● title         -\t This is the title of the image that will display in the title bar
-        ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-        ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-        ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+        - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+        - title         \t - This is the title of the image that will display in the title bar
+        - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+        - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+        - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-        ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                            \tIf no Label is given with no Title, the title bar text will also be the label text.
+        - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+        - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                            \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
         About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
         or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -4574,18 +7577,18 @@ class dialog :
 
         Parameters:
 
-        ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-        ● title         -\t This is the title of the image that will display in the title bar
-        ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-        ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-        ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+        - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+        - title         \t - This is the title of the image that will display in the title bar
+        - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+        - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+        - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● reverse       \t- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: ImgZoomR()
-        ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-        ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                            \tIf no Label is given with no Title, the title bar text will also be the label text.
+        - reverse       \t -- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: ImgZoomR()
+        - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+        - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                            \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
         About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
         or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -4614,17 +7617,17 @@ class dialog :
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-        ● title         -\t [optional] This is the title of the image that will display in the title bar
-        ● at            -\t [optional] Where to put the window.  If this is not used, the window is placed automatically.
-        ● size          -\t [optional] Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-        ● percent       -\t [optional] Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+        - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+        - title         \t - [optional] This is the title of the image that will display in the title bar
+        - at            \t - [optional] Where to put the window.  If this is not used, the window is placed automatically.
+        - size          \t - [optional] Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+        - percent       \t - [optional] Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-        ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                            \tIf no Label is given with no Title, the title bar text will also be the label text.
+        - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+        - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                            \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
         About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
         or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -4640,7 +7643,7 @@ class dialog :
 
         - The system menu (upper-left corner) has a number of options.
         - This returns an _ImageBeforeAfter class object that can be used to control the window. However, it is not necessary to save the return object. 
-            \twith the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
+            \t -with the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
 
         About the Zoom Box
 
@@ -4648,20 +7651,20 @@ class dialog :
 
         Parameters:
 
-        ● bitmap1       -\t The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
-        ● bitmap2       -\t The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
-        ● title         -\t This is the title of the image that will display in the title bar
-        ● before_title   -\t title/label for the 'before' bitmap.  If not specified, a default label is used
-        ● after_title    -\t title/label for the 'after' bitmap.  If not specified, a default label is used
-        ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-        ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-        ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+        - bitmap1       \t - The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
+        - bitmap2       \t - The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
+        - title         \t - This is the title of the image that will display in the title bar
+        - before_title   \t - title/label for the 'before' bitmap.  If not specified, a default label is used
+        - after_title    \t - title/label for the 'after' bitmap.  If not specified, a default label is used
+        - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+        - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+        - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-        ● label         \t- This will put a text label above both images.
-                            \tIf no Label is given with no Title, the title bar text will also be the label text.
+        - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+        - label         \t -- This will put a text label above both images.
+                            \t -If no Label is given with no Title, the title bar text will also be the label text.
                                                 
         About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
         or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -4678,7 +7681,7 @@ class dialog :
 
         - The system menu (upper-left corner) has a number of options.
         - This returns an _ImageBeforeAfter class object that can be used to control the window. However, it is not necessary to save the return object. 
-            \twith the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
+            \t -with the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
 
         About the Zoom Box
 
@@ -4686,20 +7689,20 @@ class dialog :
 
         Parameters:
 
-        ● bitmap1       -\t The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
-        ● bitmap2       -\t The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
-        ● title         -\t This is the title of the image that will display in the title bar
-        ● before_title   -\t title/label for the 'before' bitmap.  If not specified, a default label is used
-        ● after_title    -\t title/label for the 'after' bitmap.  If not specified, a default label is used
-        ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-        ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-        ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+        - bitmap1       \t - The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
+        - bitmap2       \t - The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
+        - title         \t - This is the title of the image that will display in the title bar
+        - before_title   \t - title/label for the 'before' bitmap.  If not specified, a default label is used
+        - after_title    \t - title/label for the 'after' bitmap.  If not specified, a default label is used
+        - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+        - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+        - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-        ● label         \t- This will put a text label above both images.
-                            \tIf no Label is given with no Title, the title bar text will also be the label text.
+        - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+        - label         \t -- This will put a text label above both images.
+                            \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
         About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
         or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -4718,7 +7721,7 @@ class dialog :
 
         Parameters: 
 
-        ● text          \t- text to put into the window. 
+        - text          \t -- text to put into the window. 
 
         About Dialog Box Text
 
@@ -4727,10 +7730,10 @@ class dialog :
 
         Examples:
 
-                \tpybox.dialog.info("Press OK to continue")
-                \tpybox.dialog.info("+Information Window\nPress OK to continue")
-                \tpybox.dialog.info("Finished Processing\nPress OK to continue")
-                \tpybox.dialog.info("+My Process\nFinished Processing\nPress OK to continue")
+                \t -pybox.dialog.info("Press OK to continue")
+                \t -pybox.dialog.info("+Information Window\nPress OK to continue")
+                \t -pybox.dialog.info("Finished Processing\nPress OK to continue")
+                \t -pybox.dialog.info("+My Process\nFinished Processing\nPress OK to continue")
         """
         return _pybox.InfoWindow(text,str,*args,**kwargs)
 
@@ -4742,7 +7745,7 @@ class dialog :
 
         Parameters: 
 
-        ● text          \t- text to put into the window. 
+        - text          \t -- text to put into the window. 
 
         About Dialog Box Text
 
@@ -4751,10 +7754,10 @@ class dialog :
 
         Examples:
 
-                \tpybox.dialog.msgbox("Press OK to continue")
-                \tpybox.dialog.msgbox("+Information Window\nPress OK to continue")
-                \tpybox.dialog.msgbox("Finished Processing\nPress OK to continue")
-                \tpybox.dialog.msgbox("+My Process\nFinished Processing\nPress OK to continue")
+                \t -pybox.dialog.msgbox("Press OK to continue")
+                \t -pybox.dialog.msgbox("+Information Window\nPress OK to continue")
+                \t -pybox.dialog.msgbox("Finished Processing\nPress OK to continue")
+                \t -pybox.dialog.msgbox("+My Process\nFinished Processing\nPress OK to continue")
         """
         return _pybox.InfoWindow(text,str,*args,**kwargs)
 
@@ -4764,7 +7767,7 @@ class dialog :
 
         Parameters: 
 
-        ● text          \t- text to put into the window. 
+        - text          \t -- text to put into the window. 
 
         Returns: True if "Yes" was input, or False if the No was pressed. 
 
@@ -4775,10 +7778,10 @@ class dialog :
 
         Examples:
 
-                \tpybox.dialog.msgbox_yesno("Would you like to continue?")
-                \tpybox.dialog.msgbox_yesno("+Yes No Window\nWould you like to continue?")
-                \tpybox.dialog.msgbox_yesno("Finished Processing\nWould you like to continue?")
-                \tpybox.dialog.msgbox_yesno("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit.")
+                \t -pybox.dialog.msgbox_yesno("Would you like to continue?")
+                \t -pybox.dialog.msgbox_yesno("+Yes No Window\nWould you like to continue?")
+                \t -pybox.dialog.msgbox_yesno("Finished Processing\nWould you like to continue?")
+                \t -pybox.dialog.msgbox_yesno("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit.")
 
         """
         return _pybox.YesNoWindow(text,str,*args,**kwargs)
@@ -4789,7 +7792,7 @@ class dialog :
 
         Parameters: 
 
-        ● text          \t- text to put into the window. 
+        - text          \t -- text to put into the window. 
 
         Returns: True if "Yes" was input, or False if the No was pressed. 
                  Use "pybox.dialog.WasCancelled() or pybox.WasCancelled() to determine if the Cancel button was pressed.
@@ -4801,10 +7804,10 @@ class dialog :
 
         Examples:
 
-                \tpybox.dialog.msgbox_yesnocancel("Would you like to continue?")
-                \tpybox.dialog.msgbox_yesnocancel("+Yes No Window\nWould you like to continue?")
-                \tpybox.dialog.msgbox_yesnocancel("Finished Processing\nWould you like to continue?")
-                \tpybox.dialog.msgbox_yesnocancel("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit,Cancel to Exit.")
+                \t -pybox.dialog.msgbox_yesnocancel("Would you like to continue?")
+                \t -pybox.dialog.msgbox_yesnocancel("+Yes No Window\nWould you like to continue?")
+                \t -pybox.dialog.msgbox_yesnocancel("Finished Processing\nWould you like to continue?")
+                \t -pybox.dialog.msgbox_yesnocancel("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit,Cancel to Exit.")
 
         """        
         return _pybox.YesNoCancelWindow(text,str,*args,**kwargs)
@@ -4815,7 +7818,7 @@ class dialog :
 
         Parameters: 
 
-        ● text          \t- text to put into the window. 
+        - text          \t -- text to put into the window. 
 
         Returns: True if "Ok" was input, or False if the Cancel was pressed. 
                  Use "pybox.dialog.WasCancelled() or pybox.WasCancelled() to determine if the Cancel button was pressed.
@@ -4827,10 +7830,10 @@ class dialog :
 
         Examples:
 
-                \tpybox.dialog.msgbox_okcancel("Would you like to continue?")
-                \tpybox.dialog.msgbox_okcancel("+Yes No Window\nWould you like to continue?")
-                \tpybox.dialog.msgbox_okcancel("Finished Processing\nWould you like to continue?")
-                \tpybox.dialog.msgbox_okcancel("+My Process\nWould you like to Continue?\nPress Yes to continue or Cancel to quit.")
+                \t -pybox.dialog.msgbox_okcancel("Would you like to continue?")
+                \t -pybox.dialog.msgbox_okcancel("+Yes No Window\nWould you like to continue?")
+                \t -pybox.dialog.msgbox_okcancel("Finished Processing\nWould you like to continue?")
+                \t -pybox.dialog.msgbox_okcancel("+My Process\nWould you like to Continue?\nPress Yes to continue or Cancel to quit.")
 
         """                
         return _pybox.OkCancelWindow(text,str,*args,**kwargs)
@@ -4843,7 +7846,7 @@ class dialog :
 
         Parameters: 
 
-        ● text          \t- text to put into the window. 
+        - text          \t -- text to put into the window. 
 
         About Dialog Box Text
 
@@ -4852,10 +7855,10 @@ class dialog :
 
         Examples:
 
-                \tpybox.dialog.quick_button("Press OK to continue")
-                \tpybox.dialog.quick_button("+Information Window\nPress OK to continue")
-                \tpybox.dialog.quick_button("Finished Processing\nPress OK to continue")
-                \tpybox.dialog.quick_button("+My Process\nFinished Processing\nPress OK to continue")
+                \t -pybox.dialog.quick_button("Press OK to continue")
+                \t -pybox.dialog.quick_button("+Information Window\nPress OK to continue")
+                \t -pybox.dialog.quick_button("Finished Processing\nPress OK to continue")
+                \t -pybox.dialog.quick_button("+My Process\nFinished Processing\nPress OK to continue")
         """        
         return _pybox.InfoWindow(text,title,*args)
 
@@ -4865,18 +7868,18 @@ class dialog :
         
         Parameters:
 
-        ● text          \t - [optional] text to display in the Please Wait Window. If multiple lines are used, the first line displays in a larger font.
-        ● cancelok      \t - [optional] if specified, a "cancel" button.  This can be checked with PleaseWaitCanceled() in the event loop.
+        - text          \t - - [optional] text to display in the Please Wait Window. If multiple lines are used, the first line displays in a larger font.
+        - cancelok      \t - - [optional] if specified, a "cancel" button.  This can be checked with PleaseWaitCanceled() in the event loop.
 
         Pybox options can be included.  Some various options are as follows:
 
-        ● ProgressBar         \t- Adds a progress bar to the please wait window.  This can be set from 0-100% with PleaseWaitSetProgress()
+        - ProgressBar         \t -- Adds a progress bar to the please wait window.  This can be set from 0-100% with PleaseWaitSetProgress()
 
         Examples:
 
-                \tpybox.dialog.please_wait()
-                \tpybox.dialog.please_wait("Wait for process to finish")
-                \tpybox.dialog.please_wait("Wait for process to finish\\nPress cancel to abort",True,opt.progresbar())
+                \t -pybox.dialog.please_wait()
+                \t -pybox.dialog.please_wait("Wait for process to finish")
+                \t -pybox.dialog.please_wait("Wait for process to finish\\nPress cancel to abort",True,opt.progresbar())
         """
         return _pybox.PleaseWaitWindow(text,opt.cancelok(cancelok),*args,**kwargs)
 
@@ -4892,7 +7895,7 @@ class dialog :
         
         Parameters:
 
-        ● percent          \t - Percent (0-100) complete.
+        - percent          \t - - Percent (0-100) complete.
 
         """
         return _pybox.PleaseWaitSetProgress(percent)
@@ -4930,19 +7933,19 @@ class dialog :
 
         Options:
 
-        text        \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                    \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+        text        \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                    \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range         \tSet a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
-        ● Default       \tSets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-        ● NoCancel      \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                        \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
+        - Range         \t -Set a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
+        - Default       \t -Sets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+        - NoCancel      \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                        \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
 
-        Examples:       \tMy Value = pybox.get_integer("Enter a number")
-                        \tMy Value = pybox.get_integer("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
-                        \tMy Value = pybox.get_integer("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
+        Examples:       \t -My Value = pybox.get_integer("Enter a number")
+                        \t -My Value = pybox.get_integer("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
+                        \t -My Value = pybox.get_integer("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
         """    
         return _pybox.GetInteger(text,*args,**kwargs)
 
@@ -4953,19 +7956,19 @@ class dialog :
 
         Parameters:
 
-        ● text          \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                        \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+        - text          \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                        \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Range         \tSet a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
-        ● Default       \tSets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-        ● NoCancel      \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                        \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
+        - Range         \t -Set a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
+        - Default       \t -Sets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+        - NoCancel      \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                        \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
 
-        Examples:       \tMy Value = pybox.get_float("Enter a number")
-                        \tMy Value = pybox.get_float("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
-                        \tMy Value = pybox.get_float("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
+        Examples:       \t -My Value = pybox.get_float("Enter a number")
+                        \t -My Value = pybox.get_float("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
+                        \t -My Value = pybox.get_float("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
         """        
         return _pybox.GetFloat(text,*args,**kwargs)
 
@@ -4979,14 +7982,14 @@ class dialog :
 
         Parameters:
 
-        ● text          \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                        \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+        - text          \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                        \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
         Keywords and Pybox options can be included.  Some various options are as follows:
 
-        ● Default       \tSets the default text.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-        ● NoCancel      \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                        \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter some text (a control-C may be pressed to stop the program.
+        - Default       \t -Sets the default text.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+        - NoCancel      \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                        \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter some text (a control-C may be pressed to stop the program.
         """
         return _pybox.GetString(text,*args,**kwargs)
 
@@ -5000,12 +8003,12 @@ class dialog :
 
         Parameters:
 
-        ● filetypes     \t- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
+        - filetypes     \t -- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
 
         Examples: 
-                \tpybox.get_open_file()
-                \tpybox.get_open_file("*.bmp")
-                \tpybox.get_open_file("*.bmp;*.png;*.jpg")
+                \t -pybox.get_open_file()
+                \t -pybox.get_open_file("*.bmp")
+                \t -pybox.get_open_file("*.bmp;*.png;*.jpg")
 
         """
         return _pybox.GetOpenFile(filetypes)
@@ -5021,16 +8024,16 @@ class dialog :
 
         Parameters:
 
-        ● filetypes     \t- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
+        - filetypes     \t -- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
 
         Examples: 
-                \tpybox.get_save_file()
-                \tpybox.get_save_file("*.bmp")
-                \tpybox.get_save_file("*.bmp;*.png;*.jpg")
+                \t -pybox.get_save_file()
+                \t -pybox.get_save_file("*.bmp")
+                \t -pybox.get_save_file("*.bmp;*.png;*.jpg")
 
         """
         return _pybox.GetSaveFile(filetypes)
-
+                       
 class CQuickForm :
     """
     Pybox Quick Form Class
@@ -5041,15 +8044,15 @@ class CQuickForm :
 
     The Windows provided are as follows: 
 
-    ● main      \t- The main window is the top-level window that hold the two (or more) innerwindows, label window, etc. 
-                    \t The main window can be used to check for window closure (of the main window), or to move and set the size of the overall window, as
-                    \t as well as other functions.
+    - main      \t -- The main window is the top-level window that hold the two (or more) innerwindows, label window, etc. 
+                    \t - The main window can be used to check for window closure (of the main window), or to move and set the size of the overall window, as
+                    \t - as well as other functions.
 
-    ● win       \t- This is the main 'blank' or 'canvas' window that acts as a normal window.  Items can be drawn in this window, and other window can be embedded within
-                    \t this window (i.e. ChildWindow()).  Any regular window function is available in this window -- it's simply a regular window embedded into the Main window
+    - win       \t -- This is the main 'blank' or 'canvas' window that acts as a normal window.  Items can be drawn in this window, and other window can be embedded within
+                    \t - this window (i.e. ChildWindow()).  Any regular window function is available in this window -- it's simply a regular window embedded into the Main window
 
-    ● dev       \t- This is a Dev Controls Window that is embedded in the main window, typically to the left of the 'Win' window.   With this window, you can easily add controls
-                    \t such as buttons, sliders, small window, list boxes, text widgets, etc. -- all with one line of code. 
+    - dev       \t -- This is a Dev Controls Window that is embedded in the main window, typically to the left of the 'Win' window.   With this window, you can easily add controls
+                    \t - such as buttons, sliders, small window, list boxes, text widgets, etc. -- all with one line of code. 
 
     See: pybox.QuickForm() to start a Quick Form Window.  Also see pybox.NewWindow() to create a standalone window, as well as the pybox Dev functions to create standalone controls
     pybox.DevButton("Press Me!")
@@ -5087,23 +8090,45 @@ def get_hue_color(deg : int) -> RgbColor :
 
     Parameters
 
-    ● deg      \t- Input degrees, from 0-360. 
+    - deg      \t -- Input degrees, from 0-360. 
 
     Notable Values:
 
-    ● 0     \t-Red.  Same as GetHueColor(360)
-    ● 60    \t-Purple / Magenta
-    ● 120   \t-Blue
-    ● 180   \t-Cyan
-    ● 240   \t-Green
-    ● 300   \t-Yellow
+    - 0     \t --Red.  Same as GetHueColor(360)
+    - 60    \t --Purple / Magenta
+    - 120   \t --Blue
+    - 180   \t --Cyan
+    - 240   \t --Green
+    - 300   \t --Yellow
 
     Returns: A pybox RgbColor object consisting of a Red, Green, and Blue value
     """
     color = _pybox.FromHSL(deg)
     return RgbColor(color[0],color[1],color[2])
 
-def set_debug(mode : int = 3) -> bool :
+#def set_debug(mode : int = 3) -> bool :
+#    """
+#    Sets the debug mode for pybox and all pybox widgets.
+#
+#    When ON, debug messages will appear in the console window showing the module, function and informational or debug message.
+#    
+#    Debug Modes:
+#    
+#    - 0     \t -- Debug Off (default)
+#    - 1     \t -- Info -> Prints informational items to know about, but not errors per-se.
+#    - 2     \t -- Error -> In addition to informational messages, this will also show internal error messages if a call fails and aborts the program.
+#    - 3     \t -- Debug -> (experimental) Shows all Info & Error messages, as well as internal development debug messages. 
+#
+#    Any debug level will also show Fatal errors (errors such as parameter errors that cause program termination).
+#
+#    Examples:
+#
+#    pybox.set_debug(2)  --> Show all Info and Error messages
+#    pybox.set_debug(0)  --> Set debug OFF (default)
+#    """
+#    _pybox.SetDebug(mode)
+
+def set_debug(mode : str) -> bool :
     """
     Sets the debug mode for pybox and all pybox widgets.
 
@@ -5111,42 +8136,22 @@ def set_debug(mode : int = 3) -> bool :
     
     Debug Modes:
     
-    ● 0     \t- Debug Off (default)
-    ● 1     \t- Info -> Prints informational items to know about, but not errors per-se.
-    ● 2     \t- Error -> In addition to informational messages, this will also show internal error messages if a call fails and aborts the program.
-    ● 3     \t- Debug -> (experimental) Shows all Info & Error messages, as well as internal development debug messages. 
+    - "off"         \t - Debug Off (default)
+    - "Info"        \t - Info -> Prints informational items to know about, but not errors per-se.
+    - "Verbose"     \t - Info -> Prints informational items to know about, with more details.
+    - "Warnings"    \t - Warnings -> In addition to informational messages, this will also show warning messages if a call fails and aborts the program.
+    - "Error"       \t - Error -> In addition to informational messages, this will also show internal error messages if a call fails and aborts the program.
+    - "_debug"      \t - Debug (note the "_" in "_debug) -> (experimental) Shows all Info & Error messages, as well as internal development debug messages. 
 
     Any debug level will also show Fatal errors (errors such as parameter errors that cause program termination).
 
     Examples:
 
-    pybox.set_debug(2)  --> Show all Info and Error messages
-    pybox.set_debug(0)  --> Set debug OFF (default)
+    pybox.set_debug("Info")  --> Show all Info and Error messages
+    pybox.set_debug("off")  --> Set debug OFF (default)
+    pybox.set_debug("_debug")  --> Set debug to "_debug", which prints everything, including internal debug information.
     """
-    _pybox.SetDebug(mode)
-
-def show_info(show : bool = True) -> bool :
-    """
-    Shows pybox information and warning messages to the console window.
-
-    This can be useful when some functions do not work properly (such as loading a bitmap) but don't
-    cause the program to stop.
-
-    Some functions to not stop program flow because they fail, as they are not fatal errors.
-    Info and Warning messages will show where a non-fatal issue has occured.
-
-    For example,
-           
-        pybox.set_cls_bitmap(my_bitmap) 
-
-    will not cause the program to stop of my_bitmap is not a valid bitmap.  Turning show_info() on will 
-    show that the bitmap was not valid.
-
-    use show_info(False) to turn off Info and Warning reporting.
-    see set_debug() for 
-    """
-    if True : set_debug(2)
-    else : set_debug(0)
+    _pybox.SetDebugStr(mode)
 
 def dev_set_config(*args,**kwargs) -> bool :
     """
@@ -5157,32 +8162,32 @@ def dev_set_config(*args,**kwargs) -> bool :
 
     set_config() works with the following keywords:
 
-    ● bgcolor         \tSets the background color of the dev window.  This can be a single color or a string with one or two colors (for a gradient)
-                      \tnote: this should be used before any controls are placed in the dev window. Also see dev_set_bgcolor() for more options
+    - bgcolor         \t -Sets the background color of the dev window.  This can be a single color or a string with one or two colors (for a gradient)
+                      \t -note: this should be used before any controls are placed in the dev window. Also see dev_set_bgcolor() for more options
 
-    ● bgbitmap        \tSets the bitmap of the dev window background.  This can be a pybox Cbitmap type, and bitmap array (i.e. opencv, etc.),
-                      \tor a text string with the location of the bitmap.
-                      \tnote: this should be used before any controls are placed in the dev window. Also see dev_set_bgbitmap() for more options.
+    - bgbitmap        \t -Sets the bitmap of the dev window background.  This can be a pybox Cbitmap type, and bitmap array (i.e. opencv, etc.),
+                      \t -or a text string with the location of the bitmap.
+                      \t -note: this should be used before any controls are placed in the dev window. Also see dev_set_bgbitmap() for more options.
 
-    ● ypos            \tSets the position of the next control.  This can be used to set the location of the first control when setting bgbitmap when the bitmap contains a top header.
+    - ypos            \t -Sets the position of the next control.  This can be used to set the location of the first control when setting bgbitmap when the bitmap contains a top header.
 
-    ● autoclose_x     \tSets the auto close 'x' button on or off.  By default, an 'x' is placed on the window to allow the user to close it.
+    - autoclose_x     \t -Sets the auto close 'x' button on or off.  By default, an 'x' is placed on the window to allow the user to close it.
                       \autoclose_x=false will turn this 'x' off and also prevent the 'x' from appearing when the Dev Window is the only window open during get_event() calls.
-                      \tsee the 'allowclose' option to set the 'x' visibility in other ways
+                      \t -see the 'allowclose' option to set the 'x' visibility in other ways
   
-    ● autoclose       \tWhen set to true, this will cause the Dev Window to close automatically when no other non-dev (or other primary) windows are open.
-                        \t otherwise, when set to false (default) the Dev Window will remain open when other windows are closed (with an 'x' placed for closure).
+    - autoclose       \t -When set to true, this will cause the Dev Window to close automatically when no other non-dev (or other primary) windows are open.
+                        \t - otherwise, when set to false (default) the Dev Window will remain open when other windows are closed (with an 'x' placed for closure).
 
-    ● closeable       \tSets the 'x' button on or off when multiple windows are open.  By default, the 'x' appears in all Dev Windows to allow the user
-                      \tto close it, at which time the window will automatically close. closeable=True will force the 'x' on the window.
+    - closeable       \t -Sets the 'x' button on or off when multiple windows are open.  By default, the 'x' appears in all Dev Windows to allow the user
+                      \t -to close it, at which time the window will automatically close. closeable=True will force the 'x' on the window.
 
-                      \tsetting closeable=false will remove the 'x' when there are non-Dev windows open. the 'x' will appear when no other windows are open
-                      \tto allow the user to close the window. See 'autoclose_x' option to disable the 'x' permanently.
+                      \t -setting closeable=false will remove the 'x' when there are non-Dev windows open. the 'x' will appear when no other windows are open
+                      \t -to allow the user to close the window. See 'autoclose_x' option to disable the 'x' permanently.
 
-    ● topbar          \tTurns the topbar off (when false). When topbar=false, the top title bar will not appear in the dev window.
-                        \tthis is used for setting the background color and bgbitmap to help personalize the dev window.
-                         \tnote --> topbar must be used before the bgbitmap or bgcolor option, otherwise it will have no effect.
-                       \tsee dev_set_bgbitmap() and dev_set_bgcolor() for more information
+    - topbar          \t -Turns the topbar off (when false). When topbar=false, the top title bar will not appear in the dev window.
+                        \t -this is used for setting the background color and bgbitmap to help personalize the dev window.
+                         \t -note --> topbar must be used before the bgbitmap or bgcolor option, otherwise it will have no effect.
+                       \t -see dev_set_bgbitmap() and dev_set_bgcolor() for more information
     """
     return _pybox.DevSetConfig(*args,**kwargs)
 
@@ -5205,7 +8210,7 @@ def dev_closed(add_closebutton : bool = False) -> bool :
 
     Parameters:
 
-        ● add_closebutton      \t- When 'true', a close button will be added as a control at the bottom of the dev window
+        - add_closebutton      \t -- When 'true', a close button will be added as a control at the bottom of the dev window
     """
     return _pybox.DevWindowClosed(add_closebutton)
 
@@ -5217,10 +8222,10 @@ def dev_set_bgcolor(color1,color2 = None,display_bar : bool = True) -> bool :
 
     Parameters:
 
-        ● color1      \t- Color of the background 
-        ● color2      \t- [optional] When given, this sets a gradient from color 1 to color 2
-        ● display_bar \t- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
-                      \t when set to False, the top display bar is removed and the bitmap starts at the top of the window.
+        - color1      \t -- Color of the background 
+        - color2      \t -- [optional] When given, this sets a gradient from color 1 to color 2
+        - display_bar \t -- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
+                      \t - when set to False, the top display bar is removed and the bitmap starts at the top of the window.
     About Colors
 
     Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
@@ -5246,13 +8251,13 @@ def dev_set_bgbitmap(bitmap,display_bar : bool = True,*args,**kwargs) -> bool :
 
     Parameters:
 
-        ● bitmap      \t- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
-        ● display_bar \t- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
+        - bitmap      \t -- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
+        - display_bar \t -- [optional] When set to True (default) the top display bar is kept and the bitmap is displayed underneath
 
     Other options
 
-        ● Pady      \t- opt.pady() or pady= can be used to set the position of the next control relative to the bottom of the bitmap.
-                    \t For example, pady(20) will add 20 pixels to the bottom of the bitmap for the next control
+        - Pady      \t -- opt.pady() or pady= can be used to set the position of the next control relative to the bottom of the bitmap.
+                    \t - For example, pady(20) will add 20 pixels to the bottom of the bitmap for the next control
 
                     This can be useful when a background bitmap has a header, so the first control can start underneath it.
 
@@ -5275,19 +8280,19 @@ def dev_bitmap(bitmap,text = None,*args,**kwargs) -> bool :
 
     Parameters:
 
-        ● bitmap      \t- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
-        ● text        \t- [optional] Text to place directly to the right of the bitmap.  Pybox options can be used
-                        \t to set the font and text color
+        - bitmap      \t -- The bitmap to display.  This can be a path to the bitmap or a loaded bitmap.
+        - text        \t -- [optional] Text to place directly to the right of the bitmap.  Pybox options can be used
+                        \t - to set the font and text color
 
                         The center of the text is aligned to be at the center vertical center of the bitmap. 
 
     Other options
 
-        ● font,textcolor       \t- These can set the font and color of the text. i.e. opt.textcolor("green") or opt.font(20)
-        ● pady                 \t- this will add to the Y value of the next control relative to the bottom of the bitmap or text
-                                \t (whichever hangs over more).  For example, pady(20) will add 20 pixels to the start of the next control.
+        - font,textcolor       \t -- These can set the font and color of the text. i.e. opt.textcolor("green") or opt.font(20)
+        - pady                 \t -- this will add to the Y value of the next control relative to the bottom of the bitmap or text
+                                \t - (whichever hangs over more).  For example, pady(20) will add 20 pixels to the start of the next control.
 
-                                \tThis can be useful when the bitmap (and text) is a header, to add space before the next control starts
+                                \t -This can be useful when the bitmap (and text) is a header, to add space before the next control starts
 
     Examples:
 
@@ -5297,8 +8302,13 @@ def dev_bitmap(bitmap,text = None,*args,**kwargs) -> bool :
     """
     return _pybox.DevBitmap(bitmap,text,*args,**kwargs)
 
+def dev_text(text = None,height=None,**kwargs) :
+    """
+    *** To be filled in ***
+    """
+    return Window(_pybox.DevText(text,height,**kwargs))
 
-def dev_text(text = None,*args,**kwargs) :
+def dev_text_widget(text = None,*args,**kwargs) :
     """
     Create a text widget int the Dev Window.    This is the same type of Text Widget that can be created in a regular
     window with window.text_widget(), but automatically placed and sized in the Dev Window. 
@@ -5310,22 +8320,22 @@ def dev_text(text = None,*args,**kwargs) :
     The Text Widget can be used to create static or dynamic text of any font size in the Dev Window.
     Parameters:
 
-    ● text          \t- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
-                    \t When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
-                    \t the text with spaces to reserve width.
+    - text          \t -- [optional] Sets the text of the widget.  This can be set later with textwidget.Write()
+                    \t - When text is entered, the text widget is created to the width of the text.  Use the width() parameter to set a width or pad
+                    \t - the text with spaces to reserve width.
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● textColor         \t Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
-    ● font              \t Sets the font of the text in the text widget
-    ● textCenter        \t Centers the text inside of the widget (which can be longer than the text itself).
-                            \t Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
-                            \t Text Widget and the text have been specificed separately.
+    - textColor         \t - Sets the text color of the widget (default is current window text color).  Same as opt.fgcolor()
+    - font              \t - Sets the font of the text in the text widget
+    - textCenter        \t - Centers the text inside of the widget (which can be longer than the text itself).
+                            \t - Use TextCenterX() and CenterX() together to make sure text is centered in the window. This is only needed if the Width of the
+                            \t - Text Widget and the text have been specificed separately.
 
 
     Examples:   
-                \tpybox.DevText(This is a text Widget)
-                \tpybox.DevText(This is a text Widget",opt.font(20),opt.textcolor("Yellow"))
+                \t -pybox.DevText(This is a text Widget)
+                \t -pybox.DevText(This is a text Widget",opt.font(20),opt.textcolor("Yellow"))
     """
     return CTextWidget(_pybox.DevTextWidget(text,*args,**kwargs))
 
@@ -5337,19 +8347,19 @@ def dev_slider(title : str = None,*args,**kwargs) :
 
     Parameters:
 
-    ● title     \t- Sets the title of the Slider
+    - title     \t -- Sets the title of the Slider
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● range             \t- Set the range of the slider.  The default range is (1,100)          
-    ● default           \t- Set the default value of the slider.  The edfault is (0)
-    ● textColor         \t- Sets the color of the label of the slider.
-    ● style("small")    \t- Sets a smaller slider handle
+    - range             \t -- Set the range of the slider.  The default range is (1,100)          
+    - default           \t -- Set the default value of the slider.  The edfault is (0)
+    - textColor         \t -- Sets the color of the label of the slider.
+    - style("small")    \t -- Sets a smaller slider handle
 
-    Examples:       \tpybox.dev_slider("This is a slider")
-                    \tpybox.dev_slider("This is a slider",opt.range(100,500),opt.default(200))
-                    \tpybox.dev_slider("This is a slider",opt.textColor("Yellow"),opt.valuecolor("red"),opt.style("small"))
-                    \tpybox.dev_slider("This is a slider",textColor=Yellow,valueColor=red,Style="small"        \t - (same as previous example)
+    Examples:       \t -pybox.dev_slider("This is a slider")
+                    \t -pybox.dev_slider("This is a slider",opt.range(100,500),opt.default(200))
+                    \t -pybox.dev_slider("This is a slider",opt.textColor("Yellow"),opt.valuecolor("red"),opt.style("small"))
+                    \t -pybox.dev_slider("This is a slider",textColor=Yellow,valueColor=red,Style="small"        \t - - (same as previous example)
     """
     return Slider(_pybox.DevSlider(title,*args,**kwargs))
 
@@ -5366,21 +8376,21 @@ def dev_slider_f(title : str = None,*args,**kwargs) :
 
     Parameters:
 
-    ● title     \t- Sets the title of the Slider
+    - title     \t -- Sets the title of the Slider
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● range             \t- Set the range of the slider.  The default range is (1,1.0)          
-    ● default           \t- Set the default value of the slider.  The edfault is (0)
-    ● textColor         \t- Sets the color of the label of the slider.
-    ● style("small")    \t- Sets a smaller slider handle
+    - range             \t -- Set the range of the slider.  The default range is (1,1.0)          
+    - default           \t -- Set the default value of the slider.  The edfault is (0)
+    - textColor         \t -- Sets the color of the label of the slider.
+    - style("small")    \t -- Sets a smaller slider handle
 
-    Examples:       \tpybox.dev_slider_f("This is a slider")
-                    \tpybox.dev_slider_f("This is a slider",opt.range(100,500),opt.default(200))
-                    \tpybox.dev_slider_f("This is a slider",opt.textColor("Yellow"),opt.valuecolor("red"),opt.style("small"))
-                    \tpybox.dev_slider_f("This is a slider",textColor="yellow",valueColor="red",Style="small")        \t - (same as previous example)
+    Examples:       \t -pybox.dev_slider_f("This is a slider")
+                    \t -pybox.dev_slider_f("This is a slider",opt.range(100,500),opt.default(200))
+                    \t -pybox.dev_slider_f("This is a slider",opt.textColor("Yellow"),opt.valuecolor("red"),opt.style("small"))
+                    \t -pybox.dev_slider_f("This is a slider",textColor="yellow",valueColor="red",Style="small")        \t - - (same as previous example)
     """
-    return Slider(_pybox.DevSlider(title,opt._opt__as_float(),*args,**kwargs))
+    return Slider(_pybox.DevSlider(title,asfloat=True,*args,**kwargs))
 
 def dev_checkbox(title : str = None,*args,**kwargs) -> Button :
     """
@@ -5389,16 +8399,16 @@ def dev_checkbox(title : str = None,*args,**kwargs) -> Button :
 
     Parameters:
 
-    ● title    \t- Sets the title of the checkbox 
+    - title    \t -- Sets the title of the checkbox 
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● Default    \t- Default(True) sets the check in the checkbox.  Default(False) leaves the checkbox unchecked.
+    - Default    \t -- Default(True) sets the check in the checkbox.  Default(False) leaves the checkbox unchecked.
 
     Examples:
-                \tMypybox.dev_checkbox("Check me!")
-                \tMypybox.dev_checkbox("Check me!",opt.default(True))
-                \tMypybox.dev_checkbox("Check me!",default=True)
+                \t -Mypybox.dev_checkbox("Check me!")
+                \t -Mypybox.dev_checkbox("Check me!",opt.default(True))
+                \t -Mypybox.dev_checkbox("Check me!",default=True)
     """
     return Button(_pybox.DevCheckbox(title,*args,**kwargs))
 
@@ -5410,16 +8420,16 @@ def dev_button(text : str,*args,**kwargs) -> Button :
 
     Parameters:
         
-    text        \t- Sets the text of the button. 
+    text        \t -- Sets the text of the button. 
 
     Keywords and Pybox options can be included.  Some various options are as follows:
 
-    ● Font     \t- Sets the font for the button text 
-    ● Style    \t- This can be a style of the default button or the name of a created button style.
+    - Font     \t -- Sets the font for the button text 
+    - Style    \t -- This can be a style of the default button or the name of a created button style.
 
 
-    Example:   \tpybox.dev_button("This is a button")
-                \tpybox.dev_button("This is a button",style="red")
+    Example:   \t -pybox.dev_button("This is a button")
+                \t -pybox.dev_button("This is a button",style="red")
     """
     return Button(_pybox.DevButton(text,*args,**kwargs))
 
@@ -5436,21 +8446,21 @@ def dev_combobox(text : str = None,titlecell : str = None,*args,**kwargs) -> Com
 
     Parameters:
 
-    ● text          \t- [optional] Initial text in the combobox.  This text can be one line or multiple lines representing multiple entries.  See examples.
-    ● titlecell     \t- [optional] Tells the combobox to display this string int the combobox tab when no item is selected.  Otherwise the first added item is displayed.
+    - text          \t -- [optional] Initial text in the combobox.  This text can be one line or multiple lines representing multiple entries.  See examples.
+    - titlecell     \t -- [optional] Tells the combobox to display this string int the combobox tab when no item is selected.  Otherwise the first added item is displayed.
 
     Keywords and Pybox options can be included.  Some various options are as follows:
 
-    ● Default    \t- Default selection.  This is the index to the default selection (0 is the first selection, 1 the second, etc.)
+    - Default    \t -- Default selection.  This is the index to the default selection (0 is the first selection, 1 the second, etc.)
 
     Examples:
 
-                \tMypybox.dev_combobox() 
-                \tMypybox.dev_combobox("First Item") 
-                \tMypybox.dev_combobox("First Item\\nSecond Item\\nThird Item") 
-                \tMypybox.dev_combobox(titlecell="This is a combobox") 
-                \tMypybox.dev_combobox("First Item\\nSecond Item\\nThird Item",default=2) 
-                \tMypybox.dev_combobox("First Item\\nSecond Item\\nThird Item",opt.default(2)) 
+                \t -Mypybox.dev_combobox() 
+                \t -Mypybox.dev_combobox("First Item") 
+                \t -Mypybox.dev_combobox("First Item\\nSecond Item\\nThird Item") 
+                \t -Mypybox.dev_combobox(titlecell="This is a combobox") 
+                \t -Mypybox.dev_combobox("First Item\\nSecond Item\\nThird Item",default=2) 
+                \t -Mypybox.dev_combobox("First Item\\nSecond Item\\nThird Item",opt.default(2)) 
     """
     return Combobox(_pybox.DevCombobox(text,opt.cb_titlecell(titlecell),*args,**kwargs))
 
@@ -5460,22 +8470,22 @@ def dev_inputbox(title : str = None,text : str = None,*args,**kwargs) -> InputBo
 
     Optional Parameters:
 
-    ● title         \t- [optional] Label of the input box (displays to the left), but can shorten the input box itself.
-    ● text          \t- [optional] This sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
+    - title         \t -- [optional] Label of the input box (displays to the left), but can shorten the input box itself.
+    - text          \t -- [optional] This sets the starting text for the input box.  Otheriwse the input box is left blank at first. 
 
     Keywords and Pybox options can be included.  Some various options are as follows:
 
-    ● numbersOnly   \t- Causes the input box to only accept numbers. 
-    ● readOnly      \t- Sets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
-    ● textColor     \t- Sets the color of the text in the input box
-    ● bgColor       \t- Sets the background color of the text in the input box
-    ● password      \t- Causes the input box to display '*' for all text.
-    ● winColors     \t- Sets the background input box color and text color to the current window color instead of the default white-and-black colors. 
-    ● thickBorder,recessed      \tThese are two different border styles that can be used.
+    - numbersOnly   \t -- Causes the input box to only accept numbers. 
+    - readOnly      \t -- Sets the input box as read only so it can be used as a way to place a large amount of text that can be copied.
+    - textColor     \t -- Sets the color of the text in the input box
+    - bgColor       \t -- Sets the background color of the text in the input box
+    - password      \t -- Causes the input box to display '*' for all text.
+    - winColors     \t -- Sets the background input box color and text color to the current window color instead of the default white-and-black colors. 
+    - thickBorder,recessed      \t -These are two different border styles that can be used.
 
-    Examples:   \tMyDevWindow.dev_inputbox("This is the title)          
-                \tMyDevWindow.dev_inputbox(text="This is the default text")
-                \tMyDevWindow.dev_inputbox("this is the title,"This is the default text",wincolors=True,thickborder=True())
+    Examples:   \t -MyDevWindow.dev_inputbox("This is the title)          
+                \t -MyDevWindow.dev_inputbox(text="This is the default text")
+                \t -MyDevWindow.dev_inputbox("this is the title,"This is the default text",wincolors=True,thickborder=True())
     """
     return InputBox(_pybox.DevInputBox(title,opt.default(text),*args,**kwargs))
 
@@ -5488,14 +8498,14 @@ def dev_window(title : str = None,numlines : int = None,*args,**kwargs) -> Windo
 
     Optional Parameters:
 
-    ● title         \t- [optional] Title of the window.  This displays above the window. The default is no title.
-    ● numlines      \t- [optional] Sets the number of lines for the default font in the window.  The default is 10 lines
+    - title         \t -- [optional] Title of the window.  This displays above the window. The default is no title.
+    - numlines      \t -- [optional] Sets the number of lines for the default font in the window.  The default is 10 lines
 
     Keywords and Pybox options can be included.  Some various options are as follows:
 
-    ● font          \t- Set the font for the window
-    ● textColor     \t- Set the text/foreground color for the window
-    ● bgColor       \t- Set the background color for the window. 
+    - font          \t -- Set the font for the window
+    - textColor     \t -- Set the text/foreground color for the window
+    - bgColor       \t -- Set the background color for the window. 
     """
     return Window(_pybox.DevWindow(title,numlines,*args,**kwargs))
 
@@ -5510,25 +8520,26 @@ def dev_radiobuttons(label : str,buttons : str,*args,**kwargs)  -> RadioButtonGr
 
     Parameters
 
-    ● title                 \t - The title/label of the radio button group.  A box is drawn around the radio buttons with the title name.
-    ● buttons       \t - The buttons to place in the checkbox group.  This can be one more more buttons, each button name separated by a a newline,
-                                \tfor example, "button" for just one button, or "button 1\\nbutton 2\\nbutton 3" for 3 radio buttons.
+    - title                 \t - - The title/label of the radio button group.  A box is drawn around the radio buttons with the title name.
+    - buttons       \t - - The buttons to place in the checkbox group.  This can be one more more buttons, each button name separated by a a newline,
+                                \t -for example, "button" for just one button, or "button 1\\nbutton 2\\nbutton 3" for 3 radio buttons.
 
     Keywords and Pybox options can be included.  Some various options are as follows:
 
-    ● Default       \t- Sets the default index for the highlighted button.  There can only be one active radio button.  Default sets the
-                        \t index of the active/highlighted button (i.e. 0 = first button, 1 = second button, etc.)
+    - Default       \t -- Sets the default index for the highlighted button.  There can only be one active radio button.  Default sets the
+                        \t - index of the active/highlighted button (i.e. 0 = first button, 1 = second button, etc.)
 
     Examples:        
-                    \tpybox.dev_radio_buttons("These are radio buttons","This is the button")
-                    \tpybox.dev_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3")
-                    \tpybox.dev_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3",opt.default(1))
+                    \t -pybox.dev_radio_buttons("These are radio buttons","This is the button")
+                    \t -pybox.dev_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3")
+                    \t -pybox.dev_radio_buttons("These are radio buttons","button 1\\nbutton2\\nbutton 3",opt.default(1))
 
     """
     return RadioButtonGroup(_pybox.DevRadioButtons(buttons,opt.label(label),*args,**kwargs))
 
 def dev_auto_close(auto_close : bool = True) -> bool :
     """
+    *** This function is deprecated ***\n
     Sets the window to close automatically when there are no other windows open.
     By default, the Dev Window is a 'primary' window and won't close when
     functions such as WaitPending() or GetEvent() are used.
@@ -5538,13 +8549,27 @@ def dev_auto_close(auto_close : bool = True) -> bool :
     """
     return _pybox.DevAutoClose(auto_close)
 
+
+def dev_allow_auto_close(auto_close : bool = True) -> bool :
+    """
+    When set to False (e.g. dev_allow_auto_close(False), this will prevent the dev window closing when there are no other
+    window open.
+    
+    By Default, when the last primary window is closed, the program will exit even if a Dev Window is open.   When this is set to False \
+The dev window is left open until it is closed by the program or user.
+
+    - note: If there a dev window is open when there are no other windows open, this function is not needed. In this case, the Dev Window \
+will set itself to not close automatically since it recognized no other primary windows were open when created.
+    """
+    return _pybox.DevAllowAutoClose(auto_close)
+
 def dev_set_location(x,y) -> bool :
     """
     Sets the location of the Dev Window.  See dev_set_location_l() to use a list, tuple or array for the location.
 
     Parameters
 
-    ● x,y                 \t - New location of the Dev Window
+    - x,y                 \t - - New location of the Dev Window
 
     """
     return _pybox.DevSetLocation(int(x),int(y))
@@ -5555,7 +8580,7 @@ def dev_set_location_l(at : list) -> bool :
     
     Parameters
 
-    ● x,y                 \t - New location of the Dev Window
+    - x,y                 \t - - New location of the Dev Window
 
     """
     return _pybox.DevSetLocation(int(at[0]),int(at[1]))
@@ -5609,9 +8634,9 @@ def set_event_callback(callback : Callable[[None],None]) -> bool :
 
         The get_event() loop is passive and does not share the same concern. 
 
-    ● How to define the EventCallback   \t- Define the EventCallback as a simple function with no parameters and no return value, i.e. "MyFunction()". See example below.     
-    ● Handle Events Where you Want      \t- You can choose which events to handle in the Event Callback.  For example, handle only those necessary, and the rest in the GetEventLoop().
-    ● Using the GetEvent() loop is easier and is not less efficient than using a callback.
+    - How to define the EventCallback   \t -- Define the EventCallback as a simple function with no parameters and no return value, i.e. "MyFunction()". See example below.     
+    - Handle Events Where you Want      \t -- You can choose which events to handle in the Event Callback.  For example, handle only those necessary, and the rest in the GetEventLoop().
+    - Using the GetEvent() loop is easier and is not less efficient than using a callback.
 
     When to use the Event Callback vs. the get_event() loop
 
@@ -5649,7 +8674,7 @@ def exit_button(Message = None) :
     See win.exit_button() to put an exit button at the bottom of a window.
     Parameters
 
-    ● Message       \t- [optional].  Message to put in the window above the button.  If not specified, a default "program is finished" message is place in the window.
+    - Message       \t -- [optional].  Message to put in the window above the button.  If not specified, a default "program is finished" message is place in the window.
 
     About exit_button() and Displays using Windows and Graphics
 
@@ -5698,20 +8723,20 @@ def debug_write(string : str) -> bool :
 
     As with the console output functions, you can use colors to set the color of the output:
 
-        ● Use {color} to start a color and {} to end the color. 
+        - Use {color} to start a color and {} to end the color. 
             Example: pybox.DebugWrite("This is {red}in the color red{}")
-        ● You can use the first lett of the color, and do not need the closing {} if its at the end of the line:
+        - You can use the first lett of the color, and do not need the closing {} if its at the end of the line:
             Example: pybox.DebugWrite("This is {r}in the color red")
-        ● Multiple colors can be used.
-            \tExample: pybox.DebugWrite("This {c}is in cyan{} and this {r}is in the color red")
-        ● "{x=<number>}" to set a column (does not use closing {}): Example: pybox.debug.Write("This {x=40}is at column 40")
-        ● "{bg=<color>"} to set the background color: Example: pybox.debug.Write("This {bg=r}background{} is in red") 
-        ● "{lbg=<color>} at the begining of the line to make the entire line the background color: 
-            \tExample: pybox.debug.Write("{lbg=blue}This entire line is in a blue background")
-        ● {bold} or {bld} for bold
-        ● {italic} or {i} for italic
-        ● {bolditalic} or {bi} for bold and italic
-        ● {div} for dividing line (i.e. DebugWrite("{div}\n") 
+        - Multiple colors can be used.
+            \t -Example: pybox.DebugWrite("This {c}is in cyan{} and this {r}is in the color red")
+        - "{x=<number>}" to set a column (does not use closing {}): Example: pybox.debug.Write("This {x=40}is at column 40")
+        - "{bg=<color>"} to set the background color: Example: pybox.debug.Write("This {bg=r}background{} is in red") 
+        - "{lbg=<color>} at the begining of the line to make the entire line the background color: 
+            \t -Example: pybox.debug.Write("{lbg=blue}This entire line is in a blue background")
+        - {bold} or {bld} for bold
+        - {italic} or {i} for italic
+        - {bolditalic} or {bi} for bold and italic
+        - {div} for dividing line (i.e. DebugWrite("{div}\n") 
 
         Available Colors: Black, White, Gray, red, green, yellow, blue, cyan, purple/magenta,
 
@@ -5760,6 +8785,34 @@ def get_color(color : str) -> RgbColor :
     c = _pybox.GetColor(color)
     return RgbColor(c[0],c[1],c[2])
 
+def set_defaults_file(file : str) -> bool :
+    """
+    ** This function to be documented in more detail at a later time **
+
+    The default file can set the clear screen style, colors, or bitmap; the dev window bitmap backhground, as well as a number of other
+    settings that can change the default display and behavior as Sagebox initializes windows and controls.
+    
+    This function sets the primary default file. If Sagebox has not yet been initialized, this filename is placed as the first
+    file search as the default ini file.
+
+    If Sagebox has already been initialized, the new file is read immediately and replaces any current defaults.
+    
+    ** note: file must contain path to ini file including the ini file name, e.g. "c:\mypath\subdir\defaults.ini", etc.
+    
+    Paramaters: 
+    
+    file - full-path name of file to use as defaults file.
+    """
+    return _pybox.SetDefaultsFile(file)
+    
+def disable_defaults() -> None :
+    """
+    Disables processing of any default files that Sagebox may load. 
+    
+    ** note:  That can be called at any time, but should be performed before opening any windows or controls. 
+    """
+    return _pybox.DisableDefaults()
+    
 def quick_form(type : str = None, title : str = None, size=None,*args,**kwargs) -> CQuickForm :
     """
     Creates a "QuickForm" window consisting of a Main Window, Application Window (i.e. Canvas), and a Dev Controls window for controls. 
@@ -5771,37 +8824,37 @@ def quick_form(type : str = None, title : str = None, size=None,*args,**kwargs) 
 
     Windows Created 
 
-        ● main      \t- The main window is the top-level window that hold the two (or more) innerwindows, label window, etc. 
-        ● win       \t- This is the main 'blank' or 'canvas' window that acts as a normal window.  Items can be drawn in this window, and other window can be embedded within
-                        \t this window (i.e. ChildWindow()).  Any regular window function is available in this window -- it's simply a regular window embedded into the Main window
-        ● dev       \t- This is a Dev Controls Window that is embedded in the main window, typically to the left of the 'Win' window.   With this window, you can easily add controls
-                        \t such as buttons, sliders, small window, list boxes, text widgets, etc. -- all with one line of code. 
+        - main      \t -- The main window is the top-level window that hold the two (or more) innerwindows, label window, etc. 
+        - win       \t -- This is the main 'blank' or 'canvas' window that acts as a normal window.  Items can be drawn in this window, and other window can be embedded within
+                        \t - this window (i.e. ChildWindow()).  Any regular window function is available in this window -- it's simply a regular window embedded into the Main window
+        - dev       \t -- This is a Dev Controls Window that is embedded in the main window, typically to the left of the 'Win' window.   With this window, you can easily add controls
+                        \t - such as buttons, sliders, small window, list boxes, text widgets, etc. -- all with one line of code. 
     Parameters:
 
-        ● type      \t- [optional] A String with type information about the QuickForm. Separate different values with ','
-                        \t● Filled      \t (default) Sets the Window and Dev Window next to each other with no borders
-                        \t● Borders     \t Puts a border around the application window
-                        \t● Plain       \t Does not include the Dev Window.  When a title is not used, this is the same as using NewWindow()
+        - type      \t -- [optional] A String with type information about the QuickForm. Separate different values with ','
+                        \t -- Filled      \t - (default) Sets the Window and Dev Window next to each other with no borders
+                        \t -- Borders     \t - Puts a border around the application window
+                        \t -- Plain       \t - Does not include the Dev Window.  When a title is not used, this is the same as using NewWindow()
 
     Additional Keyword parameters (i.e. QuickForm("label='MyLabel',ResizeOk") or QuickForm(label="MyLabel",resizeok=true)
 
-        ● Label     \t- Sets a label that will appear in the Main Window above the application window. i.e. (Label="this is my program")
-        ● ResizeOk  \t- [optional] Allows the Main window to be resized by dragging the borders.  It can also be maximized. Otherwise, the window cannot be resized by the user.
-        ● RealTime  \t- [optional] Sets the main Quick form canvas window as a Realtime window intended to be used for real-time graphics. 
-                        \t see opt.realtime() for more information
-        ● Hidden    \t- [optional] Tells QuickForm() to keep the window hidden when it is created.  The program then must call Main.Show() to show the window.  
-                        \tThe default is to show the window on creation.
-        ● NoPadding \t- [optional] for "filled" (default) window type, this removes the few pixels of space between the Win and Dev windows to merge them together with no break.
-                        \t This can be useful when changing the Win background color to a color other than the Main window background color.
-        ● NoAutoUpdate  \t This will cause the Application Window (i.e. Win) to not update.  The program must then use the Win.Update() function to update any graphics sent to the window.    
-        ● <more options>    \t See QuickForm documentation for more options available.
+        - Label     \t -- Sets a label that will appear in the Main Window above the application window. i.e. (Label="this is my program")
+        - ResizeOk  \t -- [optional] Allows the Main window to be resized by dragging the borders.  It can also be maximized. Otherwise, the window cannot be resized by the user.
+        - RealTime  \t -- [optional] Sets the main Quick form canvas window as a Realtime window intended to be used for real-time graphics. 
+                        \t - see opt.realtime() for more information
+        - Hidden    \t -- [optional] Tells QuickForm() to keep the window hidden when it is created.  The program then must call Main.Show() to show the window.  
+                        \t -The default is to show the window on creation.
+        - NoPadding \t -- [optional] for "filled" (default) window type, this removes the few pixels of space between the Win and Dev windows to merge them together with no break.
+                        \t - This can be useful when changing the Win background color to a color other than the Main window background color.
+        - NoAutoUpdate  \t - This will cause the Application Window (i.e. Win) to not update.  The program must then use the Win.Update() function to update any graphics sent to the window.    
+        - <more options>    \t - See QuickForm documentation for more options available.
 
     Examples: 
          
-        \tqf = pybox.quick_form()
+        \t -qf = pybox.quick_form()
         \my_button = qf.dev.new_button("Press Me")
-        \tqf.win.Write("Hello World")
-        \tqf.main.create_menu("File,Save,About,Save")
+        \t -qf.win.Write("Hello World")
+        \t -qf.main.create_menu("File,Save,About,Save")
 
         qf = pybox.quick_form(opt.label("This is the label in the window"))
         qf = pybox.quick_form("resizeok,grayblue","This is the window title",hidden=True)
@@ -5838,7 +8891,7 @@ def new_devwindow(at = None,*args,**kwargs) :
 
     Parameters:
 
-    ● at            \t [optional] Where to place the Dev Window.  When omitted, the new Dev Window is automatically placed in the window.
+    - at            \t - [optional] Where to place the Dev Window.  When omitted, the new Dev Window is automatically placed in the window.
 
     """
     return DevControl(_pybox.NewDevWindow(opt.at(at),*args,**kwargs))
@@ -5849,18 +8902,18 @@ def new_window(title : str=None,size=None,at=None,*args,**kwargs) -> Window     
 
     Parameters:
     
-    ● title         \t -[optional] Title of window (in title bar)
-    ● at            \t -[optional] X,Y location of window
-    ● size          \t -[optional] Size = Size of Window
+    - title             \t\t - -[optional] Title of window (in title bar)
+    - at                \t\t - -[optional] X,Y location of window
+    - size              \t\t - -[optional] Size of Window, i.e. size=(1000,4000)
 
     Keywords and Pybox options can be included.  Some various options are as follows:
 
-    ● Font          \t- Sets the default font for the window, i.e. "Font(40)" or "Font("Arial,40")"
-    ● bgColor       \t- Sets the background color of the window (i.e. "bgColor("Red")" or "bgColor(PanColor.ForestGreen())")
-    ● bgGradient    \t- Sets a gradient background color of the window. Such as "bgGradient("black","blue").  You can also use Cls() to clear the window.
-    ● TextColor     \t- Sets the text/foreground color of the window
-    ● NoAutoUpdate  \t- Tells the window to not update automatically when graphics are placed in the window.  The program must call Update().  This can prevent flashing in real-time drawing.
-    ● ResizeOk      \t- Allows the window to be resized by the user. 
+    - Font          \t -- Sets the default font for the window, i.e. "Font(40)" or "Font("Arial,40")"
+    - bgColor       \t -- Sets the background color of the window (i.e. "bgColor("Red")" or "bgColor(PanColor.ForestGreen())")
+    - bgGradient    \t -- Sets a gradient background color of the window. Such as "bgGradient("black","blue").  You can also use Cls() to clear the window.
+    - TextColor     \t -- Sets the text/foreground color of the window
+    - NoAutoUpdate  \t -- Tells the window to not update automatically when graphics are placed in the window.  The program must call Update().  This can prevent flashing in real-time drawing.
+    - ResizeOk      \t -- Allows the window to be resized by the user. 
 
     Examples:
 
@@ -5879,19 +8932,19 @@ def get_integer(text=None,*args,**kwargs) -> int  :
 
     Options:
 
-    text        \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+    text        \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
     Keywords Pybox options can be included.  Some various options are as follows:
 
-    ● Range         \tSet a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
-    ● Default       \tSets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-    ● NoCancel      \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                    \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
+    - Range         \t -Set a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
+    - Default       \t -Sets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+    - NoCancel      \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                    \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
 
-    Examples:       \tMy Value = pybox.GetInteger("Enter a number")
-                    \tMy Value = pybox.GetInteger("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
-                    \tMy Value = pybox.GetInteger("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
+    Examples:       \t -My Value = pybox.GetInteger("Enter a number")
+                    \t -My Value = pybox.GetInteger("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
+                    \t -My Value = pybox.GetInteger("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
     """    
     return _pybox.GetInteger(text,*args,**kwargs)
 
@@ -5902,19 +8955,19 @@ def get_float(text=None,*args,**kwargs) -> float  :
 
     Parameters:
 
-    ● text          \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                    \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+    - text          \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                    \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
     Keywords Pybox options can be included.  Some various options are as follows:
 
-    ● Range         \tSet a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
-    ● Default       \tSets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-    ● NoCancel      \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                    \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
+    - Range         \t -Set a range for the input.  This will not allow an input outside of the range, but can allow the user to press return
+    - Default       \t -Sets the default value.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+    - NoCancel      \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                    \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter a value (a control-C may be pressed to stop the program.
 
-    Examples:       \tMy Value = pybox.GetFloat("Enter a number")
-                    \tMy Value = pybox.GetFloat("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
-                    \tMy Value = pybox.GetFloat("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
+    Examples:       \t -My Value = pybox.GetFloat("Enter a number")
+                    \t -My Value = pybox.GetFloat("+This is the title bar title\\nEnter a number",range=(1,100),nocancel=True)
+                    \t -My Value = pybox.GetFloat("Enter a number\nNumber should be between 1 and 100,range=(1,100),default=10)
     """        
     return _pybox.GetFloat(text,*args,**kwargs)
 
@@ -5928,14 +8981,14 @@ def get_string(text=None,*args,**kwargs) -> str  :
 
     Parameters:
 
-    ● text          \t [optional] The text to put as a header in the box.  You can use multiple lines.
-                    \t if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
+    - text          \t - [optional] The text to put as a header in the box.  You can use multiple lines.
+                    \t - if the first line starts with '+' that line becomes the title in the title bar and subsquent lines are printed in the description.
 
     Keywords Pybox options can be included.  Some various options are as follows:
 
-    ● Default       \tSets the default text.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
-    ● NoCancel      \tBy defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
-                    \tWhen NoCancel is specified, the user cannot cancel or press return on an empty line and must enter some text (a control-C may be pressed to stop the program.
+    - Default       \t -Sets the default text.  This is placed in the input box when the box first comes up.  If the user presses return on a blank line, the default is returned.
+    - NoCancel      \t -By defaut, there is a cancel button to allow the user to cancel.  You can call pybox.was_canceled() which returns True if the last input box was canceled.
+                    \t -When NoCancel is specified, the user cannot cancel or press return on an empty line and must enter some text (a control-C may be pressed to stop the program.
     """
     return _pybox.GetString(text,*args,**kwargs)
 
@@ -5949,12 +9002,12 @@ def get_open_file(filetypes : str = None) -> str     :
 
     Parameters:
 
-    ● filetypes     \t- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
+    - filetypes     \t -- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
 
     Examples: 
-            \tpybox.get_open_file()
-            \tpybox.get_open_file("*.bmp")
-            \tpybox.get_open_file("*.bmp;*.png;*.jpg")
+            \t -pybox.get_open_file()
+            \t -pybox.get_open_file("*.bmp")
+            \t -pybox.get_open_file("*.bmp;*.png;*.jpg")
 
     """
     return _pybox.GetOpenFile(filetypes)
@@ -5970,18 +9023,18 @@ def get_save_file(filetypes : str = None) -> str     :
 
     Parameters:
 
-    ● filetypes     \t- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
+    - filetypes     \t -- [optional] filetypes to limit display to, such as "*.bmp", "*.bmp;*.jpg", etc.  Default is no filter and will display all files
 
     Examples: 
-            \tpybox.get_save_file()
-            \tpybox.get_save_file("*.bmp")
-            \tpybox.get_save_file("*.bmp;*.png;*.jpg")
+            \t -pybox.get_save_file()
+            \t -pybox.get_save_file("*.bmp")
+            \t -pybox.get_save_file("*.bmp;*.png;*.jpg")
 
     """
     return _pybox.GetSaveFile(filetypes)
 
 
-def read_image_file(filename,*args,**kwargs)  -> Bitmap  : 
+def read_image_file(filename,**kwargs)  -> Bitmap  : 
     """
     Reads an image file and returns a bitmap. 
 
@@ -5990,7 +9043,7 @@ def read_image_file(filename,*args,**kwargs)  -> Bitmap  :
 
     Parameters
 
-    ● filename      \t- Filename of the image
+    - filename      \t -- Filename of the image
 
     Returns:
 
@@ -6003,7 +9056,7 @@ def read_image_file(filename,*args,**kwargs)  -> Bitmap  :
     function could not find the bitmap
 
     """
-    return Bitmap(_pybox.ReadImageFile(filename,*args,**kwargs))
+    return Bitmap(_pybox.ReadImageFile(filename,**kwargs))
 
 def create_bitmap(width : int,height : int) -> Bitmap :
     """
@@ -6040,7 +9093,7 @@ def img_view(bitmap,title=None,at=None,size=None,percent=None,zoombox=None,*args
     The window can be resized and maximized.  See img_view_r() to display the image upside-down.
 
     - This function returns an _ImageView class object where you can control the ImageView window that is created.  However, it is not
-        \tnecessary to keep the return object or assign it to a variable. 
+        \t -necessary to keep the return object or assign it to a variable. 
     - The system menu (upper-left corner) has a number of options to bring up a Zoom Box, reset the image, etc.
     - Use img_zoom() to bring up a Zoom Box that can be used to navigate through the image. 
 
@@ -6053,18 +9106,18 @@ def img_view(bitmap,title=None,at=None,size=None,percent=None,zoombox=None,*args
 
     Parameters:
 
-    ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-    ● title         -\t This is the title of the image that will display in the title bar
-    ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-    ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-    ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+    - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+    - title         \t - This is the title of the image that will display in the title bar
+    - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+    - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+    - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● reverse       \t- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: image_view_r
-    ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-    ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                        \tIf no Label is given with no Title, the title bar text will also be the label text.
+    - reverse       \t -- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: image_view_r
+    - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+    - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                        \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
     About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
     or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -6093,17 +9146,17 @@ def img_view_r(bitmap,title=None,at=None,size=None,percent=None,zoombox=None,*ar
 
     Parameters:
 
-    ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-    ● title         -\t This is the title of the image that will display in the title bar
-    ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-    ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-    ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+    - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+    - title         \t - This is the title of the image that will display in the title bar
+    - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+    - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+    - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-    ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                        \tIf no Label is given with no Title, the title bar text will also be the label text.
+    - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+    - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                        \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
     About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
     or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -6132,18 +9185,18 @@ def img_zoom(bitmap,title=None,at=None,size=None,percent=None,*args,**kwargs) ->
 
     Parameters:
 
-    ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-    ● title         -\t This is the title of the image that will display in the title bar
-    ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-    ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-    ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+    - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+    - title         \t - This is the title of the image that will display in the title bar
+    - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+    - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+    - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-    ● reverse       \t- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: ImgZoomR()
-    ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                        \tIf no Label is given with no Title, the title bar text will also be the label text.
+    - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+    - reverse       \t -- Displays the bitmap upside-down.  Bitmaps often come updside-down. "reverse" corrects this.  Also see: ImgZoomR()
+    - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                        \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
     About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
     or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -6172,17 +9225,17 @@ def img_zoom_r(bitmap,title=None,at=None,size=None,percent=None,*args,**kwargs) 
 
     Parameters:
 
-    ● bitmap        -\t The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
-    ● title         -\t [optional] This is the title of the image that will display in the title bar
-    ● at            -\t [optional] Where to put the window.  If this is not used, the window is placed automatically.
-    ● size          -\t [optional] Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-    ● percent       -\t [optional] Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+    - bitmap        \t - The bitmap to display.  This can be a pybox bitmap, a general RGB array, or a text string with the path to the bitmap
+    - title         \t - [optional] This is the title of the image that will display in the title bar
+    - at            \t - [optional] Where to put the window.  If this is not used, the window is placed automatically.
+    - size          \t - [optional] Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+    - percent       \t - [optional] Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-    ● label         \t- This will put a text label underneath the image in a larger font for better labeling display.
-                        \tIf no Label is given with no Title, the title bar text will also be the label text.
+    - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+    - label         \t -- This will put a text label underneath the image in a larger font for better labeling display.
+                        \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
     About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
     or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -6198,7 +9251,7 @@ def img_before_after(bitmap1,bitmap2,title=None,label=None,before_title=None,aft
 
     - The system menu (upper-left corner) has a number of options.
     - This returns an _ImageBeforeAfter class object that can be used to control the window. However, it is not necessary to save the return object. 
-        \twith the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
+        \t -with the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
 
     About the Zoom Box
 
@@ -6206,20 +9259,20 @@ def img_before_after(bitmap1,bitmap2,title=None,label=None,before_title=None,aft
 
     Parameters:
 
-    ● bitmap1       -\t The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
-    ● bitmap2       -\t The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
-    ● title         -\t This is the title of the image that will display in the title bar
-    ● before_title   -\t title/label for the 'before' bitmap.  If not specified, a default label is used
-    ● after_title    -\t title/label for the 'after' bitmap.  If not specified, a default label is used
-    ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-    ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-    ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+    - bitmap1       \t - The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
+    - bitmap2       \t - The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
+    - title         \t - This is the title of the image that will display in the title bar
+    - before_title   \t - title/label for the 'before' bitmap.  If not specified, a default label is used
+    - after_title    \t - title/label for the 'after' bitmap.  If not specified, a default label is used
+    - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+    - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+    - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-    ● label         \t- This will put a text label above both images.
-                        \tIf no Label is given with no Title, the title bar text will also be the label text.
+    - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+    - label         \t -- This will put a text label above both images.
+                        \t -If no Label is given with no Title, the title bar text will also be the label text.
                                                 
     About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
     or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -6235,7 +9288,7 @@ def img_before_after_r(bitmap1,bitmap2,title=None,label=None,before_title=None,a
 
     - The system menu (upper-left corner) has a number of options.
     - This returns an _ImageBeforeAfter class object that can be used to control the window. However, it is not necessary to save the return object. 
-        \twith the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
+        \t -with the return object, you can determine when the window is closed and can also close all open ImageView Windows, as well as many other functions.
 
     About the Zoom Box
 
@@ -6243,20 +9296,20 @@ def img_before_after_r(bitmap1,bitmap2,title=None,label=None,before_title=None,a
 
     Parameters:
 
-    ● bitmap1       -\t The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
-    ● bitmap2       -\t The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
-    ● title         -\t This is the title of the image that will display in the title bar
-    ● before_title   -\t title/label for the 'before' bitmap.  If not specified, a default label is used
-    ● after_title    -\t title/label for the 'after' bitmap.  If not specified, a default label is used
-    ● at            -\t Where to put the window.  If this is not used, the window is placed automatically.
-    ● size          -\t Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
-    ● percent       -\t Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
+    - bitmap1       \t - The 'before' bitmap to display.  This can be a pybox bitmap or a general RGB array.
+    - bitmap2       \t - The 'after' bitmap to display.  The bitmaps must be the same size, but can be different formats.
+    - title         \t - This is the title of the image that will display in the title bar
+    - before_title   \t - title/label for the 'before' bitmap.  If not specified, a default label is used
+    - after_title    \t - title/label for the 'after' bitmap.  If not specified, a default label is used
+    - at            \t - Where to put the window.  If this is not used, the window is placed automatically.
+    - size          \t - Size of the window box.  The Image will be adjust accordingly based on the size given.  The default is for ImgView() to choose automatically.
+    - percent       \t - Desired size of the image in percent to show on initial launch.  This can be useful for specifying thumbnail images with a smaller size.
 
     Pybox options can be included.  Some various options are as follows:
 
-    ● normalize     \t- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
-    ● label         \t- This will put a text label above both images.
-                        \tIf no Label is given with no Title, the title bar text will also be the label text.
+    - normalize     \t -- Use this when the bitmap ranges from 0.0-1.0.  normalize=True will convert the image to a displayable bitmap i.e. 0-255 on each channel)
+    - label         \t -- This will put a text label above both images.
+                        \t -If no Label is given with no Title, the title bar text will also be the label text.
                           
     About Bitmaps: Bitmaps can be a pybox bitmap or a general RGB array bitmap (i.e. numpy array) in the form [height][width][3], where the [3] is Blue, Green, and Red,
     or an RGB32 bitmap array of [height][width][4] where the 4 values are Red, Green, Blue, and Mask, in that order.
@@ -6275,7 +9328,7 @@ def msgbox(text : str,*args,**kwargs) -> bool :
 
     Parameters: 
 
-    ● text          \t- text to put into the window. 
+    - text          \t -- text to put into the window. 
 
     About Dialog Box Text
 
@@ -6284,10 +9337,10 @@ def msgbox(text : str,*args,**kwargs) -> bool :
 
     Examples:
 
-            \tpybox.msgbox("Press OK to continue")
-            \tpybox.msgbox("+Information Window\nPress OK to continue")
-            \tpybox.msgbox("Finished Processing\nPress OK to continue")
-            \tpybox.msgbox("+My Process\nFinished Processing\nPress OK to continue")
+            \t -pybox.msgbox("Press OK to continue")
+            \t -pybox.msgbox("+Information Window\nPress OK to continue")
+            \t -pybox.msgbox("Finished Processing\nPress OK to continue")
+            \t -pybox.msgbox("+My Process\nFinished Processing\nPress OK to continue")
     """    
     return _pybox.InfoWindow(text,str,*args,**kwargs)
 
@@ -6299,7 +9352,7 @@ def msgbox_info(text : str,*args,**kwargs) -> bool :
 
     Parameters: 
 
-    ● text          \t- text to put into the window. 
+    - text          \t -- text to put into the window. 
 
     About Dialog Box Text
 
@@ -6308,10 +9361,10 @@ def msgbox_info(text : str,*args,**kwargs) -> bool :
 
     Examples:
 
-            \tpybox.msgbox_info("Press OK to continue")
-            \tpybox.msgbox_info("+Information Window\nPress OK to continue")
-            \tpybox.msgbox_info("Finished Processing\nPress OK to continue")
-            \tpybox.msgbox_info("+My Process\nFinished Processing\nPress OK to continue")
+            \t -pybox.msgbox_info("Press OK to continue")
+            \t -pybox.msgbox_info("+Information Window\nPress OK to continue")
+            \t -pybox.msgbox_info("Finished Processing\nPress OK to continue")
+            \t -pybox.msgbox_info("+My Process\nFinished Processing\nPress OK to continue")
     """    
     return _pybox.InfoWindow(text,str,*args,**kwargs)
 
@@ -6321,7 +9374,7 @@ def msgbox_yesno(text : str,*args,**kwargs) -> bool :
 
     Parameters: 
 
-    ● text          \t- text to put into the window. 
+    - text          \t -- text to put into the window. 
 
     Returns: True if "Yes" was input, or False if the No was pressed. 
 
@@ -6332,10 +9385,10 @@ def msgbox_yesno(text : str,*args,**kwargs) -> bool :
 
     Examples:
 
-            \tpybox.msgbox_yesno("Would you like to continue?")
-            \tpybox.msgbox_yesno("+Yes No Window\nWould you like to continue?")
-            \tpybox.msgbox_yesno("Finished Processing\nWould you like to continue?")
-            \tpybox.msgbox_yesno("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit.")
+            \t -pybox.msgbox_yesno("Would you like to continue?")
+            \t -pybox.msgbox_yesno("+Yes No Window\nWould you like to continue?")
+            \t -pybox.msgbox_yesno("Finished Processing\nWould you like to continue?")
+            \t -pybox.msgbox_yesno("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit.")
 
     """    
     return _pybox.YesNoWindow(text,str,*args,**kwargs)
@@ -6346,7 +9399,7 @@ def msgbox_yesnocancel(text : str,*args,**kwargs) -> bool :
 
     Parameters: 
 
-    ● text          \t- text to put into the window. 
+    - text          \t -- text to put into the window. 
 
     Returns: True if "Yes" was input, or False if the No was pressed. 
                 Use "pybox.dialog.WasCancelled() or pybox.WasCancelled() to determine if the Cancel button was pressed.
@@ -6358,10 +9411,10 @@ def msgbox_yesnocancel(text : str,*args,**kwargs) -> bool :
 
     Examples:
 
-            \tpybox.msgbox_yesnocancel("Would you like to continue?")
-            \tpybox.msgbox_yesnocancel("+Yes No Window\nWould you like to continue?")
-            \tpybox.msgbox_yesnocancel("Finished Processing\nWould you like to continue?")
-            \tpybox.msgbox_yesnocancel("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit,Cancel to Exit.")
+            \t -pybox.msgbox_yesnocancel("Would you like to continue?")
+            \t -pybox.msgbox_yesnocancel("+Yes No Window\nWould you like to continue?")
+            \t -pybox.msgbox_yesnocancel("Finished Processing\nWould you like to continue?")
+            \t -pybox.msgbox_yesnocancel("+My Process\nWould you like to Continue?\nPress Yes to continue, No to quit,Cancel to Exit.")
 
     """    
     return _pybox.YesNoCancelWindow(text,str,*args,**kwargs)
@@ -6372,7 +9425,7 @@ def msgbox_okcancel(text : str,*args,**kwargs) -> bool :
 
     Parameters: 
 
-    ● text          \t- text to put into the window. 
+    - text          \t -- text to put into the window. 
 
     Returns: True if "Ok" was input, or False if the Cancel was pressed. 
                 Use "pybox.dialog.WasCancelled() or pybox.WasCancelled() to determine if the Cancel button was pressed.
@@ -6384,10 +9437,10 @@ def msgbox_okcancel(text : str,*args,**kwargs) -> bool :
 
     Examples:
 
-            \tpybox.msgbox_okcancel("Would you like to continue?")
-            \tpybox.msgbox_okcancel("+Yes No Window\nWould you like to continue?")
-            \tpybox.msgbox_okcancel("Finished Processing\nWould you like to continue?")
-            \tpybox.msgbox_okcancel("+My Process\nWould you like to Continue?\nPress Yes to continue or Cancel to quit.")
+            \t -pybox.msgbox_okcancel("Would you like to continue?")
+            \t -pybox.msgbox_okcancel("+Yes No Window\nWould you like to continue?")
+            \t -pybox.msgbox_okcancel("Finished Processing\nWould you like to continue?")
+            \t -pybox.msgbox_okcancel("+My Process\nWould you like to Continue?\nPress Yes to continue or Cancel to quit.")
 
     """
     return _pybox.OkCancelWindow(text,str,*args,**kwargs)
@@ -6400,7 +9453,7 @@ def quick_button(text : str,title : str = "Quick Button",*args,**kwargs) -> bool
 
     Parameters: 
 
-    ● text          \t- text to put into the window. 
+    - text          \t -- text to put into the window. 
 
     About Dialog Box Text
 
@@ -6409,10 +9462,10 @@ def quick_button(text : str,title : str = "Quick Button",*args,**kwargs) -> bool
 
     Examples:
 
-            \tpybox.quick_button("Press OK to continue")
-            \tpybox.quick_button("+Information Window\nPress OK to continue")
-            \tpybox.quick_button("Finished Processing\nPress OK to continue")
-            \tpybox.quick_button("+My Process\nFinished Processing\nPress OK to continue")
+            \t -pybox.quick_button("Press OK to continue")
+            \t -pybox.quick_button("+Information Window\nPress OK to continue")
+            \t -pybox.quick_button("Finished Processing\nPress OK to continue")
+            \t -pybox.quick_button("+My Process\nFinished Processing\nPress OK to continue")
     """
     return _pybox.InfoWindow(text,title,*args,**kwargs)
 
@@ -6422,18 +9475,18 @@ def please_wait(text = None,cancelok : bool = False,*args,**kwargs) -> bool :
         
     Parameters:
 
-    ● text         \t - [optional] text to display in the Please Wait Window. If multiple lines are used, the first line displays in a larger font.
-    ● cancelok    \t - [optional] if specified, a "cancel" button.  This can be checked with please_wait_canceled() in the event loop.
+    - text         \t - - [optional] text to display in the Please Wait Window. If multiple lines are used, the first line displays in a larger font.
+    - cancelok    \t - - [optional] if specified, a "cancel" button.  This can be checked with please_wait_canceled() in the event loop.
 
     Keywords Pybox options can be included.  Some various options are as follows:
 
-    ● ProgressBar         \t- Adds a progress bar to the please wait window.  This can be set from 0-100% with please_wait_set_progress()
+    - ProgressBar         \t -- Adds a progress bar to the please wait window.  This can be set from 0-100% with please_wait_set_progress()
 
     Examples:
 
-            \tpybox.please_wait()
-            \tpybox.please_wait("Wait for process to finish")
-            \tpybox.please_wait("Wait for process to finish\\nPress cancel to abort",True,opt.progresbar())
+            \t -pybox.please_wait()
+            \t -pybox.please_wait("Wait for process to finish")
+            \t -pybox.please_wait("Wait for process to finish\\nPress cancel to abort",True,opt.progresbar())
     """
     return _pybox.PleaseWaitWindow(text,opt.cancelok(cancelok),*args,**kwargs)
 
@@ -6449,7 +9502,7 @@ def please_wait_set_progress(percent : int) -> bool :
         
     Parameters:
 
-    ● percent          \t - Percent (0-100) complete.
+    - percent          \t - - Percent (0-100) complete.
 
     """
     return _pybox.PleaseWaitSetProgress(percent)
@@ -6476,6 +9529,68 @@ def show_imgview_instructions() -> None :
     system menu im the image_view() window.
     """
     return _pybox.ShowImgViewInstructions()
+
+def color_selector(at=None,**kwargs) -> _ColorSelector :
+    """
+    Opens a Color Selector widget, as a popup window.    
+    - note: This is a standalone function and does not require creation of a window.  In this case, pybox.get_event() can be use to poll for color_selector events \
+e.g. color_selector::value_changed(), etc.
+
+    - See Window.color_selector() for use with an existing window.
+        
+    With the color selector, you can select an RGB color using the wheel or input boxes next to the wheel itself. 
+    A color rectangle is shown with the currently selected color.
+        
+    color_selector() returns a _ColorSelector object which can be used to look at changes in the color wheel in the window's main event loop. 
+        
+    See the _ColorSelector object functions for more information.
+        
+    Parameters:
+        
+    - at          \t - Where to put the Color Selector Window.  If this is not used, the Color Selector Window is placed automatically.
+
+    Keywords usable when creating the Color Selector:
+
+    - Title         \t - Sets a title displayed in the window's top bar area, such as title="This is the window title".  Otherwise a default title is used.
+    - x,y           \t - 'x' and 'y' keywords can be used in place of using the 'at' parameter, i.e. x=500, y=200 instead of (500,200) or at=(500,200)
+  
+    examples:\t - color_sel = color_selector(at=(500,200))     --> Opens a Color Selector window as an individual window on the screen at x=500 and y=200
+        
+    - while pybox.GetEvent() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
+    """
+    return _ColorSelector(_pybox.ColorSelector(opt.at(at),**kwargs))
+
+def display_default_paths() :
+    """
+    Displays to the console window the default paths that Sagebox will search for Sagebox Defaults Ini information.
+
+    The default filename is "SageDefaults.ini", which can be explicitly specified with SetDefaultFile()
+    
+    Sagebox will search any explicit directories set, and added by a subsystem (such as C#), the current directory, module/executable directory, in this order. 
+    
+    --> Use disable_defaults() to disable any loading of default .ini files. 
+    """
+    _pybox.DisplayDefaultPaths()
+        
+def set_win_timer_update_ms(update_ms : int) -> bool :
+    """
+    Sets the timer delay on "timer" or "ontime" window updates, which update any needed windows on a timer set through the OS, instead of
+    the default update, which is performed when graphics functions are used and it is time to update the window.
+    
+    --> This can be set to a value between 22ms (default) and 10000 (10 seconds). 
+    --> This function can be useful to set a longer delay on update with buys graphics routines, to show constant updates but also 
+    slow the updates down (e.g. 50ms, 1000ms, etc.) to keep the refresh rate lower, using less cpu time.
+
+    Parameters:
+    
+    update_ms - milliseconds to set for update frequency for "ontime"/"timer" auto-update type
+    
+    Returns:
+   
+    True if successful.  False is returned if the millisecond value is out of range.
+    """
+    return _pybox.SetWinTimerUpdateMs(update_ms)
+
 
 class opt :
     def __init__(self,text) : self.__text = "{}".format(text)
@@ -6643,9 +9758,9 @@ class opt :
 
         Also see DirectDraw(), which sets the same values and also draws directly to the window rather than a buffer.
 
-        ● This will set auto updates off.  Update() must be used manually to update the window.
-        ● This does not need to be used with the vertical resync.  However, see pybox.VSyncWait() for more information
-        ● This is prelminary and will also work with GPU functions and components of Sagebox & Pybox when ready.
+        - This will set auto updates off.  Update() must be used manually to update the window.
+        - This does not need to be used with the vertical resync.  However, see pybox.VSyncWait() for more information
+        - This is prelminary and will also work with GPU functions and components of Sagebox & Pybox when ready.
 
         """
         return opt(",RealTime,")
@@ -6656,10 +9771,10 @@ class opt :
 
         About Direct Draw
 
-        ● Direct Draw will draw directly to the screen instead of a buffer.  Default usage (i.e. without DirectDraw)
-            \tis to write to a separate bitmap and then send the bitmap to the window when an update occurs.
-        ● With Direct Draw On, output to the window will be written to the window immediately.  This can be faster and
-            \twork better with real-time display. 
+        - Direct Draw will draw directly to the screen instead of a buffer.  Default usage (i.e. without DirectDraw)
+            \t -is to write to a separate bitmap and then send the bitmap to the window when an update occurs.
+        - With Direct Draw On, output to the window will be written to the window immediately.  This can be faster and
+            \t -work better with real-time display. 
 
         This sets the high-resolution timer and other factors to help the display run as fast and smooth as possible.
 
@@ -6667,12 +9782,12 @@ class opt :
 
         Other notes:
 
-        ● All output will immediately display to the window.
-        ● The Window will not repaint when the system sends a PAINT event.  This must be taken care of by the program
-            \tHowever, typicaly usage is real-time, so PAINT events shouldn't matter, as the window is continuously updating.
-        ● This will set auto updates off, since output is now directly written to the window immediately.
-        ● This does not need to be used with the vertical resync.  However, see pybox.VSyncWait() for more information
-        ● This is prelminary and will also work with GPU functions and components of Sagebox & Pybox when ready.
+        - All output will immediately display to the window.
+        - The Window will not repaint when the system sends a PAINT event.  This must be taken care of by the program
+            \t -However, typicaly usage is real-time, so PAINT events shouldn't matter, as the window is continuously updating.
+        - This will set auto updates off, since output is now directly written to the window immediately.
+        - This does not need to be used with the vertical resync.  However, see pybox.VSyncWait() for more information
+        - This is prelminary and will also work with GPU functions and components of Sagebox & Pybox when ready.
 
         """
         return opt(",DirectDraw,")
@@ -6822,16 +9937,16 @@ class opt :
 
         Input:
 
-        width,height\t\t- Width & Height (both must be integers)
-        list\t\t- Use a list with 2 values as width,height
-        tuple\t- Use a tuple as 2 values as width,height
+        width,height\t\t -- Width & Height (both must be integers)
+        list\t\t -- Use a list with 2 values as width,height
+        tuple\t -- Use a tuple as 2 values as width,height
 
         Examples: 
 
-        opt.size(10,100)\t- Set 10,100 as size
+        opt.size(10,100)\t -- Set 10,100 as size
 
         size=(10,100)
-        opt.size(size)\t- Set tuple loc as size (i.e. 10x100)
+        opt.size(size)\t -- Set tuple loc as size (i.e. 10x100)
         """
         if isinstance(width,opt) : return width                                 # return width as itself it is already an option
         if isinstance(width,list) or isinstance(width,tuple) or isinstance(width,numpy.ndarray):
@@ -6847,16 +9962,16 @@ class opt :
 
         Input:
 
-        x,y\t\t- X,Y location (both must be integers)
-        list\t\t- Use a list with 2 values as X,Y
-        tuple\t- Use a tuple as 2 values as X,Y
+        x,y\t\t -- X,Y location (both must be integers)
+        list\t\t -- Use a list with 2 values as X,Y
+        tuple\t -- Use a tuple as 2 values as X,Y
 
         Examples: 
 
-        opt.at(10,100)\t- Set 10,100 as location
+        opt.at(10,100)\t -- Set 10,100 as location
 
         loc=(10,100)
-        opt.at(loc)\t- Set tuple loc as location (i.e. 10,100)
+        opt.at(loc)\t -- Set tuple loc as location (i.e. 10,100)
         """
         if isinstance(x,opt) : return x                             # return x as itself it is already an option
         if isinstance(x,list) or isinstance(x,tuple) :
@@ -7112,6 +10227,13 @@ class SageColor :
     def CheckboxTextColorCheckedHigh    () -> RgbColor : return RgbColor(220,220,220)
     def CheckboxTextColorDisabled       () -> RgbColor : return RgbColor(170,170,170)
 
+def sysConvertInt32(val) : return int(val)
 
-_pybox.SysSubmitTypes(RgbColor(0,0,0),peek)
+__temp = numpy.array([123,123],dtype=numpy.int32)
+_pybox.SysSubmitTypes(RgbColor(0,0,0),peek,__temp[0])
+_pybox.SysSetEventCallback(sysConvertInt32)
 
+if __name__ == "__main__" :
+    print("Error: This is the pybox module (pybox.py) and is not meant to be run as a main program.")
+    quit()
+    

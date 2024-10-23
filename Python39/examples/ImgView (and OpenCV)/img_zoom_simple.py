@@ -72,11 +72,12 @@ The Zoom Box is fairly self-explanatory, but some notes:
 """
 
 import pybox
-from pybox import conio
 import numpy
 import cv2
 
 cvimage1 = cv2.imread("Tiger.jpg")
+
+cvimage1 = cv2.cvtColor(cvimage1,cv2.COLOR_BGR2RGB)   # Convert to RGB
 
 pybox.show_imgview_instructions()           # Remove this -- this shows instructions and is just for the example. 
  

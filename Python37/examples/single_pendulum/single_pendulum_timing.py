@@ -157,9 +157,9 @@ while win.vsync_wait() :
     # line_l() and fill_circle_l() are list/array/tuple versions of line() and fill_circle(),
     # respectively, that take independent x,y values.  Here, a list or array is used for coordinates.
 
-    win.draw.line_l(center_x,point,"white",5);                                  # Draw the rod with pen size 5
-    win.draw.fill_circle_l(center_x,7,"Beige")                                  # Draw a peg on the top
-    win.draw.fill_circle_l(point,40,"MediumVioletRed","Beige",5)                # Draw the circle with outline size 5
+    win.draw.line_l(center_x,point,"white",pen_size=5);                                 # Draw the rod with pen size 5
+    win.draw.fill_circle_l(center_x,7,"Beige")                                          # Draw a peg on the top
+    win.draw.fill_circle_l(point,40,"MediumVioletRed",pen_color="Beige",pen_size=5)     # Draw the circle with outline size 5
    
     show_values()           # show the values 
     end = timer()

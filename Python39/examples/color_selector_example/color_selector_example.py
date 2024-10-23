@@ -28,8 +28,6 @@
 import pybox
 import numpy
 
-import color_selector
-
 # Create a small pybox window where we can draw a rectangle with the currently-selected color
 # in the color widget
 
@@ -39,7 +37,8 @@ win = pybox.new_window("Color Selector Widget Example",size=(400,430));
 # When color_selector.create(win,..) is used, the Color Selected is embedded as a child window
 # at the location specified.
 
-c_select = color_selector.popup((500,50))   # Set it at 500 pixels out, right next to the window just created
+c_select = win.color_selector((500,50),popup=True)   # Set it at 500 pixels out, right next to the window just created
+                                                     # we can also use a title keyword here, such as title="This is the window title"
 
 c_select.set_rgb_value([0,255,0])           # pre-select a green color (default is red)
 
@@ -61,7 +60,7 @@ while (pybox.get_event()) :
     #  (this is an event, so it only returns True once per change)
 
     if c_select.value_changed() : 
-        rgbColor = c_select.get_rgb_value();
+        rgbColor = c_select.get_rgb_value()
 
         # {c} sets the color to cyan. {{c}} is used because of the
         # formatting with .format()
@@ -73,11 +72,19 @@ while (pybox.get_event()) :
         c_select.show()         # if the mouse was clicked in the main window show the color selector
                                 # (pressing OK hides it as an example, and this will bring it back)
 
+    # Show when the window_close() is pressed.  This also issues a cancel event so cancel_pressed() will also return true
+    # even though closed by the user, it is really just hidden, so we can re-show it.
+    #
+    # Also, c_select.disable_close() can be used to prevent the user from closing the window manually.
+    
+    if (c_select.window_closed()) :
+        pybox.debug_write("{p}Window was closed by the user.\n{w}Click window to re-show the Color Selector.\n")
+        
     # if the OK button was pressed, hide it (to show we can remove it) and also print 
     # a message to the debug window
 
     if c_select.ok_pressed()     : 
-        pybox.debug_write("{g}Ok Pressed{}\n{w}Click window to re-show selector\n")
+        pybox.debug_write("{g}Ok Pressed{}\n{w}Click window to re-show the Color Selector\n")
         c_select.hide()
 
     # If cancel we pressed, print a message in the debug window

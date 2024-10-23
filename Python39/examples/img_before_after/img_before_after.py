@@ -112,7 +112,6 @@ img_before_after() features
 
 """
 
-
 import pybox
 from pybox import conio
 import sobel
@@ -129,6 +128,8 @@ cvimage = cv2.imread("dog.jpg")     # load image with opencv
 if cvimage is None :
     conio.write("{r}Error: Could not load bitmap.\n\n")
     quit()
+
+cvimage = cv2.cvtColor(cvimage,cv2.COLOR_BGR2RGB)   # Convert to RGB
 
 # use the sobel filter to do an edge detection on a grayscaled version of our loaded image
 

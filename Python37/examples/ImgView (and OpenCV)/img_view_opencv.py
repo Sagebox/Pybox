@@ -133,6 +133,9 @@ import cv2
 cvimage1 = cv2.imread("Tiger.jpg")
 cvimage2 = cv2.imread("dog.jpg")
 
+cvimage1 = cv2.cvtColor(cvimage1,cv2.COLOR_BGR2RGB)   # Convert to RGB
+cvimage2 = cv2.cvtColor(cvimage2,cv2.COLOR_BGR2RGB)   # Convert to RGB
+
 # make sure the images exist.  Not strictly necessary but might as well. 
 
 if cvimage1 is None or cvimage2 is None :

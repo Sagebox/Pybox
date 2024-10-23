@@ -13,7 +13,7 @@ Each control typically uses two lines:  one line to declare the control, and ano
 For example,
 
     my_button   = pybox.dev_button("Press Me"); 
-    if my_button.pressed() : << do something >>
+    if my_button.pressed() : << do somet hing >>
 
 This example uses the Dev Window as a standalone window.  Dev Windows and regular windows can be used separately or together, or in the form 
 of the quick_control() which combine the two into two windows embedded in a larger singular window. 
@@ -102,7 +102,6 @@ The panel resolution can be changed to allow for faster animation -- the highest
 """
 
 import pybox
-from pybox import opt       # used for opt.-style example below 
 
 import numpy as np
 
@@ -139,9 +138,8 @@ slider_amp          = pybox.dev_slider_f("Amplitude"            ,range=(-10,10),
 slider_res          = pybox.dev_slider_f("Panel Resolution"     ,range=(10,.1) , default = 1)
 slider_rotate_y     = pybox.dev_slider_f("Rotate on Y axis"     ,range=(0,6.24))
 slider_offset_z     = pybox.dev_slider_f("Z offset"             ,range=(-20,20))
-slider_zoom         = pybox.dev_slider_f("Zoom"                 ,opt.range(.1,10),opt.default(1))  # a symbolic method to do options
-                                                                                                   # that can show documentation, hints, and are
-                                                                                                   # spell-checked via intellisense/IDE
+slider_zoom         = pybox.dev_slider_f("Zoom"                 ,range=(.1,10),default=1)  
+
 # Create some checkboxes.
 #
 # Note the embedded controls such as '+', '-', and {x=<position} below. 
@@ -159,7 +157,7 @@ checkbox_dark       = pybox.dev_checkbox("+Dark Theme")                 # '+' mo
 checkbox_anim       = pybox.dev_checkbox("-{x=120}Animate")             # {x=120} is another way of saying set it at 120 pixels, as in the keyword "xoffset=120"
 
 fig         = plt.figure(figsize=(12,8),dpi=80)
-ax          = fig.gca(projection='3d')
+ax          = fig.add_subplot(projection='3d')
 solid       = False
 anti_alias  = False
 ang_rotate  = 0
@@ -182,9 +180,9 @@ def set_theme(dark) :
     ax.tick_params(axis='x', colors=colortext)
     ax.tick_params(axis='y', colors=colortext)
     ax.tick_params(axis='z', colors=colortext)
-    ax.w_xaxis.set_pane_color(colorface)
-    ax.w_yaxis.set_pane_color(colorface)
-    ax.w_zaxis.set_pane_color(colorface)
+    ax.xaxis.set_pane_color(colorface)
+    ax.yaxis.set_pane_color(colorface)
+    ax.zaxis.set_pane_color(colorface)
     fig.patch.set_facecolor(colorface)
 
 
@@ -263,7 +261,7 @@ def update(i) :
         ax.set_zlim3d(-5*zoom, 5*zoom)
         ax.set_xlim3d(-5*scale_xy*zoom, 5*scale_xy*zoom)
         ax.set_ylim3d(-5*scale_xy*zoom, 5*scale_xy*zoom)
-        ax.w_zaxis.set_major_locator(LinearLocator(6))
+        ax.zaxis.set_major_locator(LinearLocator(6))
 
         if checkbox_dark.pressed() :
             set_theme(checkbox_dark.checked())

@@ -51,6 +51,11 @@ import cv2
 
 cvimage1 = cv2.imread("Tiger.jpg")
 
+if cvimage1 is not None : 
+    cvimage1 = cv2.cvtColor(cvimage1,cv2.COLOR_BGR2RGB)   # Convert to RGB
+
+pybox.show_imgview_instructions()           # Remove this -- this shows instructions and is just for the example. 
+
 cvimage1 = cvimage1 / 255           # divide the image so it is a floating-point image from 0-1
                                     # the 'normalized' keyword tells img_view that it is a normalized image (0-1)
 
@@ -63,7 +68,9 @@ image = pybox.img_view(cvimage1,reversed=True,normalized=True)    # can also cal
 
 # Create a close button so we can close the window by pressing it. 
 
-close_button = pybox.dev_button("close window")
+close_button = pybox.dev_button("Close Image Window")
+
+pybox.dev_allow_auto_close(False)       # prevents the Dev Window from closing automatically when the image (i.e. primary) windows are closed
 
 # Enter the event loop where the program is shut down until an event occurs in the system
 # The loop will exit when both the image view window and the dev window is closed.
@@ -82,6 +89,7 @@ while pybox.get_event() :
 
     if image.close_event() : 
         pybox.debug_write("{y}Window was closed by user.\n")
+        pybox.debug_write("{g}Press 'x' button in Dev Window to exit.\n")
 
     # Check if the close button was pressed
     # if the image is already closed, print a message stating we know that
@@ -90,8 +98,7 @@ while pybox.get_event() :
         if image.closed() :
             pybox.debug_write("image already closed\n")
    
-        pybox.debug_write("{g}Press 'x' button in Dev Window to exit.\n")
-
+ 
         # Close the window.  If it is already closed, this has no effect, so it is
         # safe to call it either way.
 

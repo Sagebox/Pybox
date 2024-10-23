@@ -139,6 +139,9 @@ if cvimage1 is None or cvimage2 is None :
     conio.write("{r}Img View Test: Could not open bitmaps\n")   # put out the message in red so it is more easily seen.
     quit()
 
+cvimage1 = cv2.cvtColor(cvimage1,cv2.COLOR_BGR2RGB)   # Convert to RGB
+cvimage2 = cv2.cvtColor(cvimage2,cv2.COLOR_BGR2RGB)   # Convert to RGB
+
 # img_view_r() is being used instead of img_view() to display the bitmap in reverse (top to bottom).
 # OpenCV brings in the bitmaps right-side up, and the pybox default is the standard
 # upside-down bitmap. 

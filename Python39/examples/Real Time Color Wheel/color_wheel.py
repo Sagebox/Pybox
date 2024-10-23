@@ -47,7 +47,7 @@ square_size     = 150           # size of each square
 radius          = 200           # radius of large circle where squares are placed
 spin            = 0.0           # spin factor for both large circle and each square (handled differently)
 
-win.draw.set_opacity(50)        # set the graphics opacity
+win.draw.set_opacity(125)        # set the graphics opacity
 
 # Create two text widgets that center themselves for a title.
 # These are widgets and are peristent, so they are fire-and-forget here.  
@@ -88,15 +88,13 @@ while win.vsync_wait() :
 
         win.draw.translate_transform(fx+600,fy+420)    
 
-        # Now set a rotational transform so the next objects drawn are rotated about this axis.
-        # This allows us to rotate the rectangles by their center even though their centers are part of larger circle.
-
-        win.draw.rotate_transform((i+spin*3.5)*60)      
-
         # draw the rectangle at the transform's (0,0) point and angle specified.
-
-        win.draw.fill_rectangle(-square_size/2,-square_size/2,square_size,square_size,color)
-        win.draw.reset_transform()      # Transforms are additive, so we need to reset when we're done
+        # With the angle keyword, we set the angle of rotation around the previous outer transform.
+        # --> we could have called win.draw.translate_transform() again, but used the angle keyword instead as a shortcut
+        # --> We could have used the 'opacity' keyword, but it was set as a global opacity already with win.draw.set_opacity()
+        
+        win.draw.fill_rectangle(-square_size/2,-square_size/2,square_size,square_size,color,angle = (i+spin*3.5)*60)
+        win.draw.reset_transform()      # Transforms are additive, so we need to reset when we're done for the first transform
 
     win.update()  # send the image we've drawn out to the window
     spin += .005

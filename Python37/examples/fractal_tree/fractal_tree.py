@@ -74,7 +74,9 @@ def fractal_tree(win_size,angle,line_length) :
 #  use the function win.set_bg_color()
 #
 
-win = pybox.new_window(size=(1300,900),title="Pybox - Fractal Tree",bgcolor="black,darkblue")   
+win = pybox.new_window(size=(1300,900),title="Pybox - Fractal Tree")   
+
+win.cls_radial("darkblue,black")        # add a radial clear window, just for aesthetics
 
 fractal_tree(win.get_window_size(),24*3.14159/180,130.0*1.45)
 
@@ -83,7 +85,7 @@ fractal_tree(win.get_window_size(),24*3.14159/180,130.0*1.45)
 # justbottomcenter  - (also just_bottom_center) sets the text at the bottom-center of the window
 # yoffset           - (also y_offset) brings the text up 10 pixels so its not exactly at the bottom.
 
-win.write("Python Color Fractal Tree",font=40,justbottomcenter=True,yoffset=-40)
+win.write("Python Color Fractal Tree",font=40,just_bottom_center=True,y_offset=-40)
 
 # Let the user know the program has ended.
 # exit_button() is not required, but the program must pause before exiting. Since this program

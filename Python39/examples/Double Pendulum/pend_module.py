@@ -82,7 +82,7 @@ def init(in_win,length1,length2,mass1,mass2,angle1,angle2,in_damp,pegy=.33) :
     mass            = np.array([ float(mass1),float(mass2) ])
     length          = np.array([ float(length1),float(length2) ])
     angle           = np.array([ angle1*np.pi/180, angle2*np.pi/180])
-    rod[0]          = win.size()/2 * [1, pegy*2 ]                                      # Set Peg center as middle of Screen X and CenterOffset Y
+    rod[0]          = np.array([win.size()])/2 * [1, pegy*2 ]                                      # Set Peg center as middle of Screen X and CenterOffset Y
     for i in range(0,max_trail_size) : trail_colors[i] = [ 255*i/max_trail_size,50*i/max_trail_size,0] # assign trail colors from faded (black) to full brightness
 
 # Reset overflow values
@@ -133,14 +133,14 @@ def render() :
 
     # Draw the rod lines
 
-    win.draw.line_l(rod[0],rod[1],"White",line_thickness*thick_mul*zoom)
-    if not single_pend : win.draw.line_l(rod[1],rod[2],"Cyan",line_thickness*thick_mul*zoom)
+    win.draw.line_l(rod[0],rod[1],"White",pen_size=line_thickness*thick_mul*zoom)
+    if not single_pend : win.draw.line_l(rod[1],rod[2],"Cyan",pen_size=line_thickness*thick_mul*zoom)
 
     # Draw the peg and Pendulum bobs
 
     win.draw.fill_circle_l(rod[0],thick_mul*peg_radius*zoom,"White")
-    win.draw.fill_circle_l(rod[1],bob_radius*zoom*circle_mult,"Red","White",2.5)
-    if not single_pend : win.draw.fill_circle_l(rod[2],bob_radius*zoom*circle_mult,"Green","White",2.5)
+    win.draw.fill_circle_l(rod[1],bob_radius*zoom*circle_mult,"Red",pen_color="White",pen_size=2.5)
+    if not single_pend : win.draw.fill_circle_l(rod[2],bob_radius*zoom*circle_mult,"Green",pen_color="White",pen_size=2.5)
 
 # Update the pendulum position
 #

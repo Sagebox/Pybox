@@ -47,7 +47,7 @@ square_size     = 150     # size of each square
 radius          = 200     # radius of large circle where squares are placed
 spin            = 0.0     # spin factor for both large circle and each square (handled differently)
 
-win.draw.set_opacity(50)
+win.draw.set_opacity(128)
 
 # Note the opt. usage.  Its a little more text, but the intellisense shows you the documentation and 
 # will also fill it in for you, so no mistakes are made.  In fact, I accidentally typed "real+time" above 

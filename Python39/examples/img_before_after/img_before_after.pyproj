@@ -5,13 +5,13 @@
     <ProjectGuid>5a30196d-53e6-44dc-a425-ede700441713</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>img_before_after.py</StartupFile>
+    <StartupFile>img_before_after2.py</StartupFile>
     <SearchPath>..\..\modules</SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>Color Wheel</Name>
     <RootNamespace>Color Wheel</RootNamespace>
-    <InterpreterId>Global|PythonCore|3.9</InterpreterId>
+    <InterpreterId>Global|PythonCore|3.7</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.9" />
+    <InterpreterReference Include="Global|PythonCore|3.7" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="img_before_after.py" />
