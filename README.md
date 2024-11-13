@@ -8,7 +8,7 @@
 </p>
 
 <h2 align="center">
-  Easy-to-Use, Powerful GUI-based tools for Python
+  Easy-to-Use, Powerful Python, GUI-based tools for productivity (and fun)
 </h2>
 
 Pybox is a set of GUI-based tools to help you add GUI components to your program, all without adding a lot of event-driven or GUI-specific code just to have
