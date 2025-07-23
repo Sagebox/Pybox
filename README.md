@@ -18,8 +18,6 @@ to GUI-based controls and other functions with an average of two coding lines pe
 Pybox is also very useful for learning and students, hobbyist, and general creative, freeform development & rapid prototyping without the 
 need to write a lot of interface code just to add a button, slider, or other control -- or to remove them.
 
-<br /><br />
-
 # Easy-to-Use Library GUI Tools
 
 ![collage-generic-sized-flat](https://user-images.githubusercontent.com/70604831/174466534-1a56e6d6-174d-4035-8003-d0d3208c20dd.png)
@@ -70,19 +68,19 @@ You can also create quick dialogs or call many different functions to help devel
 This is an example of making a program using MatplotLib more interactive by providing controls that can be used to change the nature of the two graphs while animating in real-time. 
 
 With various widgets, you can call up color selectors, date pickers, formatted message boxes, image view & img before/after windows, and so-forth.
-<br /><br />
+
 
 ## Using Pybox in Console Mode
 ![output-console-mode](https://user-images.githubusercontent.com/70604831/174466676-d8cec449-a241-4402-9b7e-0e354a4d0777.png)
 
 Pybox can be used with GUI/Windows based programs or regular console mode programs.  In console mode, you can use Pybox functions to help with the program
 user-interface, such as bringing up entry boxes and other dialogs, as well as before & after windows, color selectors, etc.
-<br /><br />
+
 Since these are called as simple functions, you can just put them in your code without changing your style or interfering with the rest of your code.
-<br /><br />
+
 Console-based programs can use Pybox for development even when the end-product doesn't have any UI or GUI components, or can use some of the GUI-based library
 calls to help with user input and program flow while developing and debugging. 
-<br /><br />
+
 
 ---
 ## Support Active Development
@@ -145,7 +143,6 @@ For me, this is what makes programming fun -- the ability to program in a more f
 to write rather than the interface code just to have a button, slider, color selector, or whatever I need.
 
 <br />
-
 
 # Fun with Graphics
 
