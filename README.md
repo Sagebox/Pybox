@@ -122,14 +122,10 @@ calls to help with user input and program flow while developing and debugging.
 
 
 ### Other Things
-- [A Project Based on Community Input](#a-project-based-on-community-input)
-- [Making Pybox Useful for Everyone](#making-pybox-useful-for-everyone)
 - [Pybox is useful for Students, Hobbyists, Researchers, and Professionals](#pybox-is-useful-for-students-hobbyists-researchers-and-professionals)
 - [Requirements](#requirements)
-- [Installation](#installation)
-- [Support and Donations](#support-and-donations)
-- [Tip of the Iceberg - Alpha Version and Your Input](#tip-of-the-iceberg---alpha-version-and-your-input)
-- [Coming Soon](#coming-soon)
+- [Coming Soon - Sagebox Roadmap](#coming-soon---sagebox-roadmap)
+- [Support Sagebox](#support-sageboxinstallation)
 
 
 <br />
@@ -345,25 +341,7 @@ With Visual Studio, you can add a `Search Path` with a direct or relative path.
 
 Once Pybox has been released for a while and community feedbacks starts coming in, a pip install version will be created.
 
-<br /><br />
 
-# Support Sagebox
-
-Sagebox is actively developed and welcomes early support from developers and contributors.
-
-> Sagebox was developed as a free, powerful and comprehensive GUI that is also very easy to use.<br>
-> It is free to use in personal and commercial Rust projects.<br>
-
-As Sagebox continues to grow, the developer community is invited to help shape its direction and contribute to making it even better.
-
-
-
-If Sagebox feels like something worth supporting, consider contributing to its continued development:
-
-- **[GitHub Sponsors](https://github.com/sponsors/Sagebox)** — One-time or recurring donations.
-- **[OpenCollective (Coming Soon)]** — For larger or institutional support with public transparency.
-
-Your support helps add new features, documentation, and to continue to provide Sagebox free to the Rust community.
 <br /><br />
 
 # Coming Soon - Sagebox Roadmap
@@ -383,7 +361,7 @@ Here is a list of items currently in-progress and expected to be finished in the
 - `GPU Functions` - Already midway in-progress, these functions provide a very powerful set of easy-to-use tools with the GPU for much more real-time graphics
 - `Your Input` - As mentioned, I wrote Pybox for what I do, and now that it is released, I want to write it for what you do and want to see.
 	- Just some ideas are controls such as many different types of sliders, control motifs,  Arduino Hardware emulation, etc., whatever the community wants.  It's all fun to write, and since most of Sagebox/Pybox is written in itself, much of it is just about getting the right ideas.
-
+<br /><br />
 # Support Sagebox
 
 Sagebox is actively developed and welcomes early support from developers and contributors.
