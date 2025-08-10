@@ -82,6 +82,33 @@ Console-based programs can use Pybox for development even when the end-product d
 calls to help with user input and program flow while developing and debugging. 
 
 
+# Getting Started
+
+### Install with pip
+
+```sh
+pip install pybox-gui 
+```
+
+### Importing
+```sh
+import pybox
+```
+
+### Sample "Hello World" Full-Program Example
+
+This program creates a Hello World program using a graphic window.  Creating a graphic window is not required tp use Sagebox, and is just one of many features.
+
+You can also create controls (e.g. sliders, buttons, checkboxes) with one line of code, either in a console-only program or with more graphics features such as the graphics window created in the example.
+
+```python
+import pybox
+
+win = pybox.new_window();                        # Create a default graphic window (not required)
+win.write("Hello World",font=100,center=True)    # Write "Hello World" in large font, centered in window
+pybox.exit_button()                              # bring up a button in small window to press, letting the
+                                                 # user know the program has ended.
+```
 ---
 ## Support Active Development
 
