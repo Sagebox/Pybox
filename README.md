@@ -97,7 +97,7 @@ import pybox
 
 ### Sample "Hello World" Full-Program Example
 
-This program creates a Hello World program using a graphic window.  Creating a graphic window is not required tp use Sagebox, and is just one of many features.
+This program creates a Hello World program using a graphic window.  Creating a graphic window is not required to use Sagebox, and is just one of many features.
 
 You can also create controls (e.g. sliders, buttons, checkboxes) with one line of code, either in a console-only program or with more graphics features such as the graphics window created in the example.
 
