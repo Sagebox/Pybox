@@ -7,7 +7,7 @@
     <img src="https://user-images.githubusercontent.com/70604831/174466253-c4310d66-c687-4864-9893-8f0f70dd4084.png">
 </p>
 
-# Easy-to-Use, Powerful Python, GUI-based tools for productivity (and fun)
+# Easy-to-Use, Procedural GUI Designed for Rapid, Creative Development (and Fun)
 
 Pybox is a set of GUI-based tools to help you add GUI components to your program, all without adding a lot of event-driven or GUI-specific code just to have
 graphics and controls in your program.  
@@ -17,6 +17,8 @@ to GUI-based controls and other functions with an average of two coding lines pe
 <br /><br />
 Pybox is also very useful for learning and students, hobbyist, and general creative, freeform development & rapid prototyping without the 
 need to write a lot of interface code just to add a button, slider, or other control -- or to remove them.
+
+> Sagebox has been used professionally in the tech industry by companies like Pentair and Pioneer, and most recently in the semiconductor field at ASML, where it was called “that magic program.”
 
 # Easy-to-Use Library GUI Tools
 
@@ -116,7 +118,7 @@ pybox.exit_button()                              # bring up a button in small wi
 
 > Sagebox was developed as a powerful and comprehensive GUI that is also very easy to use.<br>
 > It is free to use in personal and commercial Python projects.<br>
-> Your contributions drive continued development, bring new features and improvements, and help fast-track Linux support.  (See [Sagebox Roadmap](#sagebox-roadmap))
+> Your contributions drive continued development, bring new features and improvements, and help fast-track Linux support.  (See [Sagebox Roadmap](#coming-soon---sagebox-roadmap))
 <br>
 
 <p align="center">
@@ -388,18 +390,14 @@ Here is a list of items currently in-progress and expected to be finished in the
 <br /><br />
 # Support Sagebox
 
-Sagebox is actively developed and welcomes early support from developers and contributors.
+Sagebox is actively developed and welcomes support from developers and contributors.
 
 > Sagebox was developed as a free, powerful and comprehensive GUI that is also very easy to use.<br>
-> It is free to use in personal and commercial Rust projects.<br>
+> It is free to use in personal and commercial Python projects.<br>
 
-As Sagebox continues to grow, the developer community is invited to help shape its direction and contribute to making it even better.
-
-
+Your contributions drive continued development and help fast-track Linux support.
 
 If Sagebox feels like something worth supporting, consider contributing to its continued development:
 
 - **[GitHub Sponsors](https://github.com/sponsors/Sagebox)** — One-time or recurring donations.
-- **[OpenCollective (Coming Soon)]** — For larger or institutional support with public transparency.
-
-Your support helps add new features, documentation, and to continue to provide Sagebox free to the Rust community.
+- **[OpenCollective (Coming Soon)]**
