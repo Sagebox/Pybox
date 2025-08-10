@@ -399,5 +399,5 @@ Your contributions drive continued development and help fast-track Linux support
 
 If Sagebox feels like something worth supporting, consider contributing to its continued development:
 
-- **[GitHub Sponsors](https://github.com/sponsors/Sagebox)** — One-time or recurring donations.
+- **[GitHub Sponsors](https://github.com/sponsors/Sagebox)**
 - **[OpenCollective (Coming Soon)]**
