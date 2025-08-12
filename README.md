@@ -9,16 +9,22 @@
 
 # Easy-to-Use, Procedural GUI Designed for Rapid, Creative Development (and Fun)
 
+### Write plain linear, procedural code with no boilerplate.
+
 Pybox is a set of GUI-based tools to help you add GUI components to your program, all without adding a lot of event-driven or GUI-specific code just to have
 graphics and controls in your program.  
-<br />
-Pybox is useful for adding onto current packages and other UIs such as MatplotLib, Tkinter, SciPy, etc. giving easy access 
-to GUI-based controls and other functions with an average of two coding lines per addition -- one line to declare a control or widget, and one line to use it.
-<br /><br />
-Pybox is also very useful for learning and students, hobbyist, and general creative, freeform development & rapid prototyping without the 
+
+Pybox is useful for learning and students, hobbyist, and general creative, freeform development & rapid prototyping without the 
 need to write a lot of interface code just to add a button, slider, or other control -- or to remove them.
 
 > Sagebox has been used professionally in the tech industry by companies like Pentair and Pioneer, and most recently in the semiconductor field at ASML, where it was called “that magic program.”
+
+
+### Compatible with other Python GUIs and libraries
+
+Pybox is a complete standalone GUI system for Python. It can also be used alongside other libraries and GUI frameworks such as Matplotlib, Tkinter, OpenCV, and SciPy.
+
+[Click for Screenshot of Sagebox used with MatplotLib 3D](https://github.com/Sagebox/Pybox/blob/main/Python312/examples/matplotlib_3d/screenshot.jpg) ● [Go to Github Example](https://github.com/Sagebox/Pybox/tree/main/Python312/examples/matplotlib_3d) 
 
 # Easy-to-Use Library GUI Tools
 
