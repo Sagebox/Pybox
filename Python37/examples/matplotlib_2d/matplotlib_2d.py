@@ -105,8 +105,8 @@ pybox.dev_text("Matplot Lib Controls",font=20)      # Set a title above the grap
 
 # Get a couple of text widgets so we can put out some info later. 
 
-text_sin = pybox.dev_text(font=14)
-text_cos = pybox.dev_text(font=14)
+text_sin = pybox.dev_text_widget(font=14)
+text_cos = pybox.dev_text_widget(font=14)
 
 # Get some sliders.  Most of that are floating point sliders (dev_slider_f)
 

@@ -174,6 +174,32 @@ class conio :
         """        
         return _pybox.ConsoleGetFloat(text,*args,**kwargs)
 
+    def set_fg_color(color) -> bool :
+        """
+        Sets the foreground/text color of the text written to the window.
+
+        This only affects subsequent text written to the window with the write() or other window write functions.
+        This will not affect any current display on the window
+       
+        Note: set_fg_color() and set_text_color() are the same function.
+        
+        Parameters
+
+        - color         \t -- Foreground/Text color to set next output 
+        
+        About Colors
+
+        Colors may be text colors, such as "red" or "forestgreen" or "PanColor:forestgreen" or pybox.RgbColors, such as "0,255,0" for green.
+        Colors may also be symbolic SageColor or PanColor colors, such as SageColor.SkyBlue() or PanColor.Blue()
+
+        Examples:
+
+        Window.set_fg_color("red")                      \t -- Sets the window's text color to the color red
+        Window.set_fg_color(SageColor.Red())            \t -- Sets the window's text color to red, also
+        Window.set_fg_color(PanColor.ForestGreen())     \t -- Sets the window's text color to PanColor.ForestGreen
+        Window.set_fg_color(MyColor)                    \t -- Sets the window's text color to a defined "MyColor", such as MyColor = pybox.RgbColor(0,255,0)
+        """        
+        return _pybox.ConsoleSetFgColor(color)
 class debug :
     """
     Pybox/Sagebug debug functions provide a number of functions via the Sagebox Process Window.
@@ -656,10 +682,10 @@ class MouseRegion :
 
         This is used to update the movement, highlight, selection of points/regions based on what has happened to the mouse since the last time it was called.
         
-        - update_points() must be called for every get_event() to update the mouse points, and should be called in the main event loop
+        - update_points() must be called for every wait_event() to update the mouse points, and should be called in the main event loop
         before looking for updated events or values from the Mouse Region.
         
-        - This function is best called directly after a get_event() call.
+        - This function is best called directly after a wait_event() call.
         """
         return _pybox.MouseRegionUpdatePoints(self.id,1)
         
@@ -1613,10 +1639,10 @@ class UpdateType(IntEnum):
 
     The default for pybox is "Immediate".  The default for C++ Sagebox is "On"
 
-    On -    The window will auto passively update every 10-20ms.  This means when any pybox display or GetEvent function is called and a window needs
+    On -    The window will auto passively update every 10-20ms.  This means when any pybox display or wait_event() function is called and a window needs
             Updating, pybox will do it, but it is not guaranteed for code that lingers/loops after the last display function.  
             
-            For most applications, pybox will update the window when necessary, since any waiting (i.e. ExitButton() or GetEvent()) function or
+            For most applications, pybox will update the window when necessary, since any waiting (i.e. exit_button() or wait_event()) function or
             display function (i.e. Write()) will update the window if the window needs it. 
 
             In loops that can take time, or without a pybox call of some sort, sometimes a pybox.Update() may
@@ -1717,7 +1743,7 @@ class _ColorSelector :
     - color_sel = mywin.color_selector(at=(500,200))     --> Opens a Color Selector window inside the window 'mywin, at window location x=500 and y=200
     - color_sel = pybox.color_selector(at=500,200)  --> Opens the same type of window, but as a pybox function without a parent window.
         
-    - while mywin.GetEvent() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
+    - while mywin.wait_event() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
     """
     def __init__(self,_id) : self.__id = _id
     
@@ -1900,7 +1926,7 @@ class _ColorWheel :
   
     example:\t - color_wheel = mywin.color_wheel((500,200))     --> Opens a Color Wheel window in the window at (500,200)
         
-    - while mywin.GetEvent() : if (color_wheel.value_changed()) print("Color value = ",color_wheel.get_rgb_value()) --> prints values as the wheel is moved.
+    - while mywin.wait_event() : if (color_wheel.value_changed()) print("Color value = ",color_wheel.get_rgb_value()) --> prints values as the wheel is moved.
     """
     def __init__(self,_id) : self.__id = _id
     
@@ -5047,12 +5073,12 @@ class Window :
         """
         Returns True if the vertical retrace has occured. 
 
-        When this function is used once  (or VsynStartThread()) has been called, Sagebox will return with GetEvent() with 
+        When this function is used once  (or VsynStartThread()) has been called, Sagebox will return with wait_event() with 
         VsyncReady as an event, which can be checked with VsyncReady(). 
 
         - Use VsyncEndThread() to stop the thread that looks for the vertical sync. 
     
-        When GetEvent() returns, it may return from any sort of event, so VsyncReady() must be called to ensure a Vsync has occured.
+        When wait_event() returns, it may return from any sort of event, so VsyncReady() must be called to ensure a Vsync has occured.
    
         - Use VsyncWait() to stop the thread and wake it up every Vsync period (usually every 60ms, but dependent on monitor settings).
             \t -if the code between VsyncWait() calls takes longer then the vertical sync, VsyncWait() will come back when the next vertical sync is triggered.
@@ -5462,10 +5488,10 @@ class Window :
         - {font name}   \t -i.e. "This is in the normal font, and {Courier New,20}This is in a 20-point Courier New font"
         - {bitmap}      \t -This is TBD in a coming version, and will accept bitmap names to print in the output window.
        
-        Examples:   \t -MyWindow.write("Hello World",opt.font(40),opt.center_xy())     \t -- Writes a big "Hello World" in the center of the screen
-                    \t -MyWindow.write("Hello World",opt.fgcolor("red")               \t -- Writes "Hello World" in red
+        Examples:   \t -MyWindow.write("Hello World",font=40,center=True)     \t -- Writes a big "Hello World" in the center of the screen
+                    \t -MyWindow.write("Hello World",fg_color = "red")               \t -- Writes "Hello World" in red
                     \t -MyWindow.write("{r}Hello World")                              \t - - Also writes "Hello World" in red
-                    \t -MyWindow.write("Hello World",opt.font(50))                    \t - - Writes "Hello World" in a 50-point font size.
+                    \t -MyWindow.write("Hello World",font=50)                    \t - - Writes "Hello World" in a 50-point font size.
         """
         return _pybox.WindowWrite(self.__id,outstring,*args,**kwargs)
 
@@ -5535,7 +5561,7 @@ class Window :
         """
         return _pybox.WindowGetWindowCenter(self.__id,bFrameSize)
 
-    def size(self,bFrameSize : bool = False) -> numpy.array :
+    def size(self,bFrameSize : bool = False) -> list :
         """
         Returns the canvas size of the window (i.e. the interior size of the window) as an array (width,height)
 
@@ -5642,7 +5668,7 @@ class Window :
 
     def get_event(self) -> bool :
         """
-        GetEvent waits for an event to occur in your main body of code. 
+        get_event() waits for an event to occur in your main body of code. 
 
         - Events are any events such as a mouse move, click, keyboard press, etc. 
         - Events are also caused by any control change such as moving a slider, pressing a button, or pressing return in an input box. 
@@ -5672,6 +5698,40 @@ class Window :
         See set_event_callback() for more information.
         """
         return _pybox.GetEvent()           # probably deprecated -> _pybox.WindowGetEvent(self.__id) 
+
+    def wait_event(self) -> bool :
+        """
+        wait_event() waits for an event to occur in your main body of code. 
+
+        - Events are any events such as a mouse move, click, keyboard press, etc. 
+        - Events are also caused by any control change such as moving a slider, pressing a button, or pressing return in an input box. 
+        - Events can also be a window closing, a window moving or changing size -- basically anything happening in the system sends a message
+
+        Until an event occurs, the program is sleeping and not using any CPU time.  Pybox wakes up the program when an event happens. 
+
+        In the event loop, you can check for events.  
+
+        wait_event() returns true until all main windows are closed. 
+
+        Example:
+
+                my_button = pybox.dev_button("Press Me")
+                my_slider = pybox.def_slider()
+
+                while pybox.wait_event() :
+                    if my_button.pressed() : print("My Button was Pressed")
+                    if my_slider.moved()   : print("Range Slider is now at position",my_slider.get_pos())
+
+
+        In this example, the program sleeps until an event occurs, and then the program checks to see if an event occured with a button or a slider movement. 
+
+        Events are typically one-time:  They report "True" on the first call, and then fals afterwards until another event of the same type happens. 
+        
+        You can also use a callback to retrieve events.  Though this is not recommended or useful for most programs, it can be useful for some specific purposes.
+        See set_event_callback() for more information.
+        """
+        return _pybox.GetEvent()           # probably deprecated -> _pybox.WindowGetEvent(self.__id) 
+
 
     def display_bitmap(self,x : int, y : int,bitmap,size=None,*args,**kwargs) :
         """
@@ -5906,6 +5966,23 @@ class Window :
         return _pybox.WindowCls(self.__id,color1,color2,False)
     
     def cls_radial(self,color1 = None,color2 = None) :
+        """
+        cls_radial() is like cls(), clearing the window with a backround color.
+        cls_radial() takes two color and will clear the window in a radial pattern from the center.
+
+        This can be a nice alternative to cls(), which clears the window with a plain color or vertical gradient.
+        A radial gradient can look asesthetically nice and focus the viewer on elements in the window.
+
+        note: once cls_radial() is used with colors (e.g. cls_radial("blue,black"), cls() and cls_radial() will remember the last colors and the radial status
+              and clear the window in the same radial colors (blue and black, in this example).
+
+        Examples
+
+
+        cls_radial()      \t\t\t-- use default colors (unless cls_radial() was already used with different colors, in which case it will use those colors)
+        cls_radial("darkblue,black")    \t\t - clear the window with dark blue in the center, extending to black at the edges of the window
+        cls_radial(mycolor1,mycolor2)   \t\t - clear the window with a radial gradient with two program-based colors
+        """
         return _pybox.WindowCls(self.__id,color1,color2,True)
 
     def draw_grid(self,spacing : int = 25,**kwargs) -> bool :
@@ -6152,7 +6229,7 @@ class Window :
         When Updates are not completely automatic, pybox updates the window whenever most display, event or other function are called.  Pybox only updates windows that need it.
         However, when a pybox function is not called for a while (such as being in a long loop), the Update may lag.  Update() can be called to ensure the window is updated.
 
-        Even when Updates are simple "on" i.e. passive, get_event() updates any window that needs it.  If you're in an event loop, the Window will only not be updated (as needed) when
+        Even when Updates are simple "on" i.e. passive, wait_event() updates any window that needs it.  If you're in an event loop, the Window will only not be updated (as needed) when
         Updates are completel turned "off:
 
         See set_auto_update() for more information.
@@ -6174,10 +6251,10 @@ class Window :
 
         The default for pybox is "Immediate".  The default for C++ Sagebox is "On"
 
-        on -    The window will auto passively update every 10-20ms.  This means when any pybox display or GetEvent function is called and a window needs
+        on -    The window will auto passively update every 10-20ms.  This means when any pybox display or wait_event() function is called and a window needs
                 Updating, pybox will do it, but it is not guaranteed for code that lingers/loops after the last display function.  
             
-                For most applications, pybox will update the window when necessary, since any waiting (i.e. exit_button() or get_event()) function or
+                For most applications, pybox will update the window when necessary, since any waiting (i.e. exit_button() or wait_event()) function or
                 display function (i.e. Write()) will update the window if the window needs it. 
 
                 In loops that can take time, or without a pybox call of some sort, sometimes a pybox.Update() may
@@ -6200,6 +6277,16 @@ class Window :
         """
         return _pybox.WindowSetAutoUpdate(self.__id,updateType)
 
+    def wait_for_close(self) :
+        """
+        Waits for the window to close before continuing. 
+        
+        - Waits until the user closes the window, or a system event closes the window (such as a program shutdown)
+        - If the window is already closed, or is in the process of closing, this function returns without waiting. 
+        - If the window is currently hidden, it will reappear on the screen so that it may be manually closed.
+        """
+        return _pybox.WindowWaitForClose(self.__id)
+    
     def closing(self) :
         """
         Returns true if the Window is closing due to a button press or some other action.
@@ -6239,6 +6326,26 @@ class Window :
             In most events, you can specify "peek=true" as a parameter so that the event will not be reset.
         """
         return _pybox.WindowButtonClosing(self.__id)
+
+    def show(self,show : bool = True) :
+        """
+        If the window is hidden from view, show() will make the window visible.
+        
+        Parameters: 
+        
+        - show -- when True (default), the window will be made visible on the screen. When false, the window will be hidden
+        """
+        return _pybox.WindowShow(self.__id,show) 
+    
+    def hide(self,hide : bool = True) :
+        """
+        If the window is visible from view, hide() will make the window invisible.
+        
+        Parameters: 
+        
+        - hide -- when True (default), the window will be hidden. When false, the window will be visible on the screen
+        """      
+        return _pybox.WindowShow(self.__id,not hide) 
 
     def mouse_moved(self) -> bool :
         """
@@ -6680,7 +6787,7 @@ class Window :
         - color_sel = mywin.color_selector(at=(500,200))     --> Opens a Color Selector window inside the window 'mywin, at window location x=500 and y=200
         - color_sel = pybox.color_selector(at=500,200)  --> Opens the same type of window, but as a pybox function without a parent window.
         
-        - while mywin.GetEvent() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
+        - while mywin.wait_event() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
         """
         return _ColorSelector(_pybox.WindowColorSelector(self.__id,opt.at(at),**kwargs))
 
@@ -6705,7 +6812,7 @@ class Window :
   
         example:\t - color_wheel = mywin.color_wheel((500,200))     --> Opens a Color Wheel window in the window at (500,200)
             
-        - while mywin.GetEvent() : if (color_wheel.value_changed()) print("Color value = ",color_wheel.get_rgb_value()) --> prints values as the wheel is moved.
+        - while mywin.wait_event() : if (color_wheel.value_changed()) print("Color value = ",color_wheel.get_rgb_value()) --> prints values as the wheel is moved.
         """
         return _ColorWheel(_pybox.WindowColorWheel(self.__id,opt.at(at),**kwargs))
     
@@ -6733,7 +6840,7 @@ class DevControl :
         - ypos            \t -Sets the position of the next control.  This can be used to set the location of the first control when setting bgbitmap when the bitmap contains a top header.
 
         - autoclose_x     \t -Sets the auto close 'x' button on or off.  By default, an 'x' is placed on the window to allow the user to close it.
-                          \t -autoclose_x=false will turn this 'x' off and also prevent the 'x' from appearing when the Dev Window is the only window open during get_event() calls.
+                          \t -autoclose_x=false will turn this 'x' off and also prevent the 'x' from appearing when the Dev Window is the only window open during wait_event() calls.
                           \t -see the 'allowclose' option to set the 'x' visibility in other ways
 
         - autoclose       \t -When set to true, this will cause the Dev Window to close automatically when no other non-dev (or other primary) windows are open.
@@ -8058,11 +8165,22 @@ class CQuickForm :
     pybox.DevButton("Press Me!")
 
     """
-    def __init__(self,MainID,WinID,DevID) :
-        self.main = Window(MainID)
-        self.win = Window(WinID)
-        self.dev = DevControl(DevID)
-
+    def __init__(self,qf_id,main_id,win_id,dev_id) :
+        self.qf_id = qf_id
+        self.main = Window(main_id)
+        self.win = Window(win_id)
+        self.dev = DevControl(dev_id)
+        
+    def __del__(self) :
+        """
+        __del__() TBD until during the beta period. 
+        Currently (for now), Hides the window to remove it from view.
+        """
+        self.main.hide();
+ #       print("reached __del__ for quickform")
+     
+        
+    
 #
 # Top-Level Pybox Functions
 #
@@ -8172,7 +8290,7 @@ def dev_set_config(*args,**kwargs) -> bool :
     - ypos            \t -Sets the position of the next control.  This can be used to set the location of the first control when setting bgbitmap when the bitmap contains a top header.
 
     - autoclose_x     \t -Sets the auto close 'x' button on or off.  By default, an 'x' is placed on the window to allow the user to close it.
-                      \autoclose_x=false will turn this 'x' off and also prevent the 'x' from appearing when the Dev Window is the only window open during get_event() calls.
+                      \autoclose_x=false will turn this 'x' off and also prevent the 'x' from appearing when the Dev Window is the only window open during wait_event() calls.
                       \t -see the 'allowclose' option to set the 'x' visibility in other ways
   
     - autoclose       \t -When set to true, this will cause the Dev Window to close automatically when no other non-dev (or other primary) windows are open.
@@ -8302,13 +8420,22 @@ def dev_bitmap(bitmap,text = None,*args,**kwargs) -> bool :
     """
     return _pybox.DevBitmap(bitmap,text,*args,**kwargs)
 
-def dev_text(text = None,height=None,**kwargs) :
+def dev_text(text = None,height=None,**kwargs) -> Window :
     """
-    *** To be filled in ***
+    *** note: This function is still being documented -- see various examples for usage ***
+
+    dev_text() is much the same as dev_text_widget(), except that it returns a Pybox.Window rather than a Text Widget.
+    The window created is transparent, with an update type set to "immediate", so everything that happens on the window
+    is updated immediately (this can be changed by calling set_auto_update()). 
+
+    note: use dev_text_widget() for more real-time displays, and dev_text() for more casual information that does not require real-time.
+
+    dev_text() as more flexibility since it is a Pybox.Window, where dev_text_widget() can be much faster and perform more automatic functions
+    as a text_widget() that only works with text display.
     """
     return Window(_pybox.DevText(text,height,**kwargs))
 
-def dev_text_widget(text = None,*args,**kwargs) :
+def dev_text_widget(text = None,*args,**kwargs) -> CTextWidget : 
     """
     Create a text widget int the Dev Window.    This is the same type of Text Widget that can be created in a regular
     window with window.text_widget(), but automatically placed and sized in the Dev Window. 
@@ -8339,7 +8466,7 @@ def dev_text_widget(text = None,*args,**kwargs) :
     """
     return CTextWidget(_pybox.DevTextWidget(text,*args,**kwargs))
 
-def dev_slider(title : str = None,*args,**kwargs) : 
+def dev_slider(title : str = None,*args,**kwargs) -> Slider : 
     """
     Creates a slider in the Dev Window. The slider is automatically placed.
 
@@ -8363,7 +8490,7 @@ def dev_slider(title : str = None,*args,**kwargs) :
     """
     return Slider(_pybox.DevSlider(title,*args,**kwargs))
 
-def dev_slider_f(title : str = None,*args,**kwargs) : 
+def dev_slider_f(title : str = None,*args,**kwargs) -> Slider : 
     """
     Creates a floating-point slider in the Dev Window. The slider is automatically placed.
 
@@ -8542,7 +8669,7 @@ def dev_auto_close(auto_close : bool = True) -> bool :
     *** This function is deprecated ***\n
     Sets the window to close automatically when there are no other windows open.
     By default, the Dev Window is a 'primary' window and won't close when
-    functions such as WaitPending() or GetEvent() are used.
+    functions such as wait_pending() or wait_event() are used.
 
     When set to false (default), the window won't close until it is closed by the user. 
     or the program exits.
@@ -8591,7 +8718,7 @@ def event_pending(peek = None) :
     return _pybox.EventPending(peek)
 def get_event() : 
     """
-    GetEvent waits for an event to occur in your main body of code. 
+    get_event() waits for an event to occur in your main body of code. 
 
     - Events are any events such as a mouse move, click, keyboard press, etc. 
     - Events are also caused by any control change such as moving a slider, pressing a button, or pressing return in an input box. 
@@ -8601,7 +8728,7 @@ def get_event() :
 
     In the event loop, you can check for events.  
 
-    GetEvent() returns true until all main windows are closed. 
+    get_event() returns true until all main windows are closed. 
 
     Example:
 
@@ -8622,31 +8749,64 @@ def get_event() :
     """
     return _pybox.GetEvent()
 
+def wait_event() : 
+    """
+    wait_event() waits for an event to occur in your main body of code. 
+
+    - Events are any events such as a mouse move, click, keyboard press, etc. 
+    - Events are also caused by any control change such as moving a slider, pressing a button, or pressing return in an input box. 
+    - Events can also be a window closing, a window moving or changing size -- basically anything happening in the system sends a message
+
+    Until an event occurs, the program is sleeping and not using any CPU time.  Pybox wakes up the program when an event happens. 
+
+    In the event loop, you can check for events.  
+
+    wait_event() returns true until all main windows are closed. 
+
+    Example:
+
+
+            my_button = pybox.dev_button("Press Me")
+            my_slider = pybox.def_slider()
+
+            while pybox.wait_event() :
+                if my_button.pressed() : print("My Button was Pressed")
+                if my_slider.moved()   : print("Range Slider is now at position",my_slider.get_pos())
+
+    In this example, the program sleeps until an event occurs, and then the program checks to see if an event occured with a button or a slider movement. 
+
+    Events are typically one-time:  Event-based functions report "True" on the first call, and then fals afterwards until another event of the same type happens. 
+        
+    You can also use a callback to retrieve events.  Though this is not recommended or useful for most programs, it can be useful for some specific purposes.
+    See set_event_callback() for more information.
+    """
+    return _pybox.GetEvent()
+
 def set_event_callback(callback : Callable[[None],None]) -> bool :
     """
     Use set_event_callback() to have a function called for every pybox event that occurs. See: reset_event_callback() to remove the callback.
 
-        The callback will received all events that cause GetEvent() to wake up, such as mouse movement, button presses, or any control movement, window size changes, etc.
-        The code inside of the EventCallback() can act the same as the code in the get_event() loop. 
+        The callback will received all events that cause wait_event() to wake up, such as mouse movement, button presses, or any control movement, window size changes, etc.
+        The code inside of the EventCallback() can act the same as the code in the wait_event() loop. 
 
         Note: The code in the Event Callback is in the main Windows/OS message loop and, therefore, can't take a lot of time with loops or processing -- this type of code needs to be in the main,
         procedural loop or as a new thread.  The code in the Event Callback is meant to process data and return, as it is holding up the window messaging while it is processing.
 
-        The get_event() loop is passive and does not share the same concern. 
+        The wait_event() loop is passive and does not share the same concern. 
 
     - How to define the EventCallback   \t -- Define the EventCallback as a simple function with no parameters and no return value, i.e. "MyFunction()". See example below.     
-    - Handle Events Where you Want      \t -- You can choose which events to handle in the Event Callback.  For example, handle only those necessary, and the rest in the GetEventLoop().
-    - Using the GetEvent() loop is easier and is not less efficient than using a callback.
+    - Handle Events Where you Want      \t -- You can choose which events to handle in the Event Callback.  For example, handle only those necessary, and the rest in the wait_event loop.
+    - Using the wait_event() loop is easier and is not less efficient than using a callback.
 
-    When to use the Event Callback vs. the get_event() loop
+    When to use the Event Callback vs. the wait_event() loop
 
         However, there are times when using an Event Callback can be useful.
-        An example may be to set a signal for another process, such as responding to a button press and cancelling a process in the main GetEvent() loop.
+        An example may be to set a signal for another process, such as responding to a button press and cancelling a process in the main wait_event loop.
         
         Any event that you want to handle while the main process is occupied (such as in a loop, dialog box etc.) can be handled in the EventCallback, and you don't
         have to worry about where the code will be excuted.
 
-        While the code in the GetEvent() loop must be handled consciously by the program, the Event Callback is *always* called no matter what is happening in the system (unless it's alread in the Event Callback)
+        While the code in the wait_event loop must be handled consciously by the program, the Event Callback is *always* called no matter what is happening in the system (unless it's alread in the Event Callback)
 
     Example:
 
@@ -8657,7 +8817,7 @@ def set_event_callback(callback : Callable[[None],None]) -> bool :
         button = pybox.dev_button("Press me")
         pybox.set_event_callback(MyCallback)
 
-        while pybox.get_event() : pass      # You can still handle events here when a callback is established (this example ignores them and wait for window close)
+        while pybox.wait_event() : pass      # You can still handle events here when a callback is established (this example ignores them and wait for window close)
     """
     return _pybox.SetEventCallback(callback)
 
@@ -8861,7 +9021,7 @@ def quick_form(type : str = None, title : str = None, size=None,*args,**kwargs) 
 
     """
     qf = _pybox.QuickForm(type,opt.title(title),opt.size(size),*args,**kwargs)
-    return CQuickForm(qf[0],qf[1],qf[2])
+    return CQuickForm(qf[0],qf[1],qf[2],qf[3])
 
 
 def vsync_startthread() -> bool :
@@ -9533,7 +9693,7 @@ def show_imgview_instructions() -> None :
 def color_selector(at=None,**kwargs) -> _ColorSelector :
     """
     Opens a Color Selector widget, as a popup window.    
-    - note: This is a standalone function and does not require creation of a window.  In this case, pybox.get_event() can be use to poll for color_selector events \
+    - note: This is a standalone function and does not require creation of a window.  In this case, pybox.wait_event() can be use to poll for color_selector events \
 e.g. color_selector::value_changed(), etc.
 
     - See Window.color_selector() for use with an existing window.
@@ -9556,7 +9716,7 @@ e.g. color_selector::value_changed(), etc.
   
     examples:\t - color_sel = color_selector(at=(500,200))     --> Opens a Color Selector window as an individual window on the screen at x=500 and y=200
         
-    - while pybox.GetEvent() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
+    - while pybox.wait_event() : if (color_sel.value_changed()) print("Color value = ",color_sel.get_rgb_value()) --> prints values as the wheel is moved.
     """
     return _ColorSelector(_pybox.ColorSelector(opt.at(at),**kwargs))
 
