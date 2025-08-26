@@ -114,7 +114,8 @@ import pybox
 
 win = pybox.new_window();                        # Create a default graphic window (not required)
 win.write("Hello World",font=100,center=True)    # Write "Hello World" in large font, centered in window
-win.wait_for_close()                             # Wait for user to close the window (or if the system closes down the program)
+win.wait_for_close()                             # Wait for user to close the window
+                                                 # (or if the system closes down the program)
 ```
 ---
 ## Support Active Development
