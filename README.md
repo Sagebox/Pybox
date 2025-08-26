@@ -352,29 +352,6 @@ VS Code, Visual Studio 2019 and Visual Studio 2022 work perfectly with Pybox -- 
 <br /><br />
 
 
-# Installation
-
-Pybox has just been released and doesn't have a way to install through 'pip' just yet. 
-
-To install, simply pick the correct Python directory (i.e. Python37, Python9, Python 10) and copy the `pybox.py` and `_pybox.pyd` files to the common
-module directory for that Python version.
-
-The only files needed are `pybox.py` and `_pybox.pyd`, where the other .py and .pyd modules are needed for some examples and can be useful for widgets usage, such as the color selector widget.
-
-### VS-Code and .env file
-
-With VS Code, you can also create a .env file with `PYTHONPATH=` set to a specific or relative directory contaning the modules &ndash; see the examples directories,
-all of which have a `.env` file specifying a relative location for the pybox modules.
-
-### Visual Studio
-
-With Visual Studio, you can add a `Search Path` with a direct or relative path.
-
-Once Pybox has been released for a while and community feedbacks starts coming in, a pip install version will be created.
-
-
-<br /><br />
-
 # Coming Soon - Sagebox Roadmap
 
 Pybox is based on community support -- donations, grants, and other financial support.  And, of course, your ideas. 
