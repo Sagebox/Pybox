@@ -347,7 +347,7 @@ dynamically emulate and control real-time systems.
 <br /><br />
 As a first release, it supports Windows-based Python and C++. 
 <br /><br />
-Pybox Alpha Release currently supports Python 3.7, 3.9, and 3.10 on Windows Platforms
+Pybox Beta Release currently supports Python 3.7, 3.9, 3.10, 3.11, and 3.12 on Windows Platform, with a Linux version currently in-progress.
 <br /><br />
 VS Code, Visual Studio 2019 and Visual Studio 2022 work perfectly with Pybox -- I recommend VS Code, with Visual 2019 as a good option. Visual Studio 2022 still seems to have some issues -- it works, but I recommend VS Code instead.
 <br /><br />
